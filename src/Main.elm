@@ -1,10 +1,16 @@
 module Main exposing (..)
 
 import Browser
+import Color
 import Css exposing (..)
+import Css.Global exposing (svg)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
+import Material.Icons as Filled
+import Material.Icons.Outlined as Outlined
+import Material.Icons.Types exposing (Coloring(..))
+import Svg
 
 
 
@@ -88,7 +94,7 @@ view model =
             , myMainBackground model.theme
             ]
         ]
-        []
+        [ fromUnstyled (Svg.svg [] [ Filled.offline_bolt 16 (Color <| Color.rgb 96 181 204) ]) ]
 
 
 myMainBackground : Theme -> Style
