@@ -1,8 +1,10 @@
 module Main exposing (..)
 
 import Browser
-import Html exposing (Html, button, div, text)
-import Html.Events exposing (onClick)
+import Css exposing (..)
+import Html
+import Html.Styled exposing (..)
+import Html.Styled.Attributes exposing (css)
 
 
 
@@ -10,7 +12,11 @@ import Html.Events exposing (onClick)
 
 
 main =
-    Browser.sandbox { init = init, update = update, view = view }
+    Browser.sandbox
+        { init = init
+        , update = update
+        , view = view >> toUnstyled
+        }
 
 
 
@@ -74,6 +80,22 @@ toggleTheme currentTheme =
 
 
 view : Model -> Html Msg
-view _ =
-    div []
+view model =
+    div
+        [ css
+            [ minWidth (vw 100)
+            , minHeight (vh 100)
+            , myMainBackground model.theme
+            ]
+        ]
         []
+
+
+myMainBackground : Theme -> Style
+myMainBackground theme =
+    case theme of
+        Dark ->
+            backgroundColor (hex "141414")
+
+        Light ->
+            backgroundColor (hex "ededed")
