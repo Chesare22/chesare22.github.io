@@ -5,8 +5,8 @@ import Color
 import Css exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
+import Html.Styled.Events exposing (..)
 import Material.Icons as Filled
-import Material.Icons.Outlined as Outlined
 import Material.Icons.Types exposing (Coloring(..))
 import Svg.Styled
 
@@ -84,15 +84,30 @@ toggleTheme currentTheme =
 
 
 view : Model -> Html Msg
-view model =
+view { theme } =
     div
         [ css
             [ minWidth (vw 100)
             , minHeight (vh 100)
-            , myMainBackground model.theme
+            , myMainBackground theme
             ]
         ]
-        [ Svg.Styled.fromUnstyled (Filled.offline_bolt 16 (Color <| Color.rgb 96 181 204)) ]
+        [ span
+            [ onClick ChangeTheme
+            , css [ cursor pointer ]
+            ]
+            [ switchThemeIcon theme ]
+        ]
+
+
+switchThemeIcon : Theme -> Svg.Styled.Svg msg
+switchThemeIcon theme =
+    case theme of
+        Dark ->
+            Svg.Styled.fromUnstyled (Filled.dark_mode 16 (Color <| Color.rgb255 96 181 204))
+
+        Light ->
+            Svg.Styled.fromUnstyled (Filled.light_mode 16 (Color <| Color.rgb255 95 99 104))
 
 
 myMainBackground : Theme -> Style
