@@ -94,7 +94,7 @@ view model =
             , myMainBackground model.theme
             ]
         ]
-        [ fromUnstyled (Svg.svg [] [ Filled.offline_bolt 16 (Color <| Color.rgb 96 181 204) ]) ]
+        [ svgToHtml (Filled.offline_bolt 16 (Color <| Color.rgb 96 181 204)) ]
 
 
 myMainBackground : Theme -> Style
@@ -105,3 +105,8 @@ myMainBackground theme =
 
         Light ->
             backgroundColor (hex "ededed")
+
+
+svgToHtml : Svg.Svg msg -> Html msg
+svgToHtml svg =
+    fromUnstyled (Svg.svg [] [ svg ])
