@@ -3,14 +3,12 @@ module Main exposing (..)
 import Browser
 import Color
 import Css exposing (..)
-import Css.Global exposing (svg)
-import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
 import Material.Icons as Filled
 import Material.Icons.Outlined as Outlined
 import Material.Icons.Types exposing (Coloring(..))
-import Svg
+import Svg.Styled
 
 
 
@@ -94,7 +92,7 @@ view model =
             , myMainBackground model.theme
             ]
         ]
-        [ svgToHtml (Filled.offline_bolt 16 (Color <| Color.rgb 96 181 204)) ]
+        [ Svg.Styled.fromUnstyled (Filled.offline_bolt 16 (Color <| Color.rgb 96 181 204)) ]
 
 
 myMainBackground : Theme -> Style
@@ -105,8 +103,3 @@ myMainBackground theme =
 
         Light ->
             backgroundColor (hex "ededed")
-
-
-svgToHtml : Svg.Svg msg -> Html msg
-svgToHtml svg =
-    fromUnstyled (Svg.svg [] [ svg ])
