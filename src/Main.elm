@@ -3,11 +3,13 @@ module Main exposing (..)
 import Browser
 import Color
 import Css exposing (..)
+import FeatherIcons
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
 import Html.Styled.Events exposing (..)
 import Material.Icons as Filled
 import Material.Icons.Types exposing (Coloring(..))
+import Phone
 import Svg.Styled
 
 
@@ -168,3 +170,72 @@ myPaperBackground theme =
 
         Light ->
             backgroundColor (hex "FFFFFF")
+
+
+
+-- CONSTATNS
+
+
+name : String
+name =
+    "César Alejandro González Ortega"
+
+
+email : String
+email =
+    "chesarglez429@gmail.com"
+
+
+phone : Phone.InternationalPhone
+phone =
+    Phone.InternationalPhone
+        52
+        1
+        9993912495
+
+
+type alias ContactInfo msg =
+    { href : String
+    , text : String
+    , icon : Svg.Styled.Svg msg
+    }
+
+
+contactList : Int -> List (ContactInfo Msg)
+contactList iconSize =
+    [ { href = "https://github.com/Chesare22"
+      , text = "/Chesare22"
+      , icon =
+            Svg.Styled.fromUnstyled
+                (FeatherIcons.github
+                    |> FeatherIcons.withSize (toFloat iconSize)
+                    |> FeatherIcons.toHtml []
+                )
+      }
+    , { href = "https://www.linkedin.com/in/cgonzalez22/"
+      , text = "/cgonzalez22"
+      , icon = Svg.Styled.fromUnstyled <| Filled.dark_mode iconSize Inherit
+      }
+    , { href = "mailto:" ++ email
+      , text = email
+      , icon = Svg.Styled.fromUnstyled <| Filled.email iconSize Inherit
+      }
+    , { href = "https://github.com/Chesare22"
+      , text = "/Chesare22"
+      , icon =
+            Svg.Styled.fromUnstyled
+                (FeatherIcons.github
+                    |> FeatherIcons.withSize (toFloat iconSize)
+                    |> FeatherIcons.toHtml []
+                )
+      }
+    , { href = Phone.toWhatsAppUrl phone
+      , text = Phone.toString phone
+      , icon =
+            Svg.Styled.fromUnstyled
+                (FeatherIcons.smartphone
+                    |> FeatherIcons.withSize (toFloat iconSize)
+                    |> FeatherIcons.toHtml []
+                )
+      }
+    ]
