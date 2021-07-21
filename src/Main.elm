@@ -5,7 +5,7 @@ import Color
 import Css exposing (..)
 import FeatherIcons
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css)
+import Html.Styled.Attributes as Attributes
 import Html.Styled.Events exposing (..)
 import Material.Icons as Filled
 import Material.Icons.Types exposing (Coloring(..))
@@ -89,7 +89,7 @@ toggleTheme currentTheme =
 view : Model -> Html Msg
 view { theme } =
     div
-        [ css
+        [ Attributes.css
             [ minWidth (vw 100)
             , minHeight (vh 100)
             , myMainBackground theme
@@ -98,7 +98,7 @@ view { theme } =
             ]
         ]
         [ div
-            [ css
+            [ Attributes.css
                 [ maxWidth (rem 38.25)
                 , width (pct 100)
                 , height (rem 49.5)
@@ -111,7 +111,7 @@ view { theme } =
             ]
             [ span
                 [ onClick ChangeTheme
-                , css [ cursor pointer ]
+                , Attributes.css [ cursor pointer ]
                 ]
                 [ switchThemeIcon 16 theme ]
             ]
