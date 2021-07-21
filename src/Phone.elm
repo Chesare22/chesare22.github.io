@@ -1,4 +1,6 @@
-module Phone exposing (..)
+module Phone exposing (InternationalPhone, toString, toWhatsAppUrl)
+
+import String exposing (..)
 
 
 type alias InternationalPhone =
@@ -18,4 +20,14 @@ toWhatsAppUrl { countryCode, cityCode, localPhoneNumber } =
 
 toString : InternationalPhone -> String
 toString =
-    .localPhoneNumber >> String.fromInt
+    .localPhoneNumber >> String.fromInt >> formatString
+
+
+formatString : String -> String
+formatString str =
+    "("
+        ++ slice 0 3 str
+        ++ ") "
+        ++ slice 3 6 str
+        ++ " "
+        ++ slice 6 10 str
