@@ -114,6 +114,29 @@ view { theme } =
                 , Attributes.css [ cursor pointer ]
                 ]
                 [ switchThemeIcon 16 theme ]
+            , ul
+                [ Attributes.css
+                    [ listStyle none
+                    , color (hex "fff")
+                    ]
+                ]
+                (List.map displayContact <| contactList 16)
+            ]
+        ]
+
+
+displayContact : ContactInfo Msg -> Html Msg
+displayContact contact =
+    li []
+        [ a
+            [ Attributes.href contact.href
+            , Attributes.target "_blank"
+            , Attributes.css [ color inherit ]
+            ]
+            [ span
+                []
+                [ contact.icon ]
+            , span [] [ text contact.text ]
             ]
         ]
 
