@@ -203,22 +203,18 @@ type alias ContactInfo msg =
 
 contactList : Int -> List (ContactInfo Msg)
 contactList iconSize =
-    [ { href = "https://github.com/Chesare22"
-      , text = "/Chesare22"
+    [ { href = "mailto:" ++ email
+      , text = email
+      , icon = Svg.Styled.fromUnstyled <| Filled.email iconSize Inherit
+      }
+    , { href = Phone.toWhatsAppUrl phone
+      , text = Phone.toString phone
       , icon =
             Svg.Styled.fromUnstyled
-                (FeatherIcons.github
+                (FeatherIcons.smartphone
                     |> FeatherIcons.withSize (toFloat iconSize)
                     |> FeatherIcons.toHtml []
                 )
-      }
-    , { href = "https://www.linkedin.com/in/cgonzalez22/"
-      , text = "/cgonzalez22"
-      , icon = Svg.Styled.fromUnstyled <| Filled.dark_mode iconSize Inherit
-      }
-    , { href = "mailto:" ++ email
-      , text = email
-      , icon = Svg.Styled.fromUnstyled <| Filled.email iconSize Inherit
       }
     , { href = "https://github.com/Chesare22"
       , text = "/Chesare22"
@@ -229,11 +225,20 @@ contactList iconSize =
                     |> FeatherIcons.toHtml []
                 )
       }
-    , { href = Phone.toWhatsAppUrl phone
-      , text = Phone.toString phone
+    , { href = "https://gitlab.com/Chesare22"
+      , text = "/Chesare22"
       , icon =
             Svg.Styled.fromUnstyled
-                (FeatherIcons.smartphone
+                (FeatherIcons.gitlab
+                    |> FeatherIcons.withSize (toFloat iconSize)
+                    |> FeatherIcons.toHtml []
+                )
+      }
+    , { href = "https://www.linkedin.com/in/cgonzalez22/"
+      , text = "/cgonzalez22"
+      , icon =
+            Svg.Styled.fromUnstyled
+                (FeatherIcons.linkedin
                     |> FeatherIcons.withSize (toFloat iconSize)
                     |> FeatherIcons.toHtml []
                 )
