@@ -175,26 +175,6 @@ switchThemeIcon size theme =
             Svg.Styled.fromUnstyled (Filled.light_mode size (Color <| Color.rgb255 95 99 104))
 
 
-myMainBackground : Theme -> Style
-myMainBackground theme =
-    case theme of
-        Dark ->
-            backgroundColor (hex "121212")
-
-        Light ->
-            backgroundColor (hex "EEF2F7")
-
-
-myPaperBackground : Theme -> Style
-myPaperBackground theme =
-    case theme of
-        Dark ->
-            backgroundColor (hex "2C2C2C")
-
-        Light ->
-            backgroundColor (hex "FFFFFF")
-
-
 
 -- CONSTATNS
 
@@ -267,3 +247,56 @@ contactList iconSize =
                 )
       }
     ]
+
+
+
+-- COLOR PALETTE
+
+
+type alias Palette =
+    { c50 : Color
+    , c100 : Color
+    , c200 : Color
+    , c300 : Color
+    , c400 : Color
+    , c500 : Color
+    , c600 : Color
+    , c700 : Color
+    , c800 : Color
+    , c900 : Color
+    }
+
+
+primary : Palette
+primary =
+    Palette
+        (hex "f9e6f0")
+        (hex "f2c0db")
+        (hex "ec97c3")
+        (hex "e870ab")
+        (hex "e45397")
+        (hex "e43c83")
+        (hex "d2397e")
+        (hex "bb3676")
+        (hex "a5336f")
+        (hex "7d2d61")
+
+
+myMainBackground : Theme -> Style
+myMainBackground theme =
+    case theme of
+        Dark ->
+            backgroundColor (hex "121212")
+
+        Light ->
+            backgroundColor (hex "EEF2F7")
+
+
+myPaperBackground : Theme -> Style
+myPaperBackground theme =
+    case theme of
+        Dark ->
+            backgroundColor (hex "1c3049")
+
+        Light ->
+            backgroundColor (hex "FFFFFF")
