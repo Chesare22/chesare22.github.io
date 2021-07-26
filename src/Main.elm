@@ -99,12 +99,12 @@ view { theme } =
         ]
         [ div
             [ Attributes.css
-                [ maxWidth (rem 38.25)
+                [ maxWidth paperWidth
                 , width (pct 100)
-                , height (rem 49.5)
+                , height paperHeight
                 , borderRadius (px 10)
                 , margin2 (rem 2) (px 0)
-                , padding (rem 1)
+                , padding paperPadding
                 , myPaperBackground theme
                 , paperShadow theme
                 ]
@@ -300,3 +300,37 @@ myPaperBackground theme =
 
         Light ->
             backgroundColor (hex "FFFFFF")
+
+
+
+-- Dimentions
+
+
+paperWidthInt : number
+paperWidthInt =
+    51
+
+
+paperHeightInt : number
+paperHeightInt =
+    66
+
+
+paperPaddingInt : number
+paperPaddingInt =
+    1
+
+
+paperWidth : Rem
+paperWidth =
+    rem (paperWidthInt - 2 * paperPaddingInt)
+
+
+paperHeight : Rem
+paperHeight =
+    rem (paperHeightInt - 2 * paperPaddingInt)
+
+
+paperPadding : Rem
+paperPadding =
+    rem paperPaddingInt
