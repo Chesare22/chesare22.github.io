@@ -3,6 +3,7 @@ module Main exposing (..)
 import Browser
 import Color
 import Css exposing (..)
+import Css.Media exposing (withMediaQuery)
 import FeatherIcons
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
@@ -107,6 +108,10 @@ view { theme } =
                 , padding paperPadding
                 , myPaperBackground theme
                 , paperShadow theme
+                , withMediaQuery [ "print" ]
+                    [ margin (px 0)
+                    , borderRadius (px 0)
+                    ]
                 ]
             ]
             [ span
