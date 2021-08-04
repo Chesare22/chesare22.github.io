@@ -175,7 +175,7 @@ paperShadow : Theme -> Style
 paperShadow theme =
     case theme of
         Dark ->
-            batch []
+            border3 (px 1) solid grey.c50
 
         Light ->
             smoothGrayShadow
@@ -341,7 +341,7 @@ getMainBackground : Theme -> Style
 getMainBackground theme =
     case theme of
         Dark ->
-            backgroundColor grey.c900
+            getPaperBackground Dark
 
         Light ->
             backgroundColor grey.c200
