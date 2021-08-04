@@ -319,10 +319,10 @@ getMainBackground : Theme -> Style
 getMainBackground theme =
     case theme of
         Dark ->
-            backgroundColor (hex "121212")
+            backgroundColor grey.c900
 
         Light ->
-            backgroundColor (hex "EEF2F7")
+            backgroundColor grey.c200
 
 
 getPaperBackground : Theme -> Style
@@ -332,7 +332,12 @@ getPaperBackground theme =
             backgroundColor secondary.c900
 
         Light ->
-            backgroundColor (hex "FFFFFF")
+            backgroundColor grey.c50
+
+
+optionsBarBg : Style
+optionsBarBg =
+    backgroundColor (hex "121212")
 
 
 getParagraphColor : Theme -> Style
