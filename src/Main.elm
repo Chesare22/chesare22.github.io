@@ -95,9 +95,22 @@ view { theme } =
             , displayFlex
             , justifyContent center
             , getParagraphColor theme
+            , paddingTop optionsBarHeight
+            , withMediaQuery [ "print" ] [ paddingTop (px 0) ]
             ]
         ]
         [ div
+            [ Attributes.css
+                [ height optionsBarHeight
+                , width (pct 100)
+                , position fixed
+                , top (px 0)
+                , optionsBarBg
+                , hiddenOnPrint
+                ]
+            ]
+            []
+        , div
             [ Attributes.css
                 [ maxWidth paperWidth
                 , width (pct 100)
@@ -253,6 +266,15 @@ contactList iconSize =
 
 
 
+-- REUSABLE STYLES
+
+
+hiddenOnPrint : Style
+hiddenOnPrint =
+    withMediaQuery [ "print" ] [ display none ]
+
+
+
 -- COLOR PALETTE
 
 
@@ -382,3 +404,8 @@ paperHeight =
 paperPadding : Rem
 paperPadding =
     rem paperPaddingInt
+
+
+optionsBarHeight : Rem
+optionsBarHeight =
+    rem 4
