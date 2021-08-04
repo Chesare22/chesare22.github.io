@@ -90,8 +90,7 @@ view : Model -> Html Msg
 view { theme } =
     div
         [ Attributes.css
-            [ minWidth (vw 100)
-            , minHeight (vh 100)
+            [ minHeight (vh 100)
             , getMainBackground theme
             , displayFlex
             , justifyContent center
