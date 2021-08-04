@@ -96,6 +96,7 @@ view { theme } =
             , getMainBackground theme
             , displayFlex
             , justifyContent center
+            , getParagraphColor theme
             ]
         ]
         [ div
@@ -122,7 +123,6 @@ view { theme } =
             , ul
                 [ Attributes.css
                     [ listStyle none
-                    , color (hex "fff")
                     ]
                 ]
                 (List.map displayContact <| contactList 16)
@@ -320,6 +320,16 @@ getPaperBackground theme =
 
         Light ->
             backgroundColor (hex "FFFFFF")
+
+
+getParagraphColor : Theme -> Style
+getParagraphColor theme =
+    case theme of
+        Dark ->
+            color grey.c50
+
+        Light ->
+            color grey.c900
 
 
 
