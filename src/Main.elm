@@ -287,6 +287,21 @@ primary =
         (hex "7d2d61")
 
 
+grey : Palette
+grey =
+    Palette
+        (hex "fafafa")
+        (hex "f5f5f5")
+        (hex "eeeeee")
+        (hex "e0e0e0")
+        (hex "bdbdbd")
+        (hex "9e9e9e")
+        (hex "757575")
+        (hex "616161")
+        (hex "424242")
+        (hex "212121")
+
+
 myMainBackground : Theme -> Style
 myMainBackground theme =
     case theme of
