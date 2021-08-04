@@ -93,7 +93,7 @@ view { theme } =
         [ Attributes.css
             [ minWidth (vw 100)
             , minHeight (vh 100)
-            , myMainBackground theme
+            , getMainBackground theme
             , displayFlex
             , justifyContent center
             ]
@@ -106,7 +106,7 @@ view { theme } =
                 , borderRadius (px 10)
                 , margin2 (rem 2) (px 0)
                 , padding paperPadding
-                , myPaperBackground theme
+                , getPaperBackground theme
                 , paperShadow theme
                 , withMediaQuery [ "print" ]
                     [ margin (px 0)
@@ -302,8 +302,8 @@ grey =
         (hex "212121")
 
 
-myMainBackground : Theme -> Style
-myMainBackground theme =
+getMainBackground : Theme -> Style
+getMainBackground theme =
     case theme of
         Dark ->
             backgroundColor (hex "121212")
@@ -312,8 +312,8 @@ myMainBackground theme =
             backgroundColor (hex "EEF2F7")
 
 
-myPaperBackground : Theme -> Style
-myPaperBackground theme =
+getPaperBackground : Theme -> Style
+getPaperBackground theme =
     case theme of
         Dark ->
             backgroundColor (hex "1c3049")
