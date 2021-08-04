@@ -1,7 +1,6 @@
 module Main exposing (..)
 
 import Browser
-import Color
 import Css exposing (..)
 import Css.Media exposing (withMediaQuery)
 import FeatherIcons
@@ -174,10 +173,10 @@ switchThemeIcon : Int -> Theme -> Svg.Styled.Svg msg
 switchThemeIcon size theme =
     case theme of
         Dark ->
-            Svg.Styled.fromUnstyled (Filled.dark_mode size (Color <| Color.rgb255 96 181 204))
+            Svg.Styled.fromUnstyled (Filled.dark_mode size Inherit)
 
         Light ->
-            Svg.Styled.fromUnstyled (Filled.light_mode size (Color <| Color.rgb255 95 99 104))
+            Svg.Styled.fromUnstyled (Filled.light_mode size Inherit)
 
 
 
