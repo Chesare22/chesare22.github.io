@@ -285,6 +285,21 @@ primary =
         (hex "7d2d61")
 
 
+secondary : Palette
+secondary =
+    Palette
+        (hex "e5eeff")
+        (hex "c4d8f2")
+        (hex "a9bcdb")
+        (hex "8ba1c4")
+        (hex "748db2")
+        (hex "5d79a1")
+        (hex "4e6b8f")
+        (hex "3e5778")
+        (hex "2f4561")
+        (hex "1c3049")
+
+
 grey : Palette
 grey =
     Palette
@@ -314,7 +329,7 @@ getPaperBackground : Theme -> Style
 getPaperBackground theme =
     case theme of
         Dark ->
-            backgroundColor (hex "1c3049")
+            backgroundColor secondary.c900
 
         Light ->
             backgroundColor (hex "FFFFFF")
