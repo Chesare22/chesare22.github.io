@@ -2,7 +2,7 @@ module Main exposing (..)
 
 import Browser
 import Css exposing (..)
-import Css.Media exposing (only, screen, withMedia, withMediaQuery)
+import Css.Media exposing (only, print, screen, withMedia)
 import FeatherIcons
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
@@ -266,14 +266,19 @@ contactList iconSize =
 -- REUSABLE STYLES
 
 
-hiddenOnPrint : Style
-hiddenOnPrint =
-    withMediaQuery [ "print" ] [ display none ]
-
-
 onlyScreen : List Style -> Style
 onlyScreen =
     withMedia [ only screen [] ]
+
+
+onlyPrint : List Style -> Style
+onlyPrint =
+    withMedia [ only print [] ]
+
+
+hiddenOnPrint : Style
+hiddenOnPrint =
+    onlyPrint [ display none ]
 
 
 
