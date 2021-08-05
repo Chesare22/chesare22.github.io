@@ -2,7 +2,7 @@ module Main exposing (..)
 
 import Browser
 import Css exposing (..)
-import Css.Media exposing (withMediaQuery)
+import Css.Media exposing (only, screen, withMedia, withMediaQuery)
 import FeatherIcons
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
@@ -95,8 +95,7 @@ view { theme } =
             , displayFlex
             , justifyContent center
             , getParagraphColor theme
-            , paddingTop optionsBarHeight
-            , withMediaQuery [ "print" ] [ paddingTop (px 0) ]
+            , onlyScreen [ paddingTop optionsBarHeight ]
             ]
         ]
         [ div
@@ -115,14 +114,12 @@ view { theme } =
                 [ maxWidth paperWidth
                 , width (pct 100)
                 , height paperHeight
-                , borderRadius (px 10)
-                , margin2 (rem 2) (px 0)
                 , padding paperPadding
                 , getPaperBackground theme
-                , paperShadow theme
-                , withMediaQuery [ "print" ]
-                    [ margin (px 0)
-                    , borderRadius (px 0)
+                , onlyScreen
+                    [ margin2 (rem 2) (px 0)
+                    , borderRadius (px 10)
+                    , paperShadow theme
                     ]
                 ]
             ]
@@ -272,6 +269,11 @@ contactList iconSize =
 hiddenOnPrint : Style
 hiddenOnPrint =
     withMediaQuery [ "print" ] [ display none ]
+
+
+onlyScreen : List Style -> Style
+onlyScreen =
+    withMedia [ only screen [] ]
 
 
 
