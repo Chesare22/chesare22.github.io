@@ -88,14 +88,14 @@ toggleTheme currentTheme =
 
 
 view : Model -> Html Msg
-view { theme } =
+view model =
     div
         [ Attributes.css
             [ minHeight (vh 100)
-            , getMainBackground theme
+            , getMainBackground model.theme
             , displayFlex
             , justifyContent center
-            , getParagraphColor theme
+            , getParagraphColor model.theme
             , onlyScreen [ paddingTop optionsBarHeight ]
             ]
         ]
@@ -123,11 +123,11 @@ view { theme } =
                 , width (pct 100)
                 , height paperHeight
                 , padding paperPadding
-                , getPaperBackground theme
+                , getPaperBackground model.theme
                 , onlyScreen
                     [ margin2 (rem 2) (px 0)
                     , borderRadius (px 10)
-                    , paperShadow theme
+                    , paperShadow model.theme
                     ]
                 ]
             ]
@@ -135,7 +135,7 @@ view { theme } =
                 [ onClick ChangeTheme
                 , Attributes.css [ cursor pointer ]
                 ]
-                [ switchThemeIcon 16 theme ]
+                [ switchThemeIcon 16 model.theme ]
             , ul
                 [ Attributes.css
                     [ listStyle none
