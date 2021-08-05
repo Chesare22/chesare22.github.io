@@ -2,6 +2,7 @@ module Main exposing (..)
 
 import Browser
 import Css exposing (..)
+import Css.Global as Global
 import Css.Media exposing (only, print, screen, withMedia)
 import FeatherIcons
 import Html.Styled exposing (..)
@@ -98,14 +99,21 @@ view { theme } =
             , onlyScreen [ paddingTop optionsBarHeight ]
             ]
         ]
-        [ div
-            [ Attributes.css
+        [ Global.global
+            [ Global.selector "#options-bar.hidden"
+                [ top (rem (negate optionsBarHeightInt))
+                ]
+            ]
+        , div
+            [ Attributes.id "options-bar"
+            , Attributes.css
                 [ height optionsBarHeight
                 , width (pct 100)
                 , position fixed
                 , top (px 0)
                 , optionsBarBg
                 , hiddenOnPrint
+                , property "transition" "all .3s ease"
                 ]
             ]
             []
@@ -398,6 +406,11 @@ paperPaddingInt =
     1
 
 
+optionsBarHeightInt : number
+optionsBarHeightInt =
+    4
+
+
 paperWidth : Rem
 paperWidth =
     rem (paperWidthInt - 2 * paperPaddingInt)
@@ -415,4 +428,4 @@ paperPadding =
 
 optionsBarHeight : Rem
 optionsBarHeight =
-    rem 4
+    rem optionsBarHeightInt
