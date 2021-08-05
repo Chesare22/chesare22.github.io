@@ -114,9 +114,23 @@ view model =
                 , optionsBarBg
                 , hiddenOnPrint
                 , property "transition" "all .3s ease"
+                , centeredContent
+                , getParagraphColor Dark
                 ]
             ]
-            []
+            [ div
+                [ Attributes.css
+                    [ maxWidth (rem 10)
+                    , displayGrid
+                    ]
+                ]
+                [ span
+                    [ onClick ChangeTheme
+                    , Attributes.css [ cursor pointer ]
+                    ]
+                    [ switchThemeIcon 16 model.theme ]
+                ]
+            ]
         , div
             [ Attributes.css
                 [ maxWidth paperWidth
@@ -131,12 +145,7 @@ view model =
                     ]
                 ]
             ]
-            [ span
-                [ onClick ChangeTheme
-                , Attributes.css [ cursor pointer ]
-                ]
-                [ switchThemeIcon 16 model.theme ]
-            , ul
+            [ ul
                 [ Attributes.css
                     [ listStyle none
                     ]
@@ -287,6 +296,19 @@ onlyPrint =
 hiddenOnPrint : Style
 hiddenOnPrint =
     onlyPrint [ display none ]
+
+
+centeredContent : Style
+centeredContent =
+    batch
+        [ displayGrid
+        , property "place-items" "center"
+        ]
+
+
+displayGrid : Style
+displayGrid =
+    property "display" "grid"
 
 
 
