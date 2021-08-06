@@ -35,6 +35,13 @@ subscriptions _ =
 
 
 
+-- PORTS
+
+
+port printPage : () -> Cmd msg
+
+
+
 -- MODEL
 
 
@@ -61,13 +68,6 @@ init _ =
       }
     , Cmd.none
     )
-
-
-
--- PORTS
-
-
-port printPage : () -> Cmd msg
 
 
 
@@ -217,6 +217,33 @@ view model =
         ]
 
 
+
+-- ATOMS
+
+
+ghostRoundButton : List (Attribute msg) -> List (Html msg) -> Html msg
+ghostRoundButton =
+    styled button
+        [ borderRadius (pct 50)
+        , padding (rem 0.5)
+        , backgroundColor transparent
+        , color inherit
+        , cursor pointer
+        , border (px 0)
+        , property "transition" "background-color .25s ease"
+        , hover
+            [ backgroundColor grey.c800
+            ]
+        , active
+            [ backgroundColor grey.c700
+            ]
+        ]
+
+
+
+-- VIEW OF CUSTOM DATA
+
+
 displayLangOptions : Language -> LangOption -> Html Msg
 displayLangOptions language { value, label } =
     option [ Attributes.value value ] [ text (label language) ]
@@ -238,42 +265,8 @@ displayContact contact =
         ]
 
 
-smoothGrayShadow : Style
-smoothGrayShadow =
-    property "box-shadow"
-        (String.concat
-            [ "0 2.8px 2.2px rgba(0, 0, 0, 0.034),"
-            , "0 6.7px 5.3px rgba(0, 0, 0, 0.048),"
-            , "0 12.5px 10px rgba(0, 0, 0, 0.06),"
-            , "0 22.3px 17.9px rgba(0, 0, 0, 0.072),"
-            , "0 41.8px 33.4px rgba(0, 0, 0, 0.086),"
-            , "0 100px 80px rgba(0, 0, 0, 0.12)"
-            ]
-        )
 
-
-paperShadow : Theme -> Style
-paperShadow theme =
-    case theme of
-        Dark ->
-            border3 (px 1) solid grey.c50
-
-        Light ->
-            smoothGrayShadow
-
-
-switchThemeIcon : Int -> Theme -> Svg.Styled.Svg msg
-switchThemeIcon size theme =
-    case theme of
-        Dark ->
-            Svg.Styled.fromUnstyled (Filled.dark_mode size Inherit)
-
-        Light ->
-            Svg.Styled.fromUnstyled (Filled.light_mode size Inherit)
-
-
-
--- CONSTATNS
+-- CUSTOM DATA
 
 
 name : String
@@ -370,7 +363,106 @@ langOptions =
 
 
 
--- REUSABLE STYLES
+-- STYLES
+
+
+hiddenOnPrint : Style
+hiddenOnPrint =
+    onlyPrint [ display none ]
+
+
+centeredContent : Style
+centeredContent =
+    batch
+        [ displayGrid
+        , property "place-items" "center"
+        ]
+
+
+displayGrid : Style
+displayGrid =
+    property "display" "grid"
+
+
+smoothGrayShadow : Style
+smoothGrayShadow =
+    property "box-shadow"
+        (String.concat
+            [ "0 2.8px 2.2px rgba(0, 0, 0, 0.034),"
+            , "0 6.7px 5.3px rgba(0, 0, 0, 0.048),"
+            , "0 12.5px 10px rgba(0, 0, 0, 0.06),"
+            , "0 22.3px 17.9px rgba(0, 0, 0, 0.072),"
+            , "0 41.8px 33.4px rgba(0, 0, 0, 0.086),"
+            , "0 100px 80px rgba(0, 0, 0, 0.12)"
+            ]
+        )
+
+
+optionsBarBg : Style
+optionsBarBg =
+    backgroundColor (hex "121212")
+
+
+
+-- THEMED STYLES
+
+
+getMainBackground : Theme -> Style
+getMainBackground theme =
+    case theme of
+        Dark ->
+            getPaperBackground Dark
+
+        Light ->
+            backgroundColor grey.c200
+
+
+getPaperBackground : Theme -> Style
+getPaperBackground theme =
+    case theme of
+        Dark ->
+            backgroundColor secondary.c900
+
+        Light ->
+            backgroundColor grey.c50
+
+
+getParagraphColor : Theme -> Style
+getParagraphColor theme =
+    case theme of
+        Dark ->
+            color grey.c50
+
+        Light ->
+            color grey.c900
+
+
+paperShadow : Theme -> Style
+paperShadow theme =
+    case theme of
+        Dark ->
+            border3 (px 1) solid grey.c50
+
+        Light ->
+            smoothGrayShadow
+
+
+
+-- THEMED ELEMENTS
+
+
+switchThemeIcon : Int -> Theme -> Svg.Styled.Svg msg
+switchThemeIcon size theme =
+    case theme of
+        Dark ->
+            Svg.Styled.fromUnstyled (Filled.dark_mode size Inherit)
+
+        Light ->
+            Svg.Styled.fromUnstyled (Filled.light_mode size Inherit)
+
+
+
+-- MEDIA QUERIES
 
 
 onlyScreen : List Style -> Style
@@ -401,45 +493,8 @@ onlyPrint =
     withMedia [ only print [] ]
 
 
-hiddenOnPrint : Style
-hiddenOnPrint =
-    onlyPrint [ display none ]
 
-
-centeredContent : Style
-centeredContent =
-    batch
-        [ displayGrid
-        , property "place-items" "center"
-        ]
-
-
-displayGrid : Style
-displayGrid =
-    property "display" "grid"
-
-
-ghostRoundButton : List (Attribute msg) -> List (Html msg) -> Html msg
-ghostRoundButton =
-    styled button
-        [ borderRadius (pct 50)
-        , padding (rem 0.5)
-        , backgroundColor transparent
-        , color inherit
-        , cursor pointer
-        , border (px 0)
-        , property "transition" "background-color .25s ease"
-        , hover
-            [ backgroundColor grey.c800
-            ]
-        , active
-            [ backgroundColor grey.c700
-            ]
-        ]
-
-
-
--- COLOR PALETTE
+-- COLORS
 
 
 type alias Palette =
@@ -501,48 +556,13 @@ grey =
         (hex "212121")
 
 
-getMainBackground : Theme -> Style
-getMainBackground theme =
-    case theme of
-        Dark ->
-            getPaperBackground Dark
-
-        Light ->
-            backgroundColor grey.c200
-
-
-getPaperBackground : Theme -> Style
-getPaperBackground theme =
-    case theme of
-        Dark ->
-            backgroundColor secondary.c900
-
-        Light ->
-            backgroundColor grey.c50
-
-
-optionsBarBg : Style
-optionsBarBg =
-    backgroundColor (hex "121212")
-
-
-getParagraphColor : Theme -> Style
-getParagraphColor theme =
-    case theme of
-        Dark ->
-            color grey.c50
-
-        Light ->
-            color grey.c900
-
-
 transparent : Color
 transparent =
     hex "00000000"
 
 
 
--- Dimentions
+-- DIMENTIONS
 
 
 paperWidthInt : number
