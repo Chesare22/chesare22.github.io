@@ -3,7 +3,7 @@ port module Main exposing (..)
 import Browser
 import Css exposing (..)
 import Css.Global as Global
-import Css.Media exposing (only, print, screen, withMedia)
+import Css.Media as Media exposing (only, print, screen, withMedia)
 import FeatherIcons
 import Html.Attributes exposing (value)
 import Html.Styled exposing (..)
@@ -378,6 +378,24 @@ onlyScreen =
     withMedia [ only screen [] ]
 
 
+onlySmallScreen : List Style -> Style
+onlySmallScreen =
+    withMedia [ only screen [ Media.maxWidth smallScreen ] ]
+
+
+onlyBigScreen : List Style -> Style
+onlyBigScreen =
+    withMedia [ only screen [ Media.minWidth mediumScreen ] ]
+
+
+printOrBigScreen : List Style -> Style
+printOrBigScreen =
+    withMedia
+        [ only screen [ Media.minWidth mediumScreen ]
+        , only print []
+        ]
+
+
 onlyPrint : List Style -> Style
 onlyPrint =
     withMedia [ only print [] ]
@@ -565,3 +583,17 @@ paperPadding =
 optionsBarHeight : Rem
 optionsBarHeight =
     rem optionsBarHeightInt
+
+
+
+-- BREAKPOINTS
+
+
+smallScreen : Em
+smallScreen =
+    Css.em 30
+
+
+mediumScreen : Em
+mediumScreen =
+    Css.em 48
