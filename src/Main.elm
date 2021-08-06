@@ -108,7 +108,9 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         ChangeTheme ->
-            ( { model | theme = toggleTheme model.theme }, Cmd.none )
+            ( { model | theme = toggleTheme model.theme }
+            , Cmd.none
+            )
 
         ChangeLanguage newLang ->
             let
@@ -119,10 +121,14 @@ update msg model =
                     else
                         English
             in
-            ( { model | language = language }, Cmd.none )
+            ( { model | language = language }
+            , Cmd.none
+            )
 
         Print ->
-            ( model, printPage () )
+            ( model
+            , printPage ()
+            )
 
 
 toggleTheme : Theme -> Theme
