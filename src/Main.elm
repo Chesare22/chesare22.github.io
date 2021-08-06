@@ -71,6 +71,30 @@ init _ =
 
 
 
+-- CASE EXPRESSIONS OF MODEL
+
+
+translated : a -> a -> Language -> a
+translated onSpanish onEnglish language =
+    case language of
+        Spanish ->
+            onSpanish
+
+        English ->
+            onEnglish
+
+
+themed : a -> a -> Theme -> a
+themed darkElement lightElement theme =
+    case theme of
+        Dark ->
+            darkElement
+
+        Light ->
+            lightElement
+
+
+
 -- UPDATE
 
 
@@ -339,16 +363,6 @@ contactList iconSize =
     ]
 
 
-translated : a -> a -> Language -> a
-translated onSpanish onEnglish language =
-    case language of
-        Spanish ->
-            onSpanish
-
-        English ->
-            onEnglish
-
-
 type alias LangOption =
     { value : String
     , label : Language -> String
@@ -400,16 +414,6 @@ smoothGrayShadow =
 
 
 -- THEMED STYLES
-
-
-themed : a -> a -> Theme -> a
-themed darkElement lightElement theme =
-    case theme of
-        Dark ->
-            darkElement
-
-        Light ->
-            lightElement
 
 
 getMainBackground : Theme -> Style
