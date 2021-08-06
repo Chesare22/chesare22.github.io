@@ -294,10 +294,19 @@ displayContact contact =
         [ a
             [ Attributes.href contact.href
             , Attributes.target "_blank"
-            , Attributes.css [ color inherit ]
+            , Attributes.css
+                [ color inherit
+                , textDecoration none
+                , lineHeight (rem 1.365)
+                ]
             ]
             [ span
-                []
+                [ Attributes.css
+                    [ paddingRight (rem 0.4)
+                    , position relative
+                    , top (rem 0.12)
+                    ]
+                ]
                 [ contact.icon ]
             , span [] [ text contact.text ]
             ]
