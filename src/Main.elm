@@ -217,11 +217,12 @@ view model =
             [ Attributes.css
                 [ maxWidth paperWidth
                 , width (pct 100)
-                , padding paperPadding
+                , padding2 paperPadding.vertical paperPadding.horizontal
                 , paperBackground model.theme
                 , displayGrid
                 , property "grid-template-columns" "2fr 3fr"
                 , property "column-gap" "2rem"
+                , property "align-content" "start"
                 , printOrBigScreen
                     [ height paperHeight
                     ]
@@ -241,13 +242,16 @@ view model =
                 [ ul
                     [ Attributes.css
                         [ listStyle none
+                        , paddingLeft (px 0)
                         ]
                     ]
                     (List.map displayContact <| contactList 16)
                 ]
 
             -- Column 2
-            , div [] []
+            , div []
+                [ p [] [ text "Litter kitter kitty litty little kitten big roar roar feed me. I could pee on this if i had the energy purr purr purr until owner pets why owner not pet me hiss scratch meow your pillow is now my pet bed show belly sit in window and stare oooh, a bird, yum and scream for no reason at 4 am so plays league of legends. Bite nose of your human is good you understand your place in my world poop in the plant pot small kitty warm kitty little balls of fur for the cat was chasing the mouse. Bring your owner a dead bird. Stare at owner accusingly then wink lick yarn hanging out of own butt friends are not food. I can haz please stop looking at your phone and pet me yet jump off balcony, onto stranger's head." ]
+                ]
             ]
         ]
 
@@ -585,9 +589,11 @@ paperHeightInt =
     66
 
 
-paperPaddingInt : number
+paperPaddingInt : { vertical : Float, horizontal : Float }
 paperPaddingInt =
-    1
+    { vertical = 1
+    , horizontal = 2.5
+    }
 
 
 optionsBarHeightInt : number
@@ -597,17 +603,19 @@ optionsBarHeightInt =
 
 paperWidth : Rem
 paperWidth =
-    rem (paperWidthInt - 2 * paperPaddingInt)
+    rem (paperWidthInt - 2 * paperPaddingInt.horizontal)
 
 
 paperHeight : Rem
 paperHeight =
-    rem (paperHeightInt - 2 * paperPaddingInt)
+    rem (paperHeightInt - 2 * paperPaddingInt.vertical)
 
 
-paperPadding : Rem
+paperPadding : { vertical : Rem, horizontal : Rem }
 paperPadding =
-    rem paperPaddingInt
+    { vertical = rem paperPaddingInt.vertical
+    , horizontal = rem paperPaddingInt.horizontal
+    }
 
 
 optionsBarHeight : Rem
