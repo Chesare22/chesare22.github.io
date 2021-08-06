@@ -407,44 +407,42 @@ optionsBarBg =
 -- THEMED STYLES
 
 
-getMainBackground : Theme -> Style
-getMainBackground theme =
+themed : a -> a -> Theme -> a
+themed darkElement lightElement theme =
     case theme of
         Dark ->
-            getPaperBackground Dark
+            darkElement
 
         Light ->
-            backgroundColor grey.c200
+            lightElement
+
+
+getMainBackground : Theme -> Style
+getMainBackground =
+    themed
+        (getPaperBackground Dark)
+        (backgroundColor grey.c200)
 
 
 getPaperBackground : Theme -> Style
-getPaperBackground theme =
-    case theme of
-        Dark ->
-            backgroundColor secondary.c900
-
-        Light ->
-            backgroundColor grey.c50
+getPaperBackground =
+    themed
+        (backgroundColor secondary.c900)
+        (backgroundColor grey.c50)
 
 
 getParagraphColor : Theme -> Style
-getParagraphColor theme =
-    case theme of
-        Dark ->
-            color grey.c50
-
-        Light ->
-            color grey.c900
+getParagraphColor =
+    themed
+        (color grey.c50)
+        (color grey.c900)
 
 
 paperShadow : Theme -> Style
-paperShadow theme =
-    case theme of
-        Dark ->
-            border3 (px 1) solid grey.c50
-
-        Light ->
-            smoothGrayShadow
+paperShadow =
+    themed
+        (border3 (px 1) solid grey.c50)
+        smoothGrayShadow
 
 
 
@@ -452,13 +450,10 @@ paperShadow theme =
 
 
 switchThemeIcon : Int -> Theme -> Svg.Styled.Svg msg
-switchThemeIcon size theme =
-    case theme of
-        Dark ->
-            Svg.Styled.fromUnstyled (Filled.dark_mode size Inherit)
-
-        Light ->
-            Svg.Styled.fromUnstyled (Filled.light_mode size Inherit)
+switchThemeIcon size =
+    themed
+        (Svg.Styled.fromUnstyled (Filled.dark_mode size Inherit))
+        (Svg.Styled.fromUnstyled (Filled.light_mode size Inherit))
 
 
 
