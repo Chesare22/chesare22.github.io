@@ -141,7 +141,7 @@ view model =
                 , width (pct 100)
                 , position fixed
                 , top (px 0)
-                , optionsBarBg
+                , backgroundColor almostBlack
                 , hiddenOnPrint
                 , property "transition" "all .3s ease"
                 , centeredContent
@@ -398,11 +398,6 @@ smoothGrayShadow =
         )
 
 
-optionsBarBg : Style
-optionsBarBg =
-    backgroundColor (hex "121212")
-
-
 
 -- THEMED STYLES
 
@@ -554,6 +549,11 @@ grey =
 transparent : Color
 transparent =
     hex "00000000"
+
+
+almostBlack : Color
+almostBlack =
+    hex "121212"
 
 
 
