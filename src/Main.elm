@@ -144,43 +144,38 @@ view model =
                 , property "transition" "all .3s ease"
                 , centeredContent
                 , getParagraphColor Dark
+                , displayGrid
+                , property "grid-template-columns" "repeat(3, auto)"
+                , property "grid-gap" "1.5rem"
+                , justifyContent center
                 ]
             ]
             [ div
                 [ Attributes.css
-                    [ maxWidth (rem 10)
-                    , displayGrid
-                    , property "grid-template-columns" "repeat(3, auto)"
-                    , property "grid-gap" "1.5rem"
+                    [ displayGrid
+                    , property "grid-template-columns" "repeat(2, auto)"
+                    , property "grid-gap" "0.3rem"
                     ]
                 ]
-                [ div
-                    [ Attributes.css
-                        [ displayGrid
-                        , property "grid-template-columns" "repeat(2, auto)"
-                        , property "grid-gap" "0.3rem"
-                        ]
+                [ label [ Attributes.for "language-select" ]
+                    [ text (translatedText "Lenguaje:" "Language:" model.language)
                     ]
-                    [ label [ Attributes.for "language-select" ]
-                        [ text (translatedText "Lenguaje:" "Language:" model.language)
-                        ]
-                    , select
-                        [ Attributes.id "language-select"
-                        , onInput ChangeLanguage
-                        ]
-                        (List.map (displayLangOptions model.language) langOptions)
+                , select
+                    [ Attributes.id "language-select"
+                    , onInput ChangeLanguage
                     ]
-                , span
-                    [ onClick ChangeTheme
-                    , Attributes.css [ cursor pointer ]
-                    ]
-                    [ switchThemeIcon 16 model.theme ]
-                , span
-                    [ onClick Print
-                    , Attributes.css [ cursor pointer ]
-                    ]
-                    [ Svg.Styled.fromUnstyled <| Filled.print 16 Inherit ]
+                    (List.map (displayLangOptions model.language) langOptions)
                 ]
+            , span
+                [ onClick ChangeTheme
+                , Attributes.css [ cursor pointer ]
+                ]
+                [ switchThemeIcon 16 model.theme ]
+            , span
+                [ onClick Print
+                , Attributes.css [ cursor pointer ]
+                ]
+                [ Svg.Styled.fromUnstyled <| Filled.print 16 Inherit ]
             ]
         , div
             [ Attributes.css
