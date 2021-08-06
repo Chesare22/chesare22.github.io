@@ -21,16 +21,17 @@ window.addEventListener("load", () => {
 
   window.addEventListener("scroll", () => {
     const currentScroll = getCurrentScroll();
+    const isScrollingDown = currentScroll > previousScroll;
+    const isScrollingUp = currentScroll < previousScroll;
+    previousScroll = currentScroll;
 
-    if (currentScroll > previousScroll && !wasScrolling) {
+    if (isScrollingDown && !wasScrolling) {
       optionsBar.classList.add("hidden");
       wasScrolling = true;
-    } else if (currentScroll < previousScroll && wasScrolling) {
+    } else if (isScrollingUp && wasScrolling) {
       optionsBar.classList.remove("hidden");
       wasScrolling = false;
     }
-
-    previousScroll = currentScroll;
   });
 });
 
