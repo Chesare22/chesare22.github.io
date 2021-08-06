@@ -5,6 +5,7 @@ import Css exposing (..)
 import Css.Global as Global
 import Css.Media exposing (only, print, screen, withMedia)
 import FeatherIcons
+import Html.Attributes exposing (value)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
 import Html.Styled.Events exposing (..)
@@ -75,7 +76,7 @@ port printPage : () -> Cmd msg
 
 type Msg
     = ChangeTheme
-    | ChangeLanguage Language
+    | ChangeLanguage String
     | Print
 
 
@@ -86,7 +87,15 @@ update msg model =
             ( { model | theme = toggleTheme model.theme }, Cmd.none )
 
         ChangeLanguage newLang ->
-            ( { model | language = newLang }, Cmd.none )
+            let
+                language =
+                    if newLang == "es" then
+                        Spanish
+
+                    else
+                        English
+            in
+            ( { model | language = language }, Cmd.none )
 
         Print ->
             ( model, printPage () )
@@ -137,7 +146,13 @@ view model =
                 , getParagraphColor Dark
                 ]
             ]
-            [ div
+            [ label [ Attributes.for "language-select" ] []
+            , select
+                [ Attributes.id "language-select"
+                , onInput ChangeLanguage
+                ]
+                (List.map (displayLangOptions model.language) langOptions)
+            , div
                 [ Attributes.css
                     [ maxWidth (rem 10)
                     , displayGrid
@@ -179,6 +194,11 @@ view model =
                 (List.map displayContact <| contactList 16)
             ]
         ]
+
+
+displayLangOptions : Language -> LangOption -> Html Msg
+displayLangOptions language { value, label } =
+    option [ Attributes.value value ] [ text (label language) ]
 
 
 displayContact : ContactInfo Msg -> Html Msg
@@ -302,6 +322,29 @@ contactList iconSize =
                     |> FeatherIcons.toHtml []
                 )
       }
+    ]
+
+
+translatedText : String -> String -> Language -> String
+translatedText onSpanish onEnglish language =
+    case language of
+        Spanish ->
+            onSpanish
+
+        English ->
+            onEnglish
+
+
+type alias LangOption =
+    { value : String
+    , label : Language -> String
+    }
+
+
+langOptions : List LangOption
+langOptions =
+    [ LangOption "es" (translatedText "Español" "Spanish")
+    , LangOption "en" (translatedText "Inglés" "English")
     ]
 
 
