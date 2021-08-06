@@ -160,7 +160,7 @@ view model =
                     ]
                 ]
                 [ label [ Attributes.for "language-select" ]
-                    [ text (translatedText "Lenguaje:" "Language:" model.language)
+                    [ text (translated "Lenguaje:" "Language:" model.language)
                     ]
                 , select
                     [ Attributes.id "language-select"
@@ -339,8 +339,8 @@ contactList iconSize =
     ]
 
 
-translatedText : String -> String -> Language -> String
-translatedText onSpanish onEnglish language =
+translated : a -> a -> Language -> a
+translated onSpanish onEnglish language =
     case language of
         Spanish ->
             onSpanish
@@ -357,8 +357,8 @@ type alias LangOption =
 
 langOptions : List LangOption
 langOptions =
-    [ LangOption "es" (translatedText "Español" "Spanish")
-    , LangOption "en" (translatedText "Inglés" "English")
+    [ LangOption "es" (translated "Español" "Spanish")
+    , LangOption "en" (translated "Inglés" "English")
     ]
 
 
