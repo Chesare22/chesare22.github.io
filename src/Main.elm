@@ -1,4 +1,4 @@
-module Main exposing (..)
+port module Main exposing (..)
 
 import Browser
 import Css exposing (..)
@@ -20,11 +20,17 @@ import Svg.Styled
 
 main : Program () Model Msg
 main =
-    Browser.sandbox
+    Browser.element
         { init = init
         , update = update
         , view = view >> toUnstyled
+        , subscriptions = subscriptions
         }
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Sub.none
 
 
 
@@ -47,11 +53,20 @@ type alias Model =
     }
 
 
-init : Model
-init =
-    { theme = Dark
-    , language = Spanish
-    }
+init : () -> ( Model, Cmd Msg )
+init _ =
+    ( { theme = Dark
+      , language = Spanish
+      }
+    , Cmd.none
+    )
+
+
+
+-- PORTS
+
+
+port printPage : () -> Cmd msg
 
 
 
@@ -61,16 +76,20 @@ init =
 type Msg
     = ChangeTheme
     | ChangeLanguage Language
+    | Print
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         ChangeTheme ->
-            { model | theme = toggleTheme model.theme }
+            ( { model | theme = toggleTheme model.theme }, Cmd.none )
 
         ChangeLanguage newLang ->
-            { model | language = newLang }
+            ( { model | language = newLang }, Cmd.none )
+
+        Print ->
+            ( model, printPage () )
 
 
 toggleTheme : Theme -> Theme
@@ -132,7 +151,8 @@ view model =
                     ]
                     [ switchThemeIcon 16 model.theme ]
                 , span
-                    [ Attributes.css [ cursor pointer ]
+                    [ onClick Print
+                    , Attributes.css [ cursor pointer ]
                     ]
                     [ Svg.Styled.fromUnstyled <| Filled.print 16 Inherit ]
                 ]

@@ -2,8 +2,12 @@ import "./main.css";
 import { Elm } from "./Main.elm";
 import * as serviceWorker from "./serviceWorker";
 
-Elm.Main.init({
+const app = Elm.Main.init({
   node: document.getElementById("root"),
+});
+
+app.ports.printPage.subscribe(() => {
+  console.log("printing");
 });
 
 window.addEventListener("load", () => {
