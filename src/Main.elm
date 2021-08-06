@@ -126,13 +126,8 @@ update msg model =
 
 
 toggleTheme : Theme -> Theme
-toggleTheme currentTheme =
-    case currentTheme of
-        Dark ->
-            Light
-
-        Light ->
-            Dark
+toggleTheme =
+    themed Light Dark
 
 
 
