@@ -166,16 +166,18 @@ view model =
                     ]
                     (List.map (displayLangOptions model.language) langOptions)
                 ]
-            , span
+            , ghostRoundButton
                 [ onClick ChangeTheme
-                , Attributes.css [ cursor pointer ]
+                , Attributes.css
+                    [ position relative
+                    , left (rem 0.25)
+                    ]
                 ]
-                [ switchThemeIcon 16 model.theme ]
-            , span
+                [ switchThemeIcon 20 model.theme ]
+            , ghostRoundButton
                 [ onClick Print
-                , Attributes.css [ cursor pointer ]
                 ]
-                [ Svg.Styled.fromUnstyled <| Filled.print 16 Inherit ]
+                [ Svg.Styled.fromUnstyled <| Filled.print 20 Inherit ]
             ]
         , div
             [ Attributes.css
@@ -385,6 +387,24 @@ displayGrid =
     property "display" "grid"
 
 
+ghostRoundButton : List (Attribute msg) -> List (Html msg) -> Html msg
+ghostRoundButton =
+    styled button
+        [ borderRadius (pct 50)
+        , padding (rem 0.5)
+        , backgroundColor transparent
+        , color inherit
+        , cursor pointer
+        , border (px 0)
+        , hover
+            [ backgroundColor grey.c800
+            ]
+        , active
+            [ backgroundColor grey.c700
+            ]
+        ]
+
+
 
 -- COLOR PALETTE
 
@@ -481,6 +501,11 @@ getParagraphColor theme =
 
         Light ->
             color grey.c900
+
+
+transparent : Color
+transparent =
+    hex "00000000"
 
 
 
