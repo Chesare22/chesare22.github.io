@@ -145,10 +145,10 @@ view model =
     div
         [ Attributes.css
             [ minHeight (vh 100)
-            , getMainBackground model.theme
+            , mainBackground model.theme
             , displayFlex
             , justifyContent center
-            , getParagraphColor model.theme
+            , paragraphColor model.theme
             , onlyScreen [ paddingTop optionsBarHeight ]
             ]
         ]
@@ -170,7 +170,7 @@ view model =
                 , hiddenOnPrint
                 , property "transition" "all .3s ease"
                 , centeredContent
-                , getParagraphColor Dark
+                , paragraphColor Dark
                 , displayGrid
                 , property "grid-template-columns" "repeat(3, auto)"
                 , property "grid-gap" "1.5rem"
@@ -214,7 +214,7 @@ view model =
                 , width (pct 100)
                 , height paperHeight
                 , padding paperPadding
-                , getPaperBackground model.theme
+                , paperBackground model.theme
                 , displayGrid
                 , property "grid-template-columns" "2fr 3fr"
                 , property "column-gap" "2rem"
@@ -417,22 +417,22 @@ smoothGrayShadow =
 -- THEMED STYLES
 
 
-getMainBackground : Theme -> Style
-getMainBackground =
+mainBackground : Theme -> Style
+mainBackground =
     themed
-        (getPaperBackground Dark)
+        (paperBackground Dark)
         (backgroundColor grey.c200)
 
 
-getPaperBackground : Theme -> Style
-getPaperBackground =
+paperBackground : Theme -> Style
+paperBackground =
     themed
         (backgroundColor secondary.c900)
         (backgroundColor grey.c50)
 
 
-getParagraphColor : Theme -> Style
-getParagraphColor =
+paragraphColor : Theme -> Style
+paragraphColor =
     themed
         (color grey.c50)
         (color grey.c900)
