@@ -146,21 +146,31 @@ view model =
                 , getParagraphColor Dark
                 ]
             ]
-            [ label [ Attributes.for "language-select" ] []
-            , select
-                [ Attributes.id "language-select"
-                , onInput ChangeLanguage
-                ]
-                (List.map (displayLangOptions model.language) langOptions)
-            , div
+            [ div
                 [ Attributes.css
                     [ maxWidth (rem 10)
                     , displayGrid
-                    , property "grid-template-columns" "repeat(2, auto)"
-                    , property "grid-gap" "1rem"
+                    , property "grid-template-columns" "repeat(3, auto)"
+                    , property "grid-gap" "1.5rem"
                     ]
                 ]
-                [ span
+                [ div
+                    [ Attributes.css
+                        [ displayGrid
+                        , property "grid-template-columns" "repeat(2, auto)"
+                        , property "grid-gap" "0.3rem"
+                        ]
+                    ]
+                    [ label [ Attributes.for "language-select" ]
+                        [ text (translatedText "Lenguaje:" "Language:" model.language)
+                        ]
+                    , select
+                        [ Attributes.id "language-select"
+                        , onInput ChangeLanguage
+                        ]
+                        (List.map (displayLangOptions model.language) langOptions)
+                    ]
+                , span
                     [ onClick ChangeTheme
                     , Attributes.css [ cursor pointer ]
                     ]
