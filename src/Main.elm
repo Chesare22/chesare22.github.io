@@ -122,6 +122,8 @@ view model =
                 [ Attributes.css
                     [ maxWidth (rem 10)
                     , displayGrid
+                    , property "grid-template-columns" "repeat(2, auto)"
+                    , property "grid-gap" "1rem"
                     ]
                 ]
                 [ span
@@ -129,6 +131,10 @@ view model =
                     , Attributes.css [ cursor pointer ]
                     ]
                     [ switchThemeIcon 16 model.theme ]
+                , span
+                    [ Attributes.css [ cursor pointer ]
+                    ]
+                    [ Svg.Styled.fromUnstyled <| Filled.print 16 Inherit ]
                 ]
             ]
         , div
