@@ -396,6 +396,7 @@ ghostRoundButton =
         , color inherit
         , cursor pointer
         , border (px 0)
+        , property "transition" "background-color .25s ease"
         , hover
             [ backgroundColor grey.c800
             ]
