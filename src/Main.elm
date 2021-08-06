@@ -132,6 +132,8 @@ view model =
                 [ top (rem (negate optionsBarHeightInt))
                 ]
             ]
+
+        -- Options bar
         , div
             [ Attributes.id "options-bar"
             , Attributes.css
@@ -179,6 +181,8 @@ view model =
                 ]
                 [ Svg.Styled.fromUnstyled <| Filled.print 20 Inherit ]
             ]
+
+        -- Paper
         , div
             [ Attributes.css
                 [ maxWidth paperWidth
