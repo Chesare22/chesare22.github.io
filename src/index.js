@@ -7,7 +7,7 @@ const app = Elm.Main.init({
 });
 
 app.ports.printPage.subscribe(() => {
-  console.log("printing");
+  window.print();
 });
 
 window.addEventListener("load", () => {
