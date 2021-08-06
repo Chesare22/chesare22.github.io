@@ -190,6 +190,9 @@ view model =
                 , height paperHeight
                 , padding paperPadding
                 , getPaperBackground model.theme
+                , displayGrid
+                , property "grid-template-columns" "2fr 3fr"
+                , property "column-gap" "2rem"
                 , onlyScreen
                     [ margin2 (rem 2) (px 0)
                     , borderRadius (px 10)
@@ -197,12 +200,19 @@ view model =
                     ]
                 ]
             ]
-            [ ul
-                [ Attributes.css
-                    [ listStyle none
+            -- Column 1
+            [ div
+                []
+                [ ul
+                    [ Attributes.css
+                        [ listStyle none
+                        ]
                     ]
+                    (List.map displayContact <| contactList 16)
                 ]
-                (List.map displayContact <| contactList 16)
+
+            -- Column 2
+            , div [] []
             ]
         ]
 
