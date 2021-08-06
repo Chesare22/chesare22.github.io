@@ -145,11 +145,16 @@ view model =
     div
         [ Attributes.css
             [ minHeight (vh 100)
-            , mainBackground model.theme
+            , paperBackground model.theme
             , displayFlex
             , justifyContent center
             , paragraphColor model.theme
-            , onlyScreen [ paddingTop optionsBarHeight ]
+            , onlyScreen
+                [ paddingTop optionsBarHeight
+                ]
+            , onlyBigScreen
+                [ mainBackground model.theme
+                ]
             ]
         ]
         [ Global.global
@@ -212,16 +217,21 @@ view model =
             [ Attributes.css
                 [ maxWidth paperWidth
                 , width (pct 100)
-                , height paperHeight
                 , padding paperPadding
                 , paperBackground model.theme
                 , displayGrid
                 , property "grid-template-columns" "2fr 3fr"
                 , property "column-gap" "2rem"
-                , onlyScreen
+                , printOrBigScreen
+                    [ height paperHeight
+                    ]
+                , onlyBigScreen
                     [ margin2 (rem 2) (px 0)
-                    , borderRadius (px 10)
                     , paperShadow model.theme
+                    , borderRadius (px 10)
+                    ]
+                , onlySmallScreen
+                    [ property "grid-template-columns" "1fr"
                     ]
                 ]
             ]
@@ -611,9 +621,9 @@ optionsBarHeight =
 
 smallScreen : Em
 smallScreen =
-    Css.em 30
+    Css.em 44
 
 
 mediumScreen : Em
 mediumScreen =
-    Css.em 48
+    Css.em 56
