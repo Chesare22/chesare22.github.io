@@ -19,7 +19,7 @@ import Svg.Styled
 -- MAIN
 
 
-main : Program () Model Msg
+main : Program Flags Model Msg
 main =
     Browser.element
         { init = init
@@ -55,16 +55,23 @@ type Language
     | English
 
 
-type alias Model =
-    { theme : Theme
-    , language : Language
+type alias Flags =
+    { profilePicture : String
     }
 
 
-init : () -> ( Model, Cmd Msg )
-init _ =
+type alias Model =
+    { theme : Theme
+    , language : Language
+    , profilePicture : String
+    }
+
+
+init : Flags -> ( Model, Cmd Msg )
+init { profilePicture } =
     ( { theme = Dark
       , language = Spanish
+      , profilePicture = Debug.log "Profile pic" profilePicture
       }
     , Cmd.none
     )

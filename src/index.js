@@ -1,9 +1,13 @@
+import profile from "../static/profile.jpg";
 import "./main.css";
 import { Elm } from "./Main.elm";
 import * as serviceWorker from "./serviceWorker";
 
 const app = Elm.Main.init({
   node: document.getElementById("root"),
+  flags: {
+    profilePicture: profile,
+  },
 });
 
 app.ports.printPage.subscribe(() => {
