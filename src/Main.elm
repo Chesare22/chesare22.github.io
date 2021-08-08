@@ -271,7 +271,7 @@ view model =
 ghostRoundButton : List (Attribute msg) -> List (Html msg) -> Html msg
 ghostRoundButton =
     styled button
-        [ borderRadius (pct 50)
+        [ roundBorder
         , padding (rem 0.5)
         , backgroundColor transparent
         , color inherit
@@ -428,6 +428,11 @@ centeredContent =
 displayGrid : Style
 displayGrid =
     property "display" "grid"
+
+
+roundBorder : Style
+roundBorder =
+    borderRadius (pct 50)
 
 
 smoothGrayShadow : Style
