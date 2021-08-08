@@ -446,11 +446,15 @@ smoothGrayShadow =
 removeExtraWhitespaces : String -> String
 removeExtraWhitespaces =
     Regex.replace
-        (Maybe.withDefault Regex.never <|
-            Regex.fromString "\\s\\s+"
-        )
+        multipleWhitespaces
         (always " ")
         >> String.trim
+
+
+multipleWhitespaces : Regex.Regex
+multipleWhitespaces =
+    Maybe.withDefault Regex.never <|
+        Regex.fromString "\\s\\s+"
 
 
 
