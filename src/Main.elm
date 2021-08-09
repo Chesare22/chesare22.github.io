@@ -256,6 +256,23 @@ view model =
                             model.language
                         )
                     ]
+                , h1 [] [ text name ]
+                , p []
+                    [ text
+                        (translated
+                            "Soy un estudiante de ingeniería de software con experiencia trabajando como desarrollador frontend. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas."
+                            "I'm a software engineering student with experience working as a frontend developer. I often try to make my code the simplest posible and I enjoy learning new stuff."
+                            model.language
+                        )
+                    ]
+                , p []
+                    [ text
+                        (translated
+                            "Me puedes contactar por los siguientes medios:"
+                            "You can contact me on:"
+                            model.language
+                        )
+                    ]
                 , ul
                     [ Attributes.css
                         [ listStyle none
