@@ -16,15 +16,6 @@ body {
   color: #293c4b;
 }
 
-h1 {
-  font-size: 30px;
-}
-
-img {
-  margin: 20px 0;
-  max-width: 200px;
-}
-
 @page {
   size: auto;
   margin: 0mm;
