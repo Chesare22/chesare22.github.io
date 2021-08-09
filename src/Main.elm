@@ -5,7 +5,6 @@ import Css exposing (..)
 import Css.Global as Global
 import Css.Media as Media exposing (only, print, screen, withMedia)
 import FeatherIcons
-import Html.Attributes exposing (value)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
 import Html.Styled.Events exposing (..)
