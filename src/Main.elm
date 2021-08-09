@@ -72,7 +72,7 @@ init : Flags -> ( Model, Cmd Msg )
 init { profilePicture } =
     ( { theme = Dark
       , language = Spanish
-      , profilePicture = Debug.log "Profile pic" profilePicture
+      , profilePicture = profilePicture
       }
     , Cmd.none
     )
