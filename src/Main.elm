@@ -335,7 +335,7 @@ roundImg size attributes =
             , roundBorder
             , overflow hidden
             , position relative
-            , margin auto
+            , margin2 (rem 1) auto
             ]
         ]
         [ styled img
