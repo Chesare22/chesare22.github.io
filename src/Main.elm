@@ -278,8 +278,8 @@ view model =
                 , p []
                     [ text
                         (translated
-                            "Me puedes contactar por los siguientes medios:"
-                            "You can contact me on:"
+                            "Me puedes encontrar en:"
+                            "You can find me on:"
                             model.language
                         )
                     ]
