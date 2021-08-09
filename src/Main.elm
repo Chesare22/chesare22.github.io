@@ -256,7 +256,17 @@ view model =
                             model.language
                         )
                     ]
-                , h1 [] [ text name ]
+                , h1
+                    [ Attributes.css
+                        [ color
+                            (themed
+                                primary.c300
+                                primary.c600
+                                model.theme
+                            )
+                        ]
+                    ]
+                    [ text name ]
                 , p []
                     [ text
                         (translated
