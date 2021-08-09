@@ -553,7 +553,11 @@ paperShadow : Theme -> Style
 paperShadow =
     themed
         (border3 (px 1) solid grey.c50)
-        smoothGrayShadow
+        (batch
+            [ smoothGrayShadow
+            , border3 (px 1) solid transparent
+            ]
+        )
 
 
 
