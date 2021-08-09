@@ -283,13 +283,16 @@ view model =
                             model.language
                         )
                     ]
-                , ul
-                    [ Attributes.css
-                        [ listStyle none
-                        , paddingLeft (px 0)
+                , coloredBlock model.theme
+                    [ ul
+                        [ Attributes.css
+                            [ listStyle none
+                            , paddingLeft (px 0)
+                            , margin (px 0)
+                            ]
                         ]
+                        (List.map displayContact <| contactList 16)
                     ]
-                    (List.map displayContact <| contactList 16)
                 ]
 
             -- Column 2
@@ -562,6 +565,41 @@ switchThemeIcon size =
     themed
         (Svg.Styled.fromUnstyled (Filled.dark_mode size Inherit))
         (Svg.Styled.fromUnstyled (Filled.light_mode size Inherit))
+
+
+coloredBlock : Theme -> List (Html msg) -> Html msg
+coloredBlock theme content =
+    styled div
+        [ overflow hidden
+        , borderRadius (px 4)
+        , backgroundColor (themed secondary.c900 primary.c50 theme)
+        , position relative
+        , borderLeft3
+            (px 4)
+            solid
+            (themed primary.c400 primary.c600 theme)
+        ]
+        []
+        [ styled div
+            [ position absolute
+            , zIndex (int 30)
+            , width (pct 100)
+            , height (pct 100)
+            , backgroundColor primary.c400
+            , opacity (themed (num 0.1) (num 0) theme)
+            ]
+            []
+            []
+        , styled div
+            [ width (pct 100)
+            , position relative
+            , zIndex (int 50)
+            , padding (rem 0.75)
+            , paddingRight (rem 1)
+            ]
+            []
+            content
+        ]
 
 
 
