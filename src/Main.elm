@@ -570,6 +570,7 @@ switchThemeIcon size =
 coloredBlock : Theme -> List (Html msg) -> Html msg
 coloredBlock theme content =
     styled div
+        -- Main container
         [ overflow hidden
         , borderRadius (px 4)
         , backgroundColor (themed secondary.c900 primary.c50 theme)
@@ -581,6 +582,7 @@ coloredBlock theme content =
         ]
         []
         [ styled div
+            -- Filter overlay
             [ position absolute
             , zIndex (int 30)
             , width (pct 100)
@@ -591,6 +593,7 @@ coloredBlock theme content =
             []
             []
         , styled div
+            -- Padding
             [ width (pct 100)
             , position relative
             , zIndex (int 50)
