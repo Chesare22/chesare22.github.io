@@ -350,6 +350,55 @@ roundImg size attributes =
 
 
 
+-- THEMED ELEMENTS
+
+
+switchThemeIcon : Int -> Theme -> Svg.Styled.Svg msg
+switchThemeIcon size =
+    themed
+        (Svg.Styled.fromUnstyled (Filled.dark_mode size Inherit))
+        (Svg.Styled.fromUnstyled (Filled.light_mode size Inherit))
+
+
+coloredBlock : Theme -> List (Html msg) -> Html msg
+coloredBlock theme content =
+    styled div
+        -- Main container
+        [ overflow hidden
+        , borderRadius (px 4)
+        , backgroundColor (themed secondary.c900 primary.c50 theme)
+        , position relative
+        , borderLeft3
+            (px 4)
+            solid
+            (themed primary.c400 primary.c600 theme)
+        ]
+        []
+        [ styled div
+            -- Filter overlay
+            [ position absolute
+            , zIndex (int 30)
+            , width (pct 100)
+            , height (pct 100)
+            , backgroundColor primary.c400
+            , opacity (themed (num 0.1) (num 0) theme)
+            ]
+            []
+            []
+        , styled div
+            -- Padding
+            [ width (pct 100)
+            , position relative
+            , zIndex (int 50)
+            , padding (rem 0.75)
+            , paddingRight (rem 1)
+            ]
+            []
+            content
+        ]
+
+
+
 -- VIEW OF CUSTOM DATA
 
 
@@ -558,55 +607,6 @@ paperShadow =
             , border3 (px 1) solid transparent
             ]
         )
-
-
-
--- THEMED ELEMENTS
-
-
-switchThemeIcon : Int -> Theme -> Svg.Styled.Svg msg
-switchThemeIcon size =
-    themed
-        (Svg.Styled.fromUnstyled (Filled.dark_mode size Inherit))
-        (Svg.Styled.fromUnstyled (Filled.light_mode size Inherit))
-
-
-coloredBlock : Theme -> List (Html msg) -> Html msg
-coloredBlock theme content =
-    styled div
-        -- Main container
-        [ overflow hidden
-        , borderRadius (px 4)
-        , backgroundColor (themed secondary.c900 primary.c50 theme)
-        , position relative
-        , borderLeft3
-            (px 4)
-            solid
-            (themed primary.c400 primary.c600 theme)
-        ]
-        []
-        [ styled div
-            -- Filter overlay
-            [ position absolute
-            , zIndex (int 30)
-            , width (pct 100)
-            , height (pct 100)
-            , backgroundColor primary.c400
-            , opacity (themed (num 0.1) (num 0) theme)
-            ]
-            []
-            []
-        , styled div
-            -- Padding
-            [ width (pct 100)
-            , position relative
-            , zIndex (int 50)
-            , padding (rem 0.75)
-            , paddingRight (rem 1)
-            ]
-            []
-            content
-        ]
 
 
 
