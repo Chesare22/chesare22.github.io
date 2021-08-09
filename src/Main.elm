@@ -178,6 +178,7 @@ view model =
                 [ height optionsBarHeight
                 , width (pct 100)
                 , position fixed
+                , zIndex (int 100)
                 , top (px 0)
                 , backgroundColor almostBlack
                 , hiddenOnPrint
@@ -247,7 +248,16 @@ view model =
             -- Column 1
             [ div
                 []
-                [ ul
+                [ roundImg profilePictureSize
+                    [ Attributes.src model.profilePicture
+                    , Attributes.alt
+                        (translated
+                            "Foto de César con lentes"
+                            "Photo of César with glasses"
+                            model.language
+                        )
+                    ]
+                , ul
                     [ Attributes.css
                         [ listStyle none
                         , paddingLeft (px 0)
@@ -284,6 +294,29 @@ ghostRoundButton =
         , active
             [ backgroundColor grey.c700
             ]
+        ]
+
+
+roundImg : LengthOrAuto compatible -> List (Attribute msg) -> Html msg
+roundImg size attributes =
+    div
+        [ Attributes.css
+            [ width size
+            , height size
+            , roundBorder
+            , overflow hidden
+            , position relative
+            , margin auto
+            ]
+        ]
+        [ styled img
+            [ width (pct 100)
+            , height auto
+            , position absolute
+            , bottom (pct -10)
+            ]
+            attributes
+            []
         ]
 
 
@@ -656,6 +689,11 @@ paperPadding =
 optionsBarHeight : Rem
 optionsBarHeight =
     rem optionsBarHeightInt
+
+
+profilePictureSize : Rem
+profilePictureSize =
+    rem 15
 
 
 
