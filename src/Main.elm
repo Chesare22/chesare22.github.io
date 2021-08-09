@@ -228,7 +228,7 @@ view model =
                 , padding2 paperPadding.vertical paperPadding.horizontal
                 , paperBackground model.theme
                 , displayGrid
-                , property "grid-template-columns" "2fr 3fr"
+                , property "grid-template-columns" "3fr 5fr"
                 , property "column-gap" "2rem"
                 , property "align-content" "start"
                 , printOrBigScreen
