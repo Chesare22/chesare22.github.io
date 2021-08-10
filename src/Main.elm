@@ -506,6 +506,21 @@ contactList iconSize =
     ]
 
 
+type alias SkillExperience =
+    { skillName : String
+    , experience : Int -- From 1 to 7
+    }
+
+
+hardSkills : List SkillExperience
+hardSkills =
+    [ SkillExperience "JavaScript" 6
+    , SkillExperience "HTML" 5
+    , SkillExperience "CSS" 5
+    , SkillExperience "Elm" 3
+    ]
+
+
 type alias LangOption =
     { value : String
     , label : Language -> String
