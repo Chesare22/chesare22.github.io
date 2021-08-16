@@ -9,7 +9,7 @@ import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
 import Html.Styled.Events exposing (..)
 import Material.Icons as Filled
-import Material.Icons.Types exposing (Coloring(..))
+import Material.Icons.Types exposing (Coloring(..), Icon)
 import Phone
 import Regex
 import Svg.Styled
@@ -322,8 +322,8 @@ displaySkill size theme { skillName, experience } =
             ]
         ]
         (span [] [ text skillName ]
-            :: (List.repeat experience (earned size)
-                    ++ List.repeat (maxExperience - experience) (unearned size theme)
+            :: (List.repeat experience (earned theme size)
+                    ++ List.repeat (maxExperience - experience) (unearned theme size)
                )
         )
 
@@ -333,18 +333,25 @@ maxExperience =
     7
 
 
-earned : Int -> Svg.Styled.Svg msg
-earned size =
-    Svg.Styled.fromUnstyled (Filled.star size Inherit)
+earned : Theme -> Int -> Html msg
+earned theme =
+    experienceStat
+        Filled.star
+        (themed grey.c50 grey.c500 theme)
 
 
-unearned : Int -> Theme -> Html msg
-unearned size theme =
+unearned : Theme -> Int -> Html msg
+unearned theme =
+    experienceStat
+        Filled.star_border
+        (themed grey.c700 grey.c500 theme)
+
+
+experienceStat : Icon msg -> Color -> Int -> Html msg
+experienceStat icon colorValue size =
     div
-        [ Attributes.css
-            [ color (themed grey.c700 grey.c500 theme) ]
-        ]
-        [ Svg.Styled.fromUnstyled (Filled.star_border size Inherit) ]
+        [ Attributes.css [ color colorValue ] ]
+        [ Svg.Styled.fromUnstyled (icon size Inherit) ]
 
 
 
