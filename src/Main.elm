@@ -258,12 +258,7 @@ view model =
                     ]
                 , h1
                     [ Attributes.css
-                        [ color
-                            (themed
-                                primary.c300
-                                primary.c600
-                                model.theme
-                            )
+                        [ color (titleColor model.theme)
                         ]
                     ]
                     [ text name ]
@@ -300,7 +295,7 @@ view model =
                 [ p [] [ text "Litter kitter kitty litty little kitten big roar roar feed me. I could pee on this if i had the energy purr purr purr until owner pets why owner not pet me hiss scratch meow your pillow is now my pet bed show belly sit in window and stare oooh, a bird, yum and scream for no reason at 4 am so plays league of legends. Bite nose of your human is good you understand your place in my world poop in the plant pot small kitty warm kitty little balls of fur for the cat was chasing the mouse. Bring your owner a dead bird. Stare at owner accusingly then wink lick yarn hanging out of own butt friends are not food. I can haz please stop looking at your phone and pet me yet jump off balcony, onto stranger's head." ]
                 , coloredBlock
                     model.theme
-                    (List.map (displaySkill 16 model.theme) hardSkills)
+                    (List.map (displaySkill 20 model.theme) hardSkills)
                 ]
             ]
         ]
@@ -337,7 +332,7 @@ earned : Theme -> Int -> Html msg
 earned theme =
     experienceStat
         Filled.star
-        (themed grey.c50 grey.c500 theme)
+        (titleColor theme)
 
 
 unearned : Theme -> Int -> Html msg
@@ -662,6 +657,13 @@ paragraphColor =
     themed
         (color grey.c50)
         (color grey.c900)
+
+
+titleColor : Theme -> Color
+titleColor =
+    themed
+        primary.c300
+        primary.c600
 
 
 paperShadow : Theme -> Style
