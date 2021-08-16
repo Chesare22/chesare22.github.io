@@ -298,9 +298,53 @@ view model =
             -- Column 2
             , div []
                 [ p [] [ text "Litter kitter kitty litty little kitten big roar roar feed me. I could pee on this if i had the energy purr purr purr until owner pets why owner not pet me hiss scratch meow your pillow is now my pet bed show belly sit in window and stare oooh, a bird, yum and scream for no reason at 4 am so plays league of legends. Bite nose of your human is good you understand your place in my world poop in the plant pot small kitty warm kitty little balls of fur for the cat was chasing the mouse. Bring your owner a dead bird. Stare at owner accusingly then wink lick yarn hanging out of own butt friends are not food. I can haz please stop looking at your phone and pet me yet jump off balcony, onto stranger's head." ]
+                , coloredBlock
+                    model.theme
+                    (List.map (displaySkill 16 model.theme) hardSkills)
                 ]
             ]
         ]
+
+
+displaySkill : Int -> Theme -> SkillExperience -> Html Msg
+displaySkill size theme { skillName, experience } =
+    div
+        [ Attributes.css
+            [ displayGrid
+            , property "grid-template-columns"
+                ("5.5rem repeat("
+                    ++ String.fromInt maxExperience
+                    ++ ", 1fr)"
+                )
+            , paddingRight (rem 0.5)
+            , marginBottom (rem 0.15)
+            , maxWidth (rem 20)
+            ]
+        ]
+        (span [] [ text skillName ]
+            :: (List.repeat experience (earned size)
+                    ++ List.repeat (maxExperience - experience) (unearned size theme)
+               )
+        )
+
+
+maxExperience : Int
+maxExperience =
+    7
+
+
+earned : Int -> Svg.Styled.Svg msg
+earned size =
+    Svg.Styled.fromUnstyled (Filled.star size Inherit)
+
+
+unearned : Int -> Theme -> Html msg
+unearned size theme =
+    div
+        [ Attributes.css
+            [ color (themed grey.c700 grey.c500 theme) ]
+        ]
+        [ Svg.Styled.fromUnstyled (Filled.star_border size Inherit) ]
 
 
 
