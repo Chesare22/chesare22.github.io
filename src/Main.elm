@@ -303,20 +303,19 @@ view model =
 
 displaySkill : Int -> Theme -> SkillExperience -> Html Msg
 displaySkill size theme { skillName, experience } =
-    div
-        [ Attributes.css
-            [ displayGrid
-            , property "grid-template-columns"
-                ("5.5rem repeat("
-                    ++ String.fromInt maxExperience
-                    ++ ", 1fr)"
-                )
-            , paddingRight (rem 0.5)
-            , marginBottom (rem 0.15)
-            , maxWidth (rem 20)
-            ]
+    styled div
+        [ displayGrid
+        , property "grid-template-columns"
+            ("5.5rem repeat("
+                ++ String.fromInt maxExperience
+                ++ ", 1fr)"
+            )
+        , property "align-items" "center"
+        , marginBottom (rem 0.2)
+        , maxWidth (rem 20)
         ]
-        (span [] [ text skillName ]
+        []
+        (styled p [ margin (px 0) ] [] [ text skillName ]
             :: (List.repeat experience (earned theme size)
                     ++ List.repeat (maxExperience - experience) (unearned theme size)
                )
@@ -414,6 +413,7 @@ coloredBlock theme content =
         , borderRadius (px 4)
         , backgroundColor (themed secondary.c900 primary.c50 theme)
         , position relative
+        , displayFlex
         , borderLeft3
             (px 4)
             solid
