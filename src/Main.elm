@@ -302,40 +302,57 @@ view model =
 
 
 displaySkill : Int -> Theme -> SkillExperience -> Html Msg
-displaySkill size theme { skillName, experience } =
+displaySkill size theme skill =
+    starsContainer
+        []
+        (stars size theme skill)
+
+
+starsContainer : List (Attribute a) -> List (Html a) -> Html a
+starsContainer =
     styled div
         [ displayGrid
         , property "grid-template-columns"
             ("5.5rem repeat("
-                ++ String.fromInt maxExperience
+                ++ String.fromInt maxStars
                 ++ ", 1fr)"
             )
         , property "align-items" "center"
         , marginBottom (rem 0.2)
         , maxWidth (rem 20)
         ]
-        []
-        (styled p [ margin (px 0) ] [] [ text skillName ]
-            :: (List.repeat experience (earned theme size)
-                    ++ List.repeat (maxExperience - experience) (unearned theme size)
-               )
-        )
 
 
-maxExperience : Int
-maxExperience =
+stars : Int -> Theme -> SkillExperience -> List (Html msg)
+stars size theme { skillName, experience } =
+    List.concat
+        [ [ p
+                [ Attributes.css [ margin (px 0) ] ]
+                [ text skillName ]
+          ]
+        , List.repeat
+            experience
+            (filledStar theme size)
+        , List.repeat
+            (maxStars - experience)
+            (outlinedStar theme size)
+        ]
+
+
+maxStars : Int
+maxStars =
     7
 
 
-earned : Theme -> Int -> Html msg
-earned theme =
+filledStar : Theme -> Int -> Html msg
+filledStar theme =
     experienceStat
         Filled.star
         (titleColor theme)
 
 
-unearned : Theme -> Int -> Html msg
-unearned theme =
+outlinedStar : Theme -> Int -> Html msg
+outlinedStar theme =
     experienceStat
         Filled.star_border
         (themed grey.c700 grey.c500 theme)
