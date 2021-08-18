@@ -8,6 +8,7 @@ import FeatherIcons
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
 import Html.Styled.Events exposing (..)
+import Language
 import Material.Icons as Filled
 import Material.Icons.Types exposing (Coloring(..), Icon)
 import Phone
@@ -50,11 +51,6 @@ type Theme
     | Dark
 
 
-type Language
-    = Spanish
-    | English
-
-
 type alias Flags =
     { profilePicture : String
     }
@@ -62,7 +58,7 @@ type alias Flags =
 
 type alias Model =
     { theme : Theme
-    , language : Language
+    , language : Language.Language
     , profilePicture : String
     }
 
@@ -70,7 +66,7 @@ type alias Model =
 init : Flags -> ( Model, Cmd Msg )
 init { profilePicture } =
     ( { theme = Dark
-      , language = Spanish
+      , language = Language.Spanish
       , profilePicture = profilePicture
       }
     , Cmd.none
@@ -79,16 +75,6 @@ init { profilePicture } =
 
 
 -- CASE EXPRESSIONS OF MODEL
-
-
-translated : a -> a -> Language -> a
-translated onSpanish onEnglish language =
-    case language of
-        Spanish ->
-            onSpanish
-
-        English ->
-            onEnglish
 
 
 themed : a -> a -> Theme -> a
@@ -119,16 +105,8 @@ update msg model =
             , Cmd.none
             )
 
-        ChangeLanguage newLang ->
-            let
-                language =
-                    if newLang == "es" then
-                        Spanish
-
-                    else
-                        English
-            in
-            ( { model | language = language }
+        ChangeLanguage value ->
+            ( { model | language = (Language.fromValue >> Language.toggle) value }
             , Cmd.none
             )
 
@@ -198,13 +176,13 @@ view model =
                     ]
                 ]
                 [ label [ Attributes.for "language-select" ]
-                    [ text (translated "Lenguaje:" "Language:" model.language)
+                    [ text (Language.translated "Lenguaje:" "Language:" model.language)
                     ]
                 , select
                     [ Attributes.id "language-select"
                     , onInput ChangeLanguage
                     ]
-                    (List.map (displayLangOptions model.language) langOptions)
+                    (List.map (displayLangOptions model.language) Language.valuesWithLabels)
                 ]
             , ghostRoundButton
                 [ onClick ChangeTheme
@@ -250,7 +228,7 @@ view model =
                 [ roundImg profilePictureSize
                     [ Attributes.src model.profilePicture
                     , Attributes.alt
-                        (translated
+                        (Language.translated
                             "Foto de César con lentes"
                             "Photo of César with glasses"
                             model.language
@@ -264,7 +242,7 @@ view model =
                     [ text name ]
                 , p []
                     [ text
-                        (translated
+                        (Language.translated
                             "Soy un estudiante de ingeniería de software con experiencia trabajando como desarrollador frontend. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas."
                             "I'm a software engineering student with experience working as a frontend developer. I often try to make my code the simplest posible and I enjoy learning new stuff."
                             model.language
@@ -272,7 +250,7 @@ view model =
                     ]
                 , p []
                     [ text
-                        (translated
+                        (Language.translated
                             "Me puedes encontrar en:"
                             "You can find me on:"
                             model.language
@@ -465,7 +443,7 @@ coloredBlock theme content =
 -- VIEW OF CUSTOM DATA
 
 
-displayLangOptions : Language -> LangOption -> Html Msg
+displayLangOptions : Language.Language -> Language.ValueWithLabel -> Html Msg
 displayLangOptions language { value, label } =
     option [ Attributes.value value ] [ text (label language) ]
 
@@ -581,19 +559,6 @@ hardSkills =
     , SkillExperience "HTML" 5
     , SkillExperience "CSS" 5
     , SkillExperience "Elm" 3
-    ]
-
-
-type alias LangOption =
-    { value : String
-    , label : Language -> String
-    }
-
-
-langOptions : List LangOption
-langOptions =
-    [ LangOption "es" (translated "Español" "Spanish")
-    , LangOption "en" (translated "Inglés" "English")
     ]
 
 
