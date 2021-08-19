@@ -243,8 +243,8 @@ view model =
                 , p []
                     [ text
                         (Language.translated
-                            "Soy un estudiante de ingeniería de software con experiencia trabajando como desarrollador frontend. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas."
-                            "I'm a software engineering student with experience working as a frontend developer. I often try to make my code the simplest posible and I enjoy learning new stuff."
+                            "Soy un estudiante de ingeniería de software con dos años de experiencia trabajando como desarrollador frontend. Estoy comprometido con la calidad del software en todas sus etapas, desde la planeación del producto hasta la correcta entrega y mantenimiento del mismo. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas."
+                            "I'm a software engineering student with two years of experience working as a frontend developer. I am committed to software quality in all their stages, from the planning to the delivery and maintenance. I often try to make my code the simplest posible and I enjoy learning new stuff."
                             model.language
                         )
                     ]
