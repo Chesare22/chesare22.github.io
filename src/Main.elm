@@ -240,7 +240,7 @@ view model =
                         ]
                     ]
                     [ text name ]
-                , p []
+                , spaced_p []
                     [ text
                         (Language.translated
                             "Soy un estudiante de ingeniería de software con dos años de experiencia trabajando como desarrollador frontend. Estoy comprometido con la calidad del software en todas sus etapas, desde la planeación del producto hasta la correcta entrega y mantenimiento del mismo. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas."
@@ -248,11 +248,19 @@ view model =
                             model.language
                         )
                     ]
-                , p []
+                , p
+                    [ Attributes.css
+                        [ color (titleColor model.theme)
+                        , fontSize (rem 1.4)
+                        , fontWeight (int 700)
+                        , marginBottom (Css.em 0.3)
+                        , marginTop (Css.em 1.5)
+                        ]
+                    ]
                     [ text
                         (Language.translated
-                            "Me puedes encontrar en:"
-                            "You can find me on:"
+                            "Me puedes encontrar en"
+                            "You can find me on"
                             model.language
                         )
                     ]
@@ -387,6 +395,11 @@ roundImg size attributes =
             attributes
             []
         ]
+
+
+spaced_p : List (Attribute msg) -> List (Html msg) -> Html msg
+spaced_p =
+    styled p [ lineHeight (Css.em 1.5) ]
 
 
 
