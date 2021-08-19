@@ -106,7 +106,7 @@ update msg model =
             )
 
         ChangeLanguage value ->
-            ( { model | language = (Language.fromValue >> Language.toggle) value }
+            ( { model | language = Language.fromValue value }
             , Cmd.none
             )
 
