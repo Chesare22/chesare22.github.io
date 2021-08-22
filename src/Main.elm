@@ -248,13 +248,13 @@ view model =
                             model.language
                         )
                     ]
-                , p
+                , h2
                     [ Attributes.css
                         [ color (titleColor model.theme)
                         , fontSize (rem 1.4)
                         , fontWeight (int 700)
-                        , marginBottom (Css.em 0.3)
-                        , marginTop (Css.em 1.5)
+                        , marginBottom (Css.em 0.5)
+                        , marginTop (Css.em 1)
                         ]
                     ]
                     [ text
@@ -278,7 +278,7 @@ view model =
 
             -- Column 2
             , div []
-                [ p [] [ text "Litter kitter kitty litty little kitten big roar roar feed me. I could pee on this if i had the energy purr purr purr until owner pets why owner not pet me hiss scratch meow your pillow is now my pet bed show belly sit in window and stare oooh, a bird, yum and scream for no reason at 4 am so plays league of legends. Bite nose of your human is good you understand your place in my world poop in the plant pot small kitty warm kitty little balls of fur for the cat was chasing the mouse. Bring your owner a dead bird. Stare at owner accusingly then wink lick yarn hanging out of own butt friends are not food. I can haz please stop looking at your phone and pet me yet jump off balcony, onto stranger's head." ]
+                [ spaced_p [] [ text "Litter kitter kitty litty little kitten big roar roar feed me. I could pee on this if i had the energy purr purr purr until owner pets why owner not pet me hiss scratch meow your pillow is now my pet bed show belly sit in window and stare oooh, a bird, yum and scream for no reason at 4 am so plays league of legends. Bite nose of your human is good you understand your place in my world poop in the plant pot small kitty warm kitty little balls of fur for the cat was chasing the mouse. Bring your owner a dead bird. Stare at owner accusingly then wink lick yarn hanging out of own butt friends are not food. I can haz please stop looking at your phone and pet me yet jump off balcony, onto stranger's head." ]
                 , coloredBlock
                     model.theme
                     (List.map (displaySkill 20 model.theme) hardSkills)
@@ -383,7 +383,7 @@ roundImg size attributes =
             , roundBorder
             , overflow hidden
             , position relative
-            , margin2 (rem 1) auto
+            , margin auto
             ]
         ]
         [ styled img
@@ -399,7 +399,11 @@ roundImg size attributes =
 
 spaced_p : List (Attribute msg) -> List (Html msg) -> Html msg
 spaced_p =
-    styled p [ lineHeight (Css.em 1.5) ]
+    styled p
+        [ lineHeight (Css.em 1.5)
+        , marginBottom (Css.em 1)
+        , marginTop (px 0)
+        ]
 
 
 
@@ -793,7 +797,7 @@ paperHeightInt =
 
 paperPaddingInt : { vertical : Float, horizontal : Float }
 paperPaddingInt =
-    { vertical = 1
+    { vertical = 2
     , horizontal = 2.5
     }
 
