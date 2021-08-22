@@ -277,7 +277,7 @@ view model =
         ]
 
 
-displaySkill : Int -> Theme -> SkillExperience -> Html Msg
+displaySkill : Int -> Theme -> Skill -> Html Msg
 displaySkill size theme skill =
     starsContainer
         []
@@ -290,7 +290,7 @@ starsContainer =
         [ displayGrid
         , property "grid-template-columns"
             ("5.5rem repeat("
-                ++ String.fromInt maxStars
+                ++ String.fromInt maxSkillGrade
                 ++ ", 1fr)"
             )
         , property "align-items" "center"
@@ -299,25 +299,20 @@ starsContainer =
         ]
 
 
-stars : Int -> Theme -> SkillExperience -> List (Html msg)
-stars size theme { skillName, experience } =
+stars : Int -> Theme -> Skill -> List (Html msg)
+stars size theme skill =
     List.concat
         [ [ p
                 [ Attributes.css [ margin (px 0) ] ]
-                [ text skillName ]
+                [ text skill.name ]
           ]
         , List.repeat
-            experience
+            skill.grade
             (filledStar theme size)
         , List.repeat
-            (maxStars - experience)
+            (maxSkillGrade - skill.grade)
             (outlinedStar theme size)
         ]
-
-
-maxStars : Int
-maxStars =
-    7
 
 
 filledStar : Theme -> Int -> Html msg
@@ -573,18 +568,23 @@ contactList iconSize =
     ]
 
 
-type alias SkillExperience =
-    { skillName : String
-    , experience : Int -- From 1 to 7
+type alias Skill =
+    { name : String
+    , grade : Int -- From 1 to 7
     }
 
 
-hardSkills : List SkillExperience
+maxSkillGrade : Int
+maxSkillGrade =
+    7
+
+
+hardSkills : List Skill
 hardSkills =
-    [ SkillExperience "JavaScript" 6
-    , SkillExperience "HTML" 5
-    , SkillExperience "CSS" 5
-    , SkillExperience "Elm" 3
+    [ Skill "JavaScript" 6
+    , Skill "HTML" 5
+    , Skill "CSS" 5
+    , Skill "Elm" 3
     ]
 
 
