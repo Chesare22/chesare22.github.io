@@ -322,20 +322,20 @@ maxStars =
 
 filledStar : Theme -> Int -> Html msg
 filledStar theme =
-    experienceStat
+    iconInDiv
         Filled.star
         (titleColor theme)
 
 
 outlinedStar : Theme -> Int -> Html msg
 outlinedStar theme =
-    experienceStat
+    iconInDiv
         Filled.star_border
         (themed grey.c700 grey.c500 theme)
 
 
-experienceStat : Icon msg -> Color -> Int -> Html msg
-experienceStat icon colorValue size =
+iconInDiv : Icon msg -> Color -> Int -> Html msg
+iconInDiv icon colorValue size =
     div
         [ Attributes.css [ color colorValue ] ]
         [ Svg.Styled.fromUnstyled (icon size Inherit) ]
