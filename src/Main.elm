@@ -234,11 +234,8 @@ view model =
                             model.language
                         )
                     ]
-                , h1
-                    [ Attributes.css
-                        [ color (titleColor model.theme)
-                        ]
-                    ]
+                , title model.theme
+                    []
                     [ text name ]
                 , spaced_p []
                     [ text
@@ -248,15 +245,8 @@ view model =
                             model.language
                         )
                     ]
-                , h2
-                    [ Attributes.css
-                        [ color (titleColor model.theme)
-                        , fontSize (rem 1.4)
-                        , fontWeight (int 700)
-                        , marginBottom (Css.em 0.5)
-                        , marginTop (Css.em 1)
-                        ]
-                    ]
+                , subtitle model.theme
+                    []
                     [ text
                         (Language.translated
                             "Me puedes encontrar en"
@@ -408,6 +398,25 @@ spaced_p =
 
 
 -- THEMED ELEMENTS
+
+
+title : Theme -> List (Attribute msg) -> List (Html msg) -> Html msg
+title theme =
+    styled h1
+        [ color (titleColor theme)
+        , fontSize (Css.em 2)
+        ]
+
+
+subtitle : Theme -> List (Attribute msg) -> List (Html msg) -> Html msg
+subtitle theme =
+    styled h2
+        [ color (titleColor theme)
+        , fontSize (rem 1.4)
+        , fontWeight (int 700)
+        , marginBottom (Css.em 0.5)
+        , marginTop (Css.em 1)
+        ]
 
 
 switchThemeIcon : Int -> Theme -> Svg.Styled.Svg msg
