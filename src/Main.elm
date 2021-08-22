@@ -8,12 +8,13 @@ import FeatherIcons
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
 import Html.Styled.Events exposing (..)
-import Language
+import Language exposing (Language)
 import Material.Icons as Filled
 import Material.Icons.Types exposing (Coloring(..), Icon)
 import Phone
 import Regex
 import Svg.Styled
+import Time
 
 
 
@@ -585,6 +586,50 @@ hardSkills =
     , Skill "HTML" 5
     , Skill "CSS" 5
     , Skill "Elm" 3
+    ]
+
+
+type alias WorkExperience =
+    { company : String
+    , start : SimpleDate
+    , end : SimpleDate
+    , position : Language.Language -> String
+    , description : Language.Language -> String
+    }
+
+
+type alias SimpleDate =
+    { month : Time.Month
+    , year : Int
+    }
+
+
+experience : List WorkExperience
+experience =
+    [ WorkExperience "SoldAI"
+        (SimpleDate Time.Jul 2019)
+        (SimpleDate Time.Sep 2020)
+        (Language.translated "Desarrollador Web Frontend" "Frontend Web Developer")
+        (Language.translated
+            "SoldAI es una empresa yucateca dedicada a la inteligencia artificial. Ayudé en pruebas, desarrollo, mantenimiento y documentación de varios proyectos, entre ellos un producto que permitía configurar chatbots."
+            "SoldAI is a yucatecan company dedicated to the artificial intelligence. I helped in testing, developing, maintenance and documentation of various projects, among them a product that allowed to configure chat bots."
+        )
+    , WorkExperience "Sumerian"
+        (SimpleDate Time.Jun 2020)
+        (SimpleDate Time.Jul 2021)
+        (Language.translated "Ingeniero de Software" "Software Engineer")
+        (Language.translated
+            "Sumerian hace software a la medida, mayormente aplicaciones web. Involucramos mucho a los clientes y seguimos procesos de aseguramiento de la calidad."
+            "Sumerian makes custom software, mostly web applications. We involve our clients and follow quality-assurance processes."
+        )
+    , WorkExperience "Coatí Labs"
+        (SimpleDate Time.Jan 2021)
+        (SimpleDate Time.Apr 2021)
+        (Language.translated "Desarrollador Web Frontend" "Frontend Web Developer")
+        (Language.translated
+            "Empresa de programación web donde me familiaricé con algunos eventos de scrum (sprints, stand ups diarios y revisión de código). Mi labor principal era el desarrollo de páginas web con React y TypeScript."
+            "A web-programming company where I got familiarized with some scrum events (sprints, daily stand-ups and code reviews). My primary labour was to develop web pages with React and TypeScript."
+        )
     ]
 
 
