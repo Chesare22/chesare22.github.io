@@ -296,7 +296,7 @@ starsContainer =
     styled div
         [ displayGrid
         , property "grid-template-columns"
-            ("5.5rem repeat("
+            ("6.75rem repeat("
                 ++ String.fromInt maxSkillGrade
                 ++ ", 1fr)"
             )
