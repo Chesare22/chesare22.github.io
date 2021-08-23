@@ -54,6 +54,7 @@ type Theme
 
 type alias Flags =
     { profilePicture : String
+    , preferredTheme : String
     }
 
 
@@ -65,8 +66,13 @@ type alias Model =
 
 
 init : Flags -> ( Model, Cmd Msg )
-init { profilePicture } =
-    ( { theme = Dark
+init { profilePicture, preferredTheme } =
+    ( { theme =
+            if preferredTheme == "dark" then
+                Dark
+
+            else
+                Light
       , language = Language.Spanish
       , profilePicture = profilePicture
       }
