@@ -9,10 +9,11 @@ import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
 import Html.Styled.Events exposing (..)
 import Language exposing (Language)
-import Material.Icons as Filled
+import Material.Icons as Filled exposing (description)
 import Material.Icons.Types exposing (Coloring(..), Icon)
 import Phone
 import Regex
+import String.Extra
 import Svg.Styled
 import Time
 
@@ -276,7 +277,7 @@ view model =
 
             -- Column 2
             , div []
-                [ subtitle model.theme
+                (subtitle model.theme
                     [ Attributes.css [ marginTop (px 0) ] ]
                     [ text
                         (Language.translated
@@ -285,23 +286,134 @@ view model =
                             model.language
                         )
                     ]
-
-                -- TODO: Add list of work experience
-                , subtitle model.theme
-                    []
-                    [ text
-                        (Language.translated
-                            "Habilidades técnicas"
-                            "Hard skills"
-                            model.language
-                        )
-                    ]
-                , coloredBlock
-                    model.theme
-                    (List.map (displaySkill 20 model.theme model.language) hardSkills)
-                ]
+                    :: List.map (displayExperience model.language) experience
+                    ++ [ subtitle model.theme
+                            []
+                            [ text
+                                (Language.translated
+                                    "Habilidades técnicas"
+                                    "Hard skills"
+                                    model.language
+                                )
+                            ]
+                       , coloredBlock
+                            model.theme
+                            (List.map (displaySkill 20 model.theme model.language) hardSkills)
+                       ]
+                )
             ]
         ]
+
+
+displayExperience : Language -> WorkExperience -> Html msg
+displayExperience lang { company, start, end, position, description } =
+    div []
+        [ h3 [] [ text company ]
+        , span [] [ text (position lang) ]
+        , span [] [ text (formatDateRange lang start end) ]
+        , spaced_p [] [ text (description lang) ]
+        ]
+
+
+formatDateRange : Language -> SimpleDate -> SimpleDate -> String
+formatDateRange language start end =
+    let
+        formatter =
+            formatDate language >> String.Extra.toSentenceCase
+    in
+    formatter start ++ " — " ++ formatter end
+
+
+formatDate : Language -> SimpleDate -> String
+formatDate language date =
+    translateMonth language date.month
+        ++ " "
+        ++ String.fromInt date.year
+
+
+translateMonth : Language -> Time.Month -> String
+translateMonth =
+    Language.translated monthsEs monthsEn
+
+
+monthsEn : Time.Month -> String
+monthsEn month =
+    case month of
+        Time.Jan ->
+            "january"
+
+        Time.Feb ->
+            "february"
+
+        Time.Mar ->
+            "march"
+
+        Time.Apr ->
+            "april"
+
+        Time.May ->
+            "may"
+
+        Time.Jun ->
+            "june"
+
+        Time.Jul ->
+            "july"
+
+        Time.Aug ->
+            "august"
+
+        Time.Sep ->
+            "september"
+
+        Time.Oct ->
+            "october"
+
+        Time.Nov ->
+            "november"
+
+        Time.Dec ->
+            "december"
+
+
+monthsEs : Time.Month -> String
+monthsEs month =
+    case month of
+        Time.Jan ->
+            "enero"
+
+        Time.Feb ->
+            "febrero"
+
+        Time.Mar ->
+            "marzo"
+
+        Time.Apr ->
+            "abril"
+
+        Time.May ->
+            "mayo"
+
+        Time.Jun ->
+            "junio"
+
+        Time.Jul ->
+            "julio"
+
+        Time.Aug ->
+            "agosto"
+
+        Time.Sep ->
+            "septiembre"
+
+        Time.Oct ->
+            "octubre"
+
+        Time.Nov ->
+            "noviembre"
+
+        Time.Dec ->
+            "diciembre"
 
 
 displaySkill : Int -> Theme -> Language -> Skill -> Html Msg
