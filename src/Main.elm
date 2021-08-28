@@ -9,7 +9,7 @@ import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
 import Html.Styled.Events exposing (..)
 import Language exposing (Language)
-import Material.Icons as Filled exposing (description)
+import Material.Icons as Filled
 import Material.Icons.Types exposing (Coloring(..), Icon)
 import Phone
 import Regex
