@@ -12,6 +12,7 @@ import Language exposing (Language)
 import Material.Icons as Filled
 import Material.Icons.Types exposing (Coloring(..), Icon)
 import Phone
+import Qr
 import Regex
 import Svg.Styled
 import Time
@@ -273,6 +274,12 @@ view model =
                         ]
                         (List.map displayContact <| contactList 16)
                     ]
+                , div
+                    [ Attributes.css
+                        [ width (px 150)
+                        ]
+                    ]
+                    [ Qr.qr ]
                 ]
 
             -- Column 2
