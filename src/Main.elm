@@ -301,14 +301,14 @@ view model =
                         )
                     ]
                  ]
-                    ++ List.map (displayExperience model.language) experience
+                    ++ List.map (displayExperience model.language) jobs
                 )
             ]
         ]
 
 
-displayExperience : Language -> WorkExperience -> Html msg
-displayExperience lang { company, start, end, position, description } =
+displayExperience : Language -> Experience -> Html msg
+displayExperience lang experience =
     div
         [ Attributes.css
             [ marginBottom (rem 1.5)
@@ -321,8 +321,8 @@ displayExperience lang { company, start, end, position, description } =
                 , fontWeight (int 700)
                 ]
             ]
-            [ text company ]
-        , span [] [ text (", " ++ position lang) ]
+            [ text experience.title ]
+        , span [] [ text (", " ++ experience.position lang) ]
         , span
             [ Attributes.css
                 [ display block
@@ -331,18 +331,24 @@ displayExperience lang { company, start, end, position, description } =
                 , fontSize (Css.em 0.8)
                 ]
             ]
-            [ text (formatDateRange lang start end) ]
-        , spaced_p [] [ text (description lang) ]
+            [ text (formatDateRange lang experience.start experience.end) ]
+        , spaced_p [] [ text (experience.description lang) ]
         ]
 
 
-formatDateRange : Language -> SimpleDate -> SimpleDate -> String
+formatDateRange : Language -> SimpleDate -> Maybe SimpleDate -> String
 formatDateRange language start end =
-    let
-        formatter =
-            formatDate language >> String.toUpper
-    in
-    formatter start ++ " — " ++ formatter end
+    String.toUpper
+        (formatDate language start
+            ++ " — "
+            ++ (case end of
+                    Just date ->
+                        formatDate language date
+
+                    Nothing ->
+                        Language.translated "actual" "present" language
+               )
+        )
 
 
 formatDate : Language -> SimpleDate -> String
@@ -756,10 +762,10 @@ hardSkills =
     ]
 
 
-type alias WorkExperience =
-    { company : String
+type alias Experience =
+    { title : String
     , start : SimpleDate
-    , end : SimpleDate
+    , end : Maybe SimpleDate
     , position : Language.Language -> String
     , description : Language.Language -> String
     }
@@ -771,27 +777,27 @@ type alias SimpleDate =
     }
 
 
-experience : List WorkExperience
-experience =
-    [ WorkExperience "SoldAI"
+jobs : List Experience
+jobs =
+    [ Experience "SoldAI"
         (SimpleDate Time.Jul 2019)
-        (SimpleDate Time.Sep 2020)
+        (Just <| SimpleDate Time.Sep 2020)
         (Language.translated "Desarrollador Web Frontend" "Frontend Web Developer")
         (Language.translated
             "SoldAI es una empresa yucateca dedicada a la inteligencia artificial. Ayudé en pruebas, desarrollo, mantenimiento y documentación de varios proyectos, entre ellos un producto que permitía configurar chatbots."
             "SoldAI is a yucatecan company dedicated to the artificial intelligence. I helped in testing, developing, maintenance and documentation of various projects, among them a product that allowed to configure chat bots."
         )
-    , WorkExperience "Sumerian"
+    , Experience "Sumerian"
         (SimpleDate Time.Jun 2020)
-        (SimpleDate Time.Jul 2021)
+        (Just <| SimpleDate Time.Jul 2021)
         (Language.translated "Ingeniero de Software" "Software Engineer")
         (Language.translated
             "Sumerian hace software a la medida, mayormente aplicaciones web. Involucramos mucho a los clientes y seguimos procesos de aseguramiento de la calidad."
             "Sumerian makes custom software, mostly web applications. We involve our clients and follow quality-assurance processes."
         )
-    , WorkExperience "Coatí Labs"
+    , Experience "Coatí Labs"
         (SimpleDate Time.Jan 2021)
-        (SimpleDate Time.Apr 2021)
+        (Just <| SimpleDate Time.Apr 2021)
         (Language.translated "Desarrollador Web Frontend" "Frontend Web Developer")
         (Language.translated
             "Empresa de programación web donde me familiaricé con algunos eventos de scrum (sprints, stand ups diarios y revisión de código). Mi labor principal era el desarrollo de páginas web con React y TypeScript."
