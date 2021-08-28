@@ -13,7 +13,6 @@ import Material.Icons as Filled exposing (description)
 import Material.Icons.Types exposing (Coloring(..), Icon)
 import Phone
 import Regex
-import String.Extra
 import Svg.Styled
 import Time
 
@@ -256,6 +255,7 @@ view model =
                     ]
                 , subtitle model.theme
                     []
+                    []
                     [ text
                         (Language.translated
                             "Me puedes encontrar en"
@@ -277,8 +277,22 @@ view model =
 
             -- Column 2
             , div []
-                (subtitle model.theme
-                    [ Attributes.css [ marginTop (px 0) ] ]
+                ([ subtitle model.theme
+                    [ marginTop (px 0) ]
+                    []
+                    [ text
+                        (Language.translated
+                            "Habilidades técnicas"
+                            "Hard skills"
+                            model.language
+                        )
+                    ]
+                 , coloredBlock
+                    model.theme
+                    (List.map (displaySkill 20 model.theme model.language) hardSkills)
+                 , subtitle model.theme
+                    []
+                    []
                     [ text
                         (Language.translated
                             "Experiencia laboral"
@@ -286,20 +300,8 @@ view model =
                             model.language
                         )
                     ]
-                    :: List.map (displayExperience model.language) experience
-                    ++ [ subtitle model.theme
-                            []
-                            [ text
-                                (Language.translated
-                                    "Habilidades técnicas"
-                                    "Hard skills"
-                                    model.language
-                                )
-                            ]
-                       , coloredBlock
-                            model.theme
-                            (List.map (displaySkill 20 model.theme model.language) hardSkills)
-                       ]
+                 ]
+                    ++ List.map (displayExperience model.language) experience
                 )
             ]
         ]
@@ -307,10 +309,29 @@ view model =
 
 displayExperience : Language -> WorkExperience -> Html msg
 displayExperience lang { company, start, end, position, description } =
-    div []
-        [ h3 [] [ text company ]
-        , span [] [ text (position lang) ]
-        , span [] [ text (formatDateRange lang start end) ]
+    div
+        [ Attributes.css
+            [ marginBottom (rem 1.5)
+            ]
+        ]
+        [ h3
+            [ Attributes.css
+                [ display inline
+                , fontSize (Css.em 1.17)
+                , fontWeight (int 700)
+                ]
+            ]
+            [ text company ]
+        , span [] [ text (", " ++ position lang) ]
+        , span
+            [ Attributes.css
+                [ display block
+                , margin2 (rem 0.4) (px 0)
+                , letterSpacing (Css.em 0.075)
+                , fontSize (Css.em 0.8)
+                ]
+            ]
+            [ text (formatDateRange lang start end) ]
         , spaced_p [] [ text (description lang) ]
         ]
 
@@ -319,7 +340,7 @@ formatDateRange : Language -> SimpleDate -> SimpleDate -> String
 formatDateRange language start end =
     let
         formatter =
-            formatDate language >> String.Extra.toSentenceCase
+            formatDate language >> String.toUpper
     in
     formatter start ++ " — " ++ formatter end
 
@@ -542,15 +563,17 @@ title theme =
         ]
 
 
-subtitle : Theme -> List (Attribute msg) -> List (Html msg) -> Html msg
-subtitle theme =
+subtitle : Theme -> List Style -> List (Attribute msg) -> List (Html msg) -> Html msg
+subtitle theme styles =
     styled h2
-        [ color (titleColor theme)
-        , fontSize (rem 1.4)
-        , fontWeight (int 700)
-        , marginBottom (Css.em 0.5)
-        , marginTop (Css.em 1)
-        ]
+        ([ color (titleColor theme)
+         , fontSize (rem 1.4)
+         , fontWeight (int 700)
+         , marginBottom (Css.em 0.5)
+         , marginTop (Css.em 0.85)
+         ]
+            ++ styles
+        )
 
 
 switchThemeIcon : Int -> Theme -> Svg.Styled.Svg msg
