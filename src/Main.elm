@@ -844,6 +844,14 @@ studies =
         (always "UADY")
         -- TODO: Add description
         (always "")
+    , Experience (Language.translated "Cursos sobre Arquitectura Reactiva" "Courses about Reactive Architecture")
+        (SimpleDate Time.May 2021)
+        (Just <| SimpleDate Time.Jul 2021)
+        (always "Lightbend Academy")
+        (Language.translated
+            "Tomé seis cursos en línea donde aprendí las bases de sistemas reactivos, microservicios, DDD, mensajes distribuidos y event sourcing."
+            "I took six free online courses where I learned the basics of reactive systems, microservices, DDD, distributed messaging and event sourcing."
+        )
     ]
 
 
