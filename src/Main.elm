@@ -5,6 +5,7 @@ import Css exposing (..)
 import Css.Global as Global
 import Css.Media as Media exposing (only, print, screen, withMedia)
 import FeatherIcons
+import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
 import Html.Styled.Events exposing (..)
@@ -12,8 +13,9 @@ import Language exposing (Language)
 import Material.Icons as Filled
 import Material.Icons.Types exposing (Coloring(..), Icon)
 import Phone
-import Qr
+import QRCode
 import Regex
+import Svg.Attributes
 import Svg.Styled
 import Time
 
@@ -56,6 +58,7 @@ type Theme
 type alias Flags =
     { profilePicture : String
     , preferredTheme : String
+    , qrUrl : String
     }
 
 
@@ -63,11 +66,12 @@ type alias Model =
     { theme : Theme
     , language : Language.Language
     , profilePicture : String
+    , qrUrl : String
     }
 
 
 init : Flags -> ( Model, Cmd Msg )
-init { profilePicture, preferredTheme } =
+init { profilePicture, preferredTheme, qrUrl } =
     ( { theme =
             if preferredTheme == "dark" then
                 Dark
@@ -76,6 +80,7 @@ init { profilePicture, preferredTheme } =
                 Light
       , language = Language.Spanish
       , profilePicture = profilePicture
+      , qrUrl = qrUrl
       }
     , Cmd.none
     )
@@ -279,7 +284,16 @@ view model =
                         [ width (px 150)
                         ]
                     ]
-                    [ Qr.qr ]
+                    [ fromUnstyled
+                        (QRCode.fromString model.qrUrl
+                            |> Result.map
+                                (QRCode.toSvg
+                                    [ Svg.Attributes.stroke "#000"
+                                    ]
+                                )
+                            |> Result.withDefault (Html.text "")
+                        )
+                    ]
                 ]
 
             -- Column 2

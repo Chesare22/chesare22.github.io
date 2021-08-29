@@ -12,6 +12,7 @@ const app = Elm.Main.init({
   flags: {
     profilePicture: profile,
     preferredTheme: userPrefersDark ? "dark" : "light",
+    qrUrl: process.env.ELM_APP_QR_URL,
   },
 });
 
