@@ -843,8 +843,10 @@ studies =
         (SimpleDate Time.Aug 2017)
         Nothing
         (always "UADY")
-        -- TODO: Add description
-        (always "")
+        (Language.translated
+            "Carrera que enseña cómo aplicar ingeniería en la producción de software. También  conlleva aprender programación, pruebas, requisitos y otras habilidades."
+            "Career that teaches how to apply engineering to the production of software. It also involves learning programming, testing, requirements and other abilities."
+        )
     , Experience (Language.translated "Cursos sobre Arquitectura Reactiva" "Courses about Reactive Architecture")
         (SimpleDate Time.May 2021)
         (Just <| SimpleDate Time.Jul 2021)
