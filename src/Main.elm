@@ -282,6 +282,9 @@ view model =
                 , div
                     [ Attributes.css
                         [ width (px 150)
+                        , withMedia [ Media.not print [] ]
+                            [ display none
+                            ]
                         ]
                     ]
                     [ fromUnstyled
