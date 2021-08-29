@@ -223,6 +223,12 @@ view model =
                 , property "column-gap" "2rem"
                 , property "row-gap" "3rem"
                 , property "align-content" "start"
+                , onlyPrint
+                    [ themed
+                        (batch [])
+                        (backgroundColor (hex "fff"))
+                        model.theme
+                    ]
                 , printOrBigScreen
                     [ height paperHeight
                     ]
