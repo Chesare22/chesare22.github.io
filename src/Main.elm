@@ -254,8 +254,8 @@ view model =
                 , spaced_p []
                     [ text
                         (Language.translated
-                            "Soy un estudiante de ingeniería de software con dos años de experiencia trabajando como desarrollador frontend. Estoy comprometido con la calidad del software en todas sus etapas, desde la planeación del producto hasta la correcta entrega y mantenimiento del mismo. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas."
-                            "I'm a software engineering student with two years of experience working as a frontend developer. I am committed to software quality in all their stages, from the planning to the delivery and maintenance. I often try to make my code the simplest posible and I enjoy learning new stuff."
+                            "Soy un estudiante de ingeniería de software con dos años de experiencia trabajando como desarrollador frontend. Estoy comprometido con la calidad del software en todas sus etapas, desde la planeación del producto hasta la correcta entrega y mantenimiento del mismo. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas. Actualmente la programación funcional me llama la atención."
+                            "I'm a software engineering student with two years of experience working as a frontend developer. I am committed to software quality in all their stages, from the planning to the delivery and maintenance. I often try to make my code the simplest possible and I enjoy learning new stuff. Currently I'm really interested in functional programming."
                             model.language
                         )
                     ]
@@ -850,7 +850,7 @@ studies =
         (Just <| SimpleDate Time.Jul 2021)
         (always "Lightbend Academy")
         (Language.translated
-            "Tomé seis cursos en línea donde aprendí las bases de sistemas reactivos, microservicios, DDD, mensajes distribuidos y event sourcing."
+            "Tomé seis cursos en línea donde aprendí lo básico sobre sistemas reactivos, microservicios, DDD, mensajes distribuidos y event sourcing."
             "I took six free online courses where I learned the basics of reactive systems, microservices, DDD, distributed messaging and event sourcing."
         )
     ]
