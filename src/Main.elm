@@ -287,7 +287,9 @@ view model =
                     ]
                 , div
                     [ Attributes.css
-                        [ width (px 150)
+                        [ width (rem 7.5)
+                        , margin auto
+                        , themed (paperBackground Light) (batch []) model.theme
                         , withMedia [ Media.not print [] ]
                             [ display none
                             ]
@@ -297,7 +299,12 @@ view model =
                         (QRCode.fromString model.qrUrl
                             |> Result.map
                                 (QRCode.toSvg
-                                    [ Svg.Attributes.stroke "#000"
+                                    [ Svg.Attributes.stroke
+                                        (themed
+                                            secondary.c900
+                                            grey.c900
+                                            model.theme
+                                        ).value
                                     ]
                                 )
                             |> Result.withDefault (Html.text "")
@@ -635,6 +642,7 @@ coloredBlock theme content =
         , backgroundColor (themed secondary.c900 primary.c50 theme)
         , position relative
         , displayFlex
+        , marginBottom (rem 1)
         , borderLeft3
             (px 4)
             solid
