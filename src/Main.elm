@@ -492,6 +492,7 @@ starsContainer =
         , property "align-items" "center"
         , marginBottom (rem 0.2)
         , maxWidth (rem 20)
+        , Css.lastChild [ marginBottom (px 0) ]
         ]
 
 
