@@ -577,15 +577,12 @@ roundImg size attributes =
             , height size
             , roundBorder
             , overflow hidden
-            , position relative
             , margin auto
             ]
         ]
         [ styled img
             [ width (pct 100)
-            , height auto
-            , position absolute
-            , bottom (pct -10)
+            , height (pct 100)
             ]
             attributes
             []

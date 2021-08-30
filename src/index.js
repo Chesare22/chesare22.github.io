@@ -1,4 +1,4 @@
-import profile from "../static/profile.jpg";
+import profile from "../static/profile_2.jpg";
 import "./main.css";
 import { Elm } from "./Main.elm";
 import * as serviceWorker from "./serviceWorker";
