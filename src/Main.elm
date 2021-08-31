@@ -228,9 +228,7 @@ view model =
                         (batch [])
                         (backgroundColor (hex "fff"))
                         model.theme
-                    ]
-                , printOrBigScreen
-                    [ height paperHeight
+                    , height paperHeight
                     ]
                 , onlyBigScreen
                     [ margin2 (rem 2) (px 0)
@@ -620,6 +618,9 @@ spaced_p =
         [ lineHeight (Css.em 1.5)
         , marginBottom (Css.em 1)
         , marginTop (px 0)
+        , onlyPrint
+            [ lineHeight (Css.em 1.35)
+            ]
         ]
 
 
@@ -1112,7 +1113,7 @@ paperHeightInt =
 
 paperPaddingInt : { vertical : Float, horizontal : Float }
 paperPaddingInt =
-    { vertical = 2
+    { vertical = 3
     , horizontal = 2.5
     }
 
