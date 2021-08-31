@@ -260,7 +260,7 @@ view model =
                 , spaced_p []
                     [ text
                         (Language.translated
-                            "Soy un estudiante de ingeniería de software con dos años de experiencia trabajando como desarrollador frontend. Estoy comprometido con la calidad del software en todas sus etapas, desde la planeación del producto hasta la correcta entrega y mantenimiento del mismo. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas. Actualmente la programación funcional me llama la atención."
+                            "Soy un estudiante de ingeniería de software con dos años de experiencia trabajando como desarrollador frontend. Estoy comprometido con la calidad del software en todas sus etapas, desde la planeación hasta la entrega del producto. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas. Actualmente la programación funcional me llama la atención."
                             "I'm a software engineering student with two years of experience working as a frontend developer. I am committed to software quality in all their stages, from the planning to the delivery and maintenance. I often try to make my code the simplest possible and I enjoy learning new stuff. Currently I'm really interested in functional programming."
                             model.language
                         )
@@ -289,6 +289,7 @@ view model =
                     [ Attributes.css
                         [ width (rem 7.5)
                         , margin auto
+                        , marginBottom (rem 0.5)
                         , themed
                             (batch
                                 [ backgroundColor <| paperBackground Light
@@ -310,6 +311,28 @@ view model =
                                     ]
                                 )
                             |> Result.withDefault (Html.text "")
+                        )
+                    ]
+                , a
+                    [ Attributes.href model.qrUrl
+                    , Attributes.css
+                        [ display block
+                        , margin auto
+                        , textAlign center
+                        , color grey.c500
+                        , textDecoration none
+                        , fontStyle italic
+                        , fontSize (rem 0.8)
+                        , withMedia [ Media.not print [] ]
+                            [ display none
+                            ]
+                        ]
+                    ]
+                    [ text
+                        (Language.translated
+                            ("Este documento es una página web impresa " ++ model.qrUrl)
+                            ("This document is a printed web page " ++ model.qrUrl)
+                            model.language
                         )
                     ]
                 ]
