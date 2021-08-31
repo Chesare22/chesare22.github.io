@@ -144,7 +144,6 @@ view model =
         [ Attributes.css
             [ minHeight (vh 100)
             , maxWidth (vw 100)
-            , backgroundColor <| paperBackground model.theme
             , displayGrid
             , property "grid-template-columns" "1fr"
             , property "justify-items" "center"
@@ -152,14 +151,17 @@ view model =
             , onlyScreen
                 [ paddingTop optionsBarHeight
                 ]
-            , onlyBigScreen
-                [ backgroundColor <| mainBackground model.theme
-                ]
             ]
         ]
         [ Global.global
             [ Global.selector "#options-bar.hidden"
                 [ top (rem (negate optionsBarHeightInt))
+                ]
+            , Global.body
+                [ backgroundColor <| paperBackground model.theme
+                , onlyBigScreen
+                    [ backgroundColor <| mainBackground model.theme
+                    ]
                 ]
             ]
 
