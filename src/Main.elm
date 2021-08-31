@@ -255,10 +255,11 @@ view model =
                 , title model.theme
                     []
                     [ text name ]
-                , spaced_p []
+                , spaced_p [ textAlign justify ]
+                    []
                     [ text
                         (Language.translated
-                            "Soy un estudiante de ingeniería de software con dos años de experiencia trabajando como desarrollador frontend. Estoy comprometido con la calidad del software en todas sus etapas, desde la planeación hasta la entrega del producto. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas. Actualmente la programación funcional me llama la atención."
+                            "Soy un estudiante de ingeniería de software con 2 años de experiencia trabajando como desarrollador frontend. Estoy comprometido con la calidad del software en todas sus etapas, desde la planeación hasta la entrega del producto. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas. Actualmente la programación funcional me llama la atención."
                             "I'm a software engineering student with two years of experience working as a frontend developer. I am committed to software quality in all their stages, from the planning to the delivery and maintenance. I often try to make my code the simplest possible and I enjoy learning new stuff. Currently I'm really interested in functional programming."
                             model.language
                         )
@@ -398,7 +399,7 @@ displayExperience lang experience =
                 ]
             ]
             [ text (formatDateRange lang experience.start experience.end) ]
-        , spaced_p [] [ text (experience.description lang) ]
+        , spaced_p [] [] [ text (experience.description lang) ]
         ]
 
 
@@ -612,16 +613,18 @@ roundImg size attributes =
         ]
 
 
-spaced_p : List (Attribute msg) -> List (Html msg) -> Html msg
-spaced_p =
+spaced_p : List Style -> List (Attribute msg) -> List (Html msg) -> Html msg
+spaced_p styles =
     styled p
-        [ lineHeight (Css.em 1.5)
-        , marginBottom (Css.em 1)
-        , marginTop (px 0)
-        , onlyPrint
+        ([ lineHeight (Css.em 1.5)
+         , marginBottom (Css.em 1)
+         , marginTop (px 0)
+         , onlyPrint
             [ lineHeight (Css.em 1.35)
             ]
-        ]
+         ]
+            ++ styles
+        )
 
 
 
