@@ -35,7 +35,7 @@ window.addEventListener("load", () => {
     const isScrollingUp = currentScroll < previousScroll;
     previousScroll = currentScroll;
 
-    if (isScrollingDown && !wasScrolling) {
+    if (isScrollingDown && !wasScrolling && previousScroll > 1) {
       optionsBar.classList.add("hidden");
       wasScrolling = true;
     } else if (isScrollingUp && wasScrolling) {
