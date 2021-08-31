@@ -300,18 +300,20 @@ view model =
                         ]
                         (List.map displayContact <| contactList 16)
                     ]
-                , div
-                    [ Attributes.css
+                , a
+                    [ Attributes.href model.qrUrl
+                    , Attributes.css
                         [ width (rem 7.5)
                         , margin auto
                         , marginBottom (rem 0.5)
+                        , display block
                         , themed
                             (batch
                                 [ backgroundColor <| paperBackground Light
                                 , color <| paperBackground Dark
                                 ]
                             )
-                            (batch [])
+                            (color currentColor)
                             model.theme
                         , withMedia [ Media.not print [] ]
                             [ display none
