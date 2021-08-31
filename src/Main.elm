@@ -78,7 +78,7 @@ init { profilePicture, preferredTheme, qrUrl } =
 
             else
                 Light
-      , language = Language.Spanish
+      , language = Language.English
       , profilePicture = profilePicture
       , qrUrl = qrUrl
       }

@@ -44,9 +44,9 @@ type alias ValueWithLabel =
 valuesWithLabels : List ValueWithLabel
 valuesWithLabels =
     [ ValueWithLabel
-        (toValue Spanish)
-        (translated "Español" "Spanish")
-    , ValueWithLabel
         (toValue English)
         (translated "Inglés" "English")
+    , ValueWithLabel
+        (toValue Spanish)
+        (translated "Español" "Spanish")
     ]
