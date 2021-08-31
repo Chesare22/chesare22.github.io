@@ -143,15 +143,15 @@ view model =
     div
         [ Attributes.css
             [ minHeight (vh 100)
-            , paperBackground model.theme
+            , backgroundColor <| paperBackground model.theme
             , displayFlex
             , justifyContent center
-            , paragraphColor model.theme
+            , color <| paragraphColor model.theme
             , onlyScreen
                 [ paddingTop optionsBarHeight
                 ]
             , onlyBigScreen
-                [ mainBackground model.theme
+                [ backgroundColor <| mainBackground model.theme
                 ]
             ]
         ]
@@ -174,7 +174,7 @@ view model =
                 , hiddenOnPrint
                 , property "transition" "all .3s ease"
                 , centeredContent
-                , paragraphColor Dark
+                , color <| paragraphColor Dark
                 , displayGrid
                 , property "grid-template-columns" "repeat(3, auto)"
                 , property "grid-gap" "1.5rem"
@@ -217,7 +217,7 @@ view model =
                 [ maxWidth paperWidth
                 , width (pct 100)
                 , padding2 paperPadding.vertical paperPadding.horizontal
-                , paperBackground model.theme
+                , backgroundColor <| paperBackground model.theme
                 , displayGrid
                 , property "grid-template-columns" "3fr 5fr"
                 , property "column-gap" "2rem"
@@ -289,7 +289,14 @@ view model =
                     [ Attributes.css
                         [ width (rem 7.5)
                         , margin auto
-                        , themed (paperBackground Light) (batch []) model.theme
+                        , themed
+                            (batch
+                                [ backgroundColor <| paperBackground Light
+                                , color <| paperBackground Dark
+                                ]
+                            )
+                            (batch [])
+                            model.theme
                         , withMedia [ Media.not print [] ]
                             [ display none
                             ]
@@ -299,12 +306,7 @@ view model =
                         (QRCode.fromString model.qrUrl
                             |> Result.map
                                 (QRCode.toSvg
-                                    [ Svg.Attributes.stroke
-                                        (themed
-                                            secondary.c900
-                                            grey.c900
-                                            model.theme
-                                        ).value
+                                    [ Svg.Attributes.stroke "currentColor"
                                     ]
                                 )
                             |> Result.withDefault (Html.text "")
@@ -927,25 +929,25 @@ multipleWhitespaces =
 -- THEMED STYLES
 
 
-mainBackground : Theme -> Style
+mainBackground : Theme -> Color
 mainBackground =
     themed
         (paperBackground Dark)
-        (backgroundColor grey.c200)
+        grey.c200
 
 
-paperBackground : Theme -> Style
+paperBackground : Theme -> Color
 paperBackground =
     themed
-        (backgroundColor secondary.c900)
-        (backgroundColor grey.c50)
+        secondary.c900
+        grey.c50
 
 
-paragraphColor : Theme -> Style
+paragraphColor : Theme -> Color
 paragraphColor =
     themed
-        (color grey.c50)
-        (color grey.c900)
+        grey.c50
+        grey.c900
 
 
 titleColor : Theme -> Color
