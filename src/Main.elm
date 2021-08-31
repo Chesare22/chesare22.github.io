@@ -357,7 +357,9 @@ view model =
             -- Column 2
             , div []
                 ([ subtitle model.theme
-                    [ aboveSmallScreen [ marginTop (px 0) ] ]
+                    [ aboveSmallScreen [ marginTop (px 0) ]
+                    , onlyPrint [ marginTop (px 0) ]
+                    ]
                     []
                     [ text
                         (Language.translated
