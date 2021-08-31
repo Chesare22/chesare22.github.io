@@ -223,7 +223,6 @@ view model =
                 , displayGrid
                 , property "grid-template-columns" "3fr 5fr"
                 , property "column-gap" "2rem"
-                , property "row-gap" "3rem"
                 , property "align-content" "start"
                 , onlyPrint
                     [ themed
@@ -240,6 +239,17 @@ view model =
                 , belowBigScreen
                     [ boxSizing borderBox
                     , maxWidth (rem paperWidthInt)
+                    , after
+                        [ property "content" "\"\""
+                        , width (pct 100)
+                        , height (px 1)
+                        , position relative
+                        , top paperPadding.vertical
+                        , backgroundColor (themed grey.c50 grey.c500 model.theme)
+                        ]
+                    ]
+                , onlyMediumScreen
+                    [ after [ property "grid-column-end" "span 2" ]
                     ]
                 , onlySmallScreen
                     [ property "grid-template-columns" "1fr"
@@ -345,7 +355,7 @@ view model =
             -- Column 2
             , div []
                 ([ subtitle model.theme
-                    [ marginTop (px 0) ]
+                    [ aboveSmallScreen [ marginTop (px 0) ] ]
                     []
                     [ text
                         (Language.translated
@@ -1049,6 +1059,21 @@ onlySmallScreen =
     withMedia [ only screen [ Media.maxWidth smallScreen ] ]
 
 
+aboveSmallScreen : List Style -> Style
+aboveSmallScreen =
+    withMedia [ only screen [ Media.minWidth smallScreen ] ]
+
+
+onlyMediumScreen : List Style -> Style
+onlyMediumScreen =
+    withMedia
+        [ only screen
+            [ Media.minWidth smallScreen
+            , Media.maxWidth mediumScreen
+            ]
+        ]
+
+
 onlyBigScreen : List Style -> Style
 onlyBigScreen =
     withMedia [ only screen [ Media.minWidth mediumScreen ] ]
@@ -1056,7 +1081,12 @@ onlyBigScreen =
 
 belowBigScreen : List Style -> Style
 belowBigScreen =
-    withMedia [ only screen [ Media.maxWidth mediumScreen ] ]
+    withMedia
+        [ only screen
+            [ Media.maxWidth <|
+                Css.em (mediumScreen.numericValue - 1 / 16)
+            ]
+        ]
 
 
 printOrBigScreen : List Style -> Style
