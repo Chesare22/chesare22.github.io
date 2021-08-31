@@ -143,9 +143,11 @@ view model =
     div
         [ Attributes.css
             [ minHeight (vh 100)
+            , maxWidth (vw 100)
             , backgroundColor <| paperBackground model.theme
-            , displayFlex
-            , justifyContent center
+            , displayGrid
+            , property "grid-template-columns" "1fr"
+            , property "justify-items" "center"
             , color <| paragraphColor model.theme
             , onlyScreen
                 [ paddingTop optionsBarHeight
@@ -234,6 +236,10 @@ view model =
                     [ margin2 (rem 2) (px 0)
                     , paperShadow model.theme
                     , borderRadius (px 10)
+                    ]
+                , belowBigScreen
+                    [ boxSizing borderBox
+                    , maxWidth (rem paperWidthInt)
                     ]
                 , onlySmallScreen
                     [ property "grid-template-columns" "1fr"
@@ -370,6 +376,29 @@ view model =
                         ]
                     :: List.map (displayExperience model.language) studies
                 )
+            ]
+
+        -- Footnote
+        , div
+            [ Attributes.css
+                [ margin2 (rem 5) (px 0)
+                , onlyPrint
+                    [ display none
+                    ]
+                ]
+            ]
+            [ span [] [ text "© 2021 César González" ]
+            , a
+                [ Attributes.href "https://github.com/Chesare22/chesare22.github.io"
+                , Attributes.target "_blank"
+                ]
+                [ text
+                    (Language.translated
+                        "Código fuente del sitio"
+                        "Site source"
+                        model.language
+                    )
+                ]
             ]
         ]
 
@@ -1012,6 +1041,11 @@ onlySmallScreen =
 onlyBigScreen : List Style -> Style
 onlyBigScreen =
     withMedia [ only screen [ Media.minWidth mediumScreen ] ]
+
+
+belowBigScreen : List Style -> Style
+belowBigScreen =
+    withMedia [ only screen [ Media.maxWidth mediumScreen ] ]
 
 
 printOrBigScreen : List Style -> Style
