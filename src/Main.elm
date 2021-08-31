@@ -381,7 +381,13 @@ view model =
         -- Footnote
         , div
             [ Attributes.css
-                [ margin2 (rem 5) (px 0)
+                [ padding2 (rem 5) (px 0)
+                , boxSizing borderBox
+                , width (pct 100)
+                , displayGrid
+                , property "grid-template-columns" "auto auto"
+                , property "grid-gap" "2rem"
+                , property "justify-content" "center"
                 , onlyPrint
                     [ display none
                     ]
@@ -391,10 +397,15 @@ view model =
             , a
                 [ Attributes.href "https://github.com/Chesare22/chesare22.github.io"
                 , Attributes.target "_blank"
+                , Attributes.css
+                    [ color currentColor
+                    , textDecoration none
+                    , hover [ textDecoration underline ]
+                    ]
                 ]
                 [ text
                     (Language.translated
-                        "Código fuente del sitio"
+                        "Código fuente"
                         "Site source"
                         model.language
                     )
