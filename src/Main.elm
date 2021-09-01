@@ -9,13 +9,13 @@ import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
 import Html.Styled.Events exposing (..)
-import Language exposing (Language)
+import Language exposing (Language(..))
 import Material.Icons as Filled
 import Material.Icons.Types exposing (Coloring(..), Icon)
 import Phone
 import QRCode
 import Regex
-import Svg.Attributes
+import Svg.Attributes exposing (type_)
 import Svg.Styled
 import Time
 
@@ -106,7 +106,7 @@ themed darkElement lightElement theme =
 
 type Msg
     = ChangeTheme
-    | ChangeLanguage String
+    | ChangeLanguage Language
     | Print
 
 
@@ -118,8 +118,8 @@ update msg model =
             , Cmd.none
             )
 
-        ChangeLanguage value ->
-            ( { model | language = Language.fromValue value }
+        ChangeLanguage language ->
+            ( { model | language = language }
             , Cmd.none
             )
 
@@ -185,21 +185,32 @@ view model =
                 , justifyContent center
                 ]
             ]
+            -- Radio buttons
             [ div
-                [ Attributes.css
-                    [ displayGrid
-                    , property "grid-template-columns" "repeat(2, auto)"
-                    , property "grid-gap" "0.3rem"
+                []
+                [ input
+                    [ Attributes.type_ "radio"
+                    , Attributes.id "en"
+                    , Attributes.checked (model.language == English)
+                    , onCheck (always (ChangeLanguage English))
                     ]
-                ]
-                [ label [ Attributes.for "language-select" ]
-                    [ text (Language.translated "Lenguaje:" "Language:" model.language)
+                    []
+                , label [ Attributes.for "en" ]
+                    [ text "English"
                     ]
-                , select
-                    [ Attributes.id "language-select"
-                    , onInput ChangeLanguage
+                , input
+                    [ Attributes.type_ "radio"
+                    , Attributes.id "es"
+                    , Attributes.css [ marginLeft (rem 0.8) ]
+                    , Attributes.checked (model.language == Spanish)
+                    , onCheck (always (ChangeLanguage Spanish))
                     ]
-                    (List.map (displayLangOptions model.language) Language.valuesWithLabels)
+                    []
+                , label
+                    [ Attributes.for "es"
+                    ]
+                    [ text "Español"
+                    ]
                 ]
             , ghostRoundButton
                 [ onClick ChangeTheme
