@@ -15,7 +15,7 @@ import Material.Icons.Types exposing (Coloring(..), Icon)
 import Phone
 import QRCode
 import Regex
-import Svg.Attributes exposing (type_)
+import Svg.Attributes
 import Svg.Styled
 import Time
 
