@@ -716,43 +716,23 @@ switchThemeIcon size =
 
 
 coloredBlock : Theme -> List (Html msg) -> Html msg
-coloredBlock theme content =
+coloredBlock theme =
     styled div
-        -- Main container
-        [ overflow hidden
-        , borderRadius (px 4)
-        , backgroundColor (themed secondary.c900 primary.c50 theme)
-        , position relative
-        , displayFlex
+        [ borderRadius (px 4)
+        , backgroundColor <|
+            themed
+                (changeOpacity primary.c400 0.1)
+                primary.c50
+                theme
         , marginBottom (rem 1)
+        , padding (rem 0.75)
+        , paddingRight (rem 1)
         , borderLeft3
             (px 4)
             solid
             (themed primary.c400 primary.c600 theme)
         ]
         []
-        [ styled div
-            -- Filter overlay
-            [ position absolute
-            , zIndex (int 30)
-            , width (pct 100)
-            , height (pct 100)
-            , backgroundColor primary.c400
-            , opacity (themed (num 0.1) (num 0) theme)
-            ]
-            []
-            []
-        , styled div
-            -- Padding
-            [ width (pct 100)
-            , position relative
-            , zIndex (int 50)
-            , padding (rem 0.75)
-            , paddingRight (rem 1)
-            ]
-            []
-            content
-        ]
 
 
 
@@ -1179,6 +1159,11 @@ transparent =
 almostBlack : Color
 almostBlack =
     hex "121212"
+
+
+changeOpacity : Color -> Float -> Color
+changeOpacity { red, green, blue } opacity =
+    rgba red green blue opacity
 
 
 
