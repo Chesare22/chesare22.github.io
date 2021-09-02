@@ -163,6 +163,35 @@ view model =
                     [ backgroundColor <| mainBackground model.theme
                     ]
                 ]
+            , Global.class "tooltip"
+                [ position relative
+                ]
+            , Global.selector ".tooltip:hover .tooltip-text"
+                [ visibility visible
+                ]
+            , Global.class "tooltip-text"
+                [ visibility hidden
+                , backgroundColor grey.c900
+                , color grey.c50
+                , textAlign center
+                , borderRadius (px 6)
+                , padding2 (rem 0.32) (rem 1)
+                , position absolute
+                , top (pct 150)
+                , left (pct 50)
+                , transform <| translateX (pct -50)
+                , minWidth (rem 10)
+                ]
+            , Global.selector ".tooltip-text::after"
+                [ property "content" "\"\""
+                , position absolute
+                , bottom (pct 100)
+                , left (pct 50)
+                , marginLeft (rem -0.32)
+                , borderWidth (rem 0.32)
+                , borderStyle solid
+                , borderColor4 transparent transparent grey.c900 transparent
+                ]
             ]
 
         -- Options bar
@@ -222,8 +251,19 @@ view model =
                 [ switchThemeIcon 20 model.theme ]
             , ghostRoundButton
                 [ onClick Print
+                , Attributes.class "tooltip"
                 ]
-                [ Svg.Styled.fromUnstyled <| Filled.print 20 Inherit ]
+                [ Svg.Styled.fromUnstyled <| Filled.print 20 Inherit
+                , span
+                    [ Attributes.class "tooltip-text"
+                    ]
+                    [ text <|
+                        Language.translated
+                            "Funciona mejor en Google Chrome para escritorio"
+                            "Works better in Google Chrome for desktop"
+                            model.language
+                    ]
+                ]
             ]
 
         -- Paper
