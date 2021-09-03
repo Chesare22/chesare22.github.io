@@ -761,6 +761,9 @@ title theme =
     styled h1
         [ color (titleColor theme)
         , fontSize (Css.em 2)
+        , onlySmallScreen
+            [ textAlign center
+            ]
         ]
 
 
