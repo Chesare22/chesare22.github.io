@@ -353,7 +353,7 @@ view model =
                         ]
                         (List.map displayContact <| contactList 16)
                     ]
-                , qrCode model.qrUrl model.theme
+                , qrCode model.qrUrl
                 , a
                     [ Attributes.href model.qrUrl
                     , Attributes.css
@@ -648,8 +648,8 @@ iconInDiv icon colorValue size =
         [ Svg.Styled.fromUnstyled (icon size Inherit) ]
 
 
-qrCode : String -> Theme -> Html msg
-qrCode url theme =
+qrCode : String -> Html msg
+qrCode url =
     a
         [ Attributes.href url
         , Attributes.css
@@ -660,14 +660,9 @@ qrCode url theme =
             , border3 (rem 0.3) solid grey.c900
             , borderRadius (rem 0.5)
             , textDecoration none
-            , themed
-                (batch
-                    [ backgroundColor <| paperBackground Light
-                    , color <| paperBackground Dark
-                    ]
-                )
-                (color currentColor)
-                theme
+            , color currentColor
+            , backgroundColor (hex "fff")
+            , color grey.c900
             , withMedia [ Media.not print [] ]
                 [ display none
                 ]
