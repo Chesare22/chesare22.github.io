@@ -353,36 +353,7 @@ view model =
                         ]
                         (List.map displayContact <| contactList 16)
                     ]
-                , a
-                    [ Attributes.href model.qrUrl
-                    , Attributes.css
-                        [ width (rem 7.5)
-                        , margin auto
-                        , marginBottom (rem 0.5)
-                        , display block
-                        , themed
-                            (batch
-                                [ backgroundColor <| paperBackground Light
-                                , color <| paperBackground Dark
-                                ]
-                            )
-                            (color currentColor)
-                            model.theme
-                        , withMedia [ Media.not print [] ]
-                            [ display none
-                            ]
-                        ]
-                    ]
-                    [ fromUnstyled
-                        (QRCode.fromString model.qrUrl
-                            |> Result.map
-                                (QRCode.toSvg
-                                    [ Svg.Attributes.stroke "currentColor"
-                                    ]
-                                )
-                            |> Result.withDefault (Html.text "")
-                        )
-                    ]
+                , qrCode model.qrUrl model.theme
                 , a
                     [ Attributes.href model.qrUrl
                     , Attributes.css
@@ -675,6 +646,40 @@ iconInDiv icon colorValue size =
     div
         [ Attributes.css [ color colorValue ] ]
         [ Svg.Styled.fromUnstyled (icon size Inherit) ]
+
+
+qrCode : String -> Theme -> Html msg
+qrCode url theme =
+    a
+        [ Attributes.href url
+        , Attributes.css
+            [ width (rem 7.5)
+            , margin auto
+            , marginBottom (rem 0.5)
+            , display block
+            , themed
+                (batch
+                    [ backgroundColor <| paperBackground Light
+                    , color <| paperBackground Dark
+                    ]
+                )
+                (color currentColor)
+                theme
+            , withMedia [ Media.not print [] ]
+                [ display none
+                ]
+            ]
+        ]
+        [ fromUnstyled
+            (QRCode.fromString url
+                |> Result.map
+                    (QRCode.toSvg
+                        [ Svg.Attributes.stroke "currentColor"
+                        ]
+                    )
+                |> Result.withDefault (Html.text "")
+            )
+        ]
 
 
 
