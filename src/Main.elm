@@ -653,11 +653,11 @@ qrCode url theme =
     a
         [ Attributes.href url
         , Attributes.css
-            [ width (rem 7.5)
+            [ width (rem 5)
             , margin auto
             , marginBottom (rem 0.5)
             , displayGrid
-            , border3 (rem 0.5) solid grey.c900
+            , border3 (rem 0.3) solid grey.c900
             , borderRadius (rem 0.5)
             , textDecoration none
             , themed
@@ -686,8 +686,14 @@ qrCode url theme =
             [ color grey.c50
             , backgroundColor grey.c900
             , textAlign center
-            , paddingTop (rem 0.5)
-            , fontSize (rem 1.3)
+            , paddingTop (rem 0.3)
+            , fontSize (rem 0.8)
+            , property "box-shadow"
+                ("2px 0 0 0 "
+                    ++ grey.c900.value
+                    ++ ", -2px 0 0 0 "
+                    ++ grey.c900.value
+                )
             ]
             []
             [ text "Click or Scan" ]
