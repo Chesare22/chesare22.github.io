@@ -656,7 +656,10 @@ qrCode url theme =
             [ width (rem 7.5)
             , margin auto
             , marginBottom (rem 0.5)
-            , display block
+            , displayGrid
+            , border3 (rem 0.5) solid grey.c900
+            , borderRadius (rem 0.5)
+            , textDecoration none
             , themed
                 (batch
                     [ backgroundColor <| paperBackground Light
@@ -679,6 +682,15 @@ qrCode url theme =
                     )
                 |> Result.withDefault (Html.text "")
             )
+        , styled div
+            [ color grey.c50
+            , backgroundColor grey.c900
+            , textAlign center
+            , paddingTop (rem 0.5)
+            , fontSize (rem 1.3)
+            ]
+            []
+            [ text "Click or Scan" ]
         ]
 
 
