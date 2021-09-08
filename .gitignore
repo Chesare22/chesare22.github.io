@@ -15,6 +15,7 @@ node_modules
 
 # Code Editor
 .vscode
+.idea
 
 # Environment variables
 .env
