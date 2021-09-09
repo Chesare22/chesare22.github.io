@@ -601,7 +601,7 @@ monthsEs month =
 
 skillSubtitle =
     styled span
-        [ fontSize (rem 1.125)
+        [ fontWeight (int 700)
         ]
 
 
