@@ -9,7 +9,7 @@ import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
 import Html.Styled.Events exposing (..)
-import Language exposing (Language(..))
+import Language exposing (Language(..), translated)
 import Material.Icons as Filled
 import Material.Icons.Types exposing (Coloring(..), Icon)
 import Phone
@@ -933,6 +933,38 @@ hardSkills =
     , Skill (always "React") 5
     , Skill (always "Vue") 4
     , Skill (always "Elm") 3
+    ]
+
+
+proficientSkills : List (Language -> String)
+proficientSkills =
+    [ always "JavaScript"
+    , always "HTML"
+    , always "(S)CSS"
+    ]
+
+
+familiarSkills : List (Language -> String)
+familiarSkills =
+    [ always "Elm"
+    , always "C#"
+    , translated "Programación funcional" "Functional programming"
+    , always "Git"
+    , always "React JS"
+    , always "Vue"
+    , always "Figma"
+    , always "SQL"
+    ]
+
+
+learningSkills : List (Language -> String)
+learningSkills =
+    [ always "Elixir"
+    , always "Event sourcing"
+    , always "CQRS"
+    , translated "Microservicios" "Microservices"
+    , translated "Diseño guiado por el dominio" "Domain-driven design"
+    , always "MongoDB"
     ]
 
 
