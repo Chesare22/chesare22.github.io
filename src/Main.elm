@@ -887,6 +887,7 @@ familiarSkills =
     , always "Vue"
     , always "Figma"
     , always "SQL"
+    , translated "Googlear" "Googling"
     ]
 
 
