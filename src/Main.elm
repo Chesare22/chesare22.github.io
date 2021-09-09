@@ -344,6 +344,7 @@ view model =
                         )
                     ]
                 , coloredBlock model.theme
+                    []
                     [ ul
                         [ Attributes.css
                             [ listStyle none
@@ -392,9 +393,19 @@ view model =
                             model.language
                         )
                     ]
-                 , coloredBlock
-                    model.theme
-                    (List.map (displaySkill 20 model.theme model.language) hardSkills)
+                 , coloredBlock model.theme
+                    [ displayGrid
+                    , property "grid-template-columns" "auto 1fr"
+                    , property "column-gap" "1rem"
+                    , property "row-gap" "1rem"
+                    ]
+                    [ skillSubtitle [] [ text (translated "Competente" "Proficient" model.language) ]
+                    , span [] [ text (Language.toSentence model.language proficientSkills) ]
+                    , skillSubtitle [] [ text (always "Familiar" model.language) ]
+                    , span [] [ text (Language.toSentence model.language familiarSkills) ]
+                    , skillSubtitle [] [ text (translated "Aprendiendo" "Learning" model.language) ]
+                    , span [] [ text (Language.toSentence model.language learningSkills) ]
+                    ]
                  , subtitle model.theme
                     []
                     []
@@ -586,6 +597,12 @@ monthsEs month =
 
         Time.Dec ->
             "diciembre"
+
+
+skillSubtitle =
+    styled span
+        [ fontSize (rem 1.125)
+        ]
 
 
 displaySkill : Int -> Theme -> Language -> Skill -> Html Msg
@@ -787,23 +804,25 @@ switchThemeIcon size =
         (Svg.Styled.fromUnstyled (Filled.light_mode size Inherit))
 
 
-coloredBlock : Theme -> List (Html msg) -> Html msg
-coloredBlock theme =
+coloredBlock : Theme -> List Style -> List (Html msg) -> Html msg
+coloredBlock theme styles =
     styled div
-        [ borderRadius (px 4)
-        , backgroundColor <|
+        ([ borderRadius (px 4)
+         , backgroundColor <|
             themed
                 (changeOpacity primary.c400 0.1)
                 primary.c50
                 theme
-        , marginBottom (rem 1)
-        , padding (rem 0.75)
-        , paddingRight (rem 1)
-        , borderLeft3
+         , marginBottom (rem 1)
+         , padding (rem 0.75)
+         , paddingRight (rem 1)
+         , borderLeft3
             (px 4)
             solid
             (themed primary.c400 primary.c600 theme)
-        ]
+         ]
+            ++ styles
+        )
         []
 
 
