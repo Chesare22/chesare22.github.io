@@ -1191,7 +1191,7 @@ changeOpacity { red, green, blue } opacity =
 
 
 
--- DIMENTIONS
+-- DIMENSIONS
 
 
 paperWidthInt : number
