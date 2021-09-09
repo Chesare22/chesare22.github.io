@@ -605,66 +605,6 @@ skillSubtitle =
         ]
 
 
-displaySkill : Int -> Theme -> Language -> Skill -> Html Msg
-displaySkill size theme skill language =
-    starsContainer
-        []
-        (stars size theme skill language)
-
-
-starsContainer : List (Attribute a) -> List (Html a) -> Html a
-starsContainer =
-    styled div
-        [ displayGrid
-        , property "grid-template-columns"
-            ("6.75rem repeat("
-                ++ String.fromInt maxSkillGrade
-                ++ ", 1fr)"
-            )
-        , property "align-items" "center"
-        , marginBottom (rem 0.2)
-        , maxWidth (rem 20)
-        , Css.lastChild [ marginBottom (px 0) ]
-        ]
-
-
-stars : Int -> Theme -> Language -> Skill -> List (Html msg)
-stars size theme language skill =
-    List.concat
-        [ [ p
-                [ Attributes.css [ margin (px 0) ] ]
-                [ text (skill.name language) ]
-          ]
-        , List.repeat
-            skill.grade
-            (filledStar theme size)
-        , List.repeat
-            (maxSkillGrade - skill.grade)
-            (outlinedStar theme size)
-        ]
-
-
-filledStar : Theme -> Int -> Html msg
-filledStar theme =
-    iconInDiv
-        Filled.star
-        (titleColor theme)
-
-
-outlinedStar : Theme -> Int -> Html msg
-outlinedStar theme =
-    iconInDiv
-        Filled.star_border
-        (themed grey.c700 grey.c500 theme)
-
-
-iconInDiv : Icon msg -> Color -> Int -> Html msg
-iconInDiv icon colorValue size =
-    div
-        [ Attributes.css [ color colorValue ] ]
-        [ Svg.Styled.fromUnstyled (icon size Inherit) ]
-
-
 qrCode : String -> Html msg
 qrCode url =
     a
@@ -926,32 +866,6 @@ contactList iconSize =
                     |> FeatherIcons.toHtml []
                 )
       }
-    ]
-
-
-type alias Skill =
-    { name : Language.Language -> String
-    , grade : Int -- From 1 to 7
-    }
-
-
-maxSkillGrade : Int
-maxSkillGrade =
-    7
-
-
-hardSkills : List Skill
-hardSkills =
-    [ Skill (always "JavaScript") 6
-    , Skill
-        (Language.translated
-            "HTML y CSS"
-            "HTML and CSS"
-        )
-        5
-    , Skill (always "React") 5
-    , Skill (always "Vue") 4
-    , Skill (always "Elm") 3
     ]
 
 
