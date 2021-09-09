@@ -811,11 +811,6 @@ coloredBlock theme =
 -- VIEW OF CUSTOM DATA
 
 
-displayLangOptions : Language.Language -> Language.ValueWithLabel -> Html Msg
-displayLangOptions language { value, label } =
-    option [ Attributes.value value ] [ text (label language) ]
-
-
 displayContact : ContactInfo Msg -> Html Msg
 displayContact contact =
     li []
@@ -1144,14 +1139,6 @@ belowBigScreen =
             [ Media.maxWidth <|
                 Css.em (mediumScreen.numericValue - 1 / 16)
             ]
-        ]
-
-
-printOrBigScreen : List Style -> Style
-printOrBigScreen =
-    withMedia
-        [ only screen [ Media.minWidth mediumScreen ]
-        , only print []
         ]
 
 
