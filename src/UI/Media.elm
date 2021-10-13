@@ -51,8 +51,7 @@ belowBigScreen : List Style -> Style
 belowBigScreen =
     withMedia
         [ only screen
-            [ Media.maxWidth <|
-                em (mediumScreen.numericValue - 1 / 16)
+            [ Media.maxWidth <| removePixel mediumScreen
             ]
         ]
 
@@ -79,3 +78,12 @@ smallScreen =
 mediumScreen : Em
 mediumScreen =
     em 56
+
+
+
+-- HELPERS
+
+
+removePixel : Em -> Em
+removePixel { numericValue } =
+    em (numericValue - 1 / 16)
