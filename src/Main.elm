@@ -225,17 +225,23 @@ view model =
                     [ text "Español"
                     ]
                 ]
-            , ghostRoundButton
+            , button
                 [ onClick ChangeTheme
                 , Attributes.css
-                    [ position relative
+                    [ UI.Style.ghost
+                    , UI.Style.round
+                    , position relative
                     , left (rem 0.25)
                     ]
                 ]
                 [ switchThemeIcon 20 model.theme ]
-            , ghostRoundButton
+            , button
                 [ onClick Print
                 , Attributes.class "tooltip"
+                , Attributes.css
+                    [ UI.Style.ghost
+                    , UI.Style.round
+                    ]
                 ]
                 [ Svg.Styled.fromUnstyled <| Filled.print 20 Inherit
                 , span
@@ -312,11 +318,16 @@ view model =
                             model.language
                         )
                     ]
-                , title model.theme
+                , styled h1
+                    [ UI.Style.title model.theme ]
                     []
                     [ text CustomData.name ]
-                , spaced_p [ textAlign justify ]
-                    []
+                , p
+                    [ Attributes.css
+                        [ UI.Style.paragraph
+                        , textAlign justify
+                        ]
+                    ]
                     [ text
                         (Language.translated
                             "Soy un estudiante de ingeniería de software con 2 años de experiencia trabajando como desarrollador frontend. Estoy comprometido con la calidad del software en todas sus etapas, desde la planeación hasta la entrega del producto. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas. Actualmente la programación funcional me llama la atención."
@@ -324,8 +335,8 @@ view model =
                             model.language
                         )
                     ]
-                , subtitle model.theme
-                    []
+                , styled h2
+                    [ UI.Style.subtitle model.theme ]
                     []
                     [ text
                         (Language.translated
@@ -334,7 +345,8 @@ view model =
                             model.language
                         )
                     ]
-                , coloredBlock model.theme
+                , styled div
+                    [ UI.Style.coloredBlock model.theme ]
                     []
                     [ ul
                         [ Attributes.css
@@ -372,8 +384,9 @@ view model =
 
             -- Column 2
             , div []
-                ([ subtitle model.theme
-                    [ UI.Media.aboveSmallScreen [ marginTop (px 0) ]
+                ([ styled h2
+                    [ UI.Style.subtitle model.theme
+                    , UI.Media.aboveSmallScreen [ marginTop (px 0) ]
                     , UI.Media.onPrint [ marginTop (px 0) ]
                     ]
                     []
@@ -384,12 +397,14 @@ view model =
                             model.language
                         )
                     ]
-                 , coloredBlock model.theme
-                    [ UI.Style.displayGrid
+                 , styled div
+                    [ UI.Style.coloredBlock model.theme
+                    , UI.Style.displayGrid
                     , property "grid-template-columns" "auto 1fr"
                     , property "column-gap" "1rem"
                     , property "row-gap" "1rem"
                     ]
+                    []
                     [ skillSubtitle [] [ text (translated "Competente" "Proficient" model.language) ]
                     , span [] [ text (Language.toSentence model.language CustomData.proficientSkills) ]
                     , skillSubtitle [] [ text (always "Familiar" model.language) ]
@@ -397,8 +412,8 @@ view model =
                     , skillSubtitle [] [ text (translated "Aprendiendo" "Learning" model.language) ]
                     , span [] [ text (Language.toSentence model.language CustomData.learningSkills) ]
                     ]
-                 , subtitle model.theme
-                    []
+                 , styled h2
+                    [ UI.Style.subtitle model.theme ]
                     []
                     [ text
                         (Language.translated
@@ -409,10 +424,15 @@ view model =
                     ]
                  ]
                     ++ List.map (displayExperience model.language) CustomData.jobs
-                    ++ subtitle model.theme
+                    ++ styled h2
+                        [ UI.Style.subtitle model.theme ]
                         []
-                        []
-                        [ text (Language.translated "Estudios" "Studies" model.language)
+                        [ text
+                            (Language.translated
+                                "Estudios"
+                                "Studies"
+                                model.language
+                            )
                         ]
                     :: List.map (displayExperience model.language) CustomData.studies
                 )
@@ -479,7 +499,9 @@ displayExperience lang experience =
                 ]
             ]
             [ text (CustomData.formatDateRange lang experience.start experience.end) ]
-        , spaced_p [] [] [ text (experience.description lang) ]
+        , p
+            [ Attributes.css [ UI.Style.paragraph ] ]
+            [ text (experience.description lang) ]
         ]
 
 
@@ -540,32 +562,13 @@ qrCode url =
 -- ATOMS
 
 
-ghostRoundButton : List (Attribute msg) -> List (Html msg) -> Html msg
-ghostRoundButton =
-    styled button
-        [ UI.Style.roundBorder
-        , padding (rem 0.5)
-        , backgroundColor transparent
-        , color inherit
-        , cursor pointer
-        , border (px 0)
-        , property "transition" "background-color .25s ease"
-        , hover
-            [ backgroundColor UI.Palette.grey.c800
-            ]
-        , active
-            [ backgroundColor UI.Palette.grey.c700
-            ]
-        ]
-
-
 roundImg : LengthOrAuto compatible -> List (Attribute msg) -> Html msg
 roundImg size attributes =
     div
         [ Attributes.css
             [ width size
             , height size
-            , UI.Style.roundBorder
+            , UI.Style.round
             , overflow hidden
             , margin auto
             ]
@@ -579,46 +582,8 @@ roundImg size attributes =
         ]
 
 
-spaced_p : List Style -> List (Attribute msg) -> List (Html msg) -> Html msg
-spaced_p styles =
-    styled p
-        ([ lineHeight (Css.em 1.5)
-         , marginBottom (Css.em 1)
-         , marginTop (px 0)
-         , UI.Media.onPrint
-            [ lineHeight (Css.em 1.35)
-            ]
-         ]
-            ++ styles
-        )
-
-
 
 -- THEMED ELEMENTS
-
-
-title : Theme -> List (Attribute msg) -> List (Html msg) -> Html msg
-title theme =
-    styled h1
-        [ color (UI.Palette.title theme)
-        , fontSize (Css.em 2)
-        , UI.Media.onSmallScreen
-            [ textAlign center
-            ]
-        ]
-
-
-subtitle : Theme -> List Style -> List (Attribute msg) -> List (Html msg) -> Html msg
-subtitle theme styles =
-    styled h2
-        ([ color (UI.Palette.title theme)
-         , fontSize (rem 1.4)
-         , fontWeight (int 700)
-         , marginBottom (Css.em 0.5)
-         , marginTop (Css.em 0.85)
-         ]
-            ++ styles
-        )
 
 
 switchThemeIcon : Int -> Theme -> Svg.Styled.Svg msg
@@ -626,35 +591,6 @@ switchThemeIcon size =
     themed
         (Svg.Styled.fromUnstyled (Filled.dark_mode size Inherit))
         (Svg.Styled.fromUnstyled (Filled.light_mode size Inherit))
-
-
-coloredBlock : Theme -> List Style -> List (Html msg) -> Html msg
-coloredBlock theme styles =
-    styled div
-        ([ borderRadius (px 4)
-         , backgroundColor <|
-            themed
-                (UI.Palette.changeOpacity
-                    UI.Palette.primary.c400
-                    0.1
-                )
-                UI.Palette.primary.c50
-                theme
-         , marginBottom (rem 1)
-         , padding (rem 0.75)
-         , paddingRight (rem 1)
-         , borderLeft3
-            (px 4)
-            solid
-            (themed
-                UI.Palette.primary.c400
-                UI.Palette.primary.c600
-                theme
-            )
-         ]
-            ++ styles
-        )
-        []
 
 
 
