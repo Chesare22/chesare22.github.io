@@ -1,5 +1,6 @@
 module UI.Palette exposing
     ( Palette
+    , Theme(..)
     , almostBlack
     , changeOpacity
     , grey
@@ -9,13 +10,32 @@ module UI.Palette exposing
     , paragraph
     , primary
     , secondary
+    , themed
     , title
     , transparent
     )
 
 import Css exposing (..)
 import Regex
-import UI.Theme exposing (Theme)
+
+
+
+-- THEME
+
+
+type Theme
+    = Light
+    | Dark
+
+
+themed : a -> a -> Theme -> a
+themed darkElement lightElement theme =
+    case theme of
+        Dark ->
+            darkElement
+
+        Light ->
+            lightElement
 
 
 
@@ -97,35 +117,35 @@ almostBlack =
 
 mainBackground : Theme -> Color
 mainBackground =
-    UI.Theme.themed
-        (paperBackground UI.Theme.Dark)
+    themed
+        (paperBackground Dark)
         grey.c200
 
 
 paperBackground : Theme -> Color
 paperBackground =
-    UI.Theme.themed
+    themed
         secondary.c900
         grey.c50
 
 
 paragraph : Theme -> Color
 paragraph =
-    UI.Theme.themed
+    themed
         grey.c50
         grey.c900
 
 
 title : Theme -> Color
 title =
-    UI.Theme.themed
+    themed
         primary.c300
         primary.c600
 
 
 paperShadow : Theme -> Style
 paperShadow =
-    UI.Theme.themed
+    themed
         (border3 (px 1) solid grey.c50)
         (batch
             [ smoothGrayShadow

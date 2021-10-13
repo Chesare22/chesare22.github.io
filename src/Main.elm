@@ -15,10 +15,9 @@ import QRCode
 import Svg.Attributes
 import Svg.Styled
 import UI.Media
-import UI.Palette
+import UI.Palette exposing (Theme(..), themed)
 import UI.Size
 import UI.Style
-import UI.Theme exposing (..)
 
 
 

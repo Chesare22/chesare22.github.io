@@ -12,7 +12,6 @@ module UI.Style exposing
 import Css exposing (..)
 import UI.Media
 import UI.Palette
-import UI.Theme exposing (..)
 
 
 centeredContent : Style
@@ -63,7 +62,7 @@ ghost =
         ]
 
 
-title : Theme -> Style
+title : UI.Palette.Theme -> Style
 title theme =
     batch
         [ color (UI.Palette.title theme)
@@ -74,7 +73,7 @@ title theme =
         ]
 
 
-subtitle : Theme -> Style
+subtitle : UI.Palette.Theme -> Style
 subtitle theme =
     batch
         [ color (UI.Palette.title theme)
@@ -85,12 +84,12 @@ subtitle theme =
         ]
 
 
-coloredBlock : Theme -> Style
+coloredBlock : UI.Palette.Theme -> Style
 coloredBlock theme =
     batch
         [ borderRadius (px 4)
         , backgroundColor <|
-            themed
+            UI.Palette.themed
                 (UI.Palette.changeOpacity
                     UI.Palette.primary.c400
                     0.1
@@ -103,7 +102,7 @@ coloredBlock theme =
         , borderLeft3
             (px 4)
             solid
-            (themed
+            (UI.Palette.themed
                 UI.Palette.primary.c400
                 UI.Palette.primary.c600
                 theme
