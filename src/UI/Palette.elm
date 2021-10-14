@@ -43,7 +43,7 @@ themed darkElement lightElement theme =
 
 
 type alias Palette =
-    { c50 : Color
+    { c050 : Color
     , c100 : Color
     , c200 : Color
     , c300 : Color
@@ -126,13 +126,13 @@ paperBackground : Theme -> Color
 paperBackground =
     themed
         secondary.c900
-        grey.c50
+        grey.c050
 
 
 paragraph : Theme -> Color
 paragraph =
     themed
-        grey.c50
+        grey.c050
         grey.c900
 
 
@@ -146,7 +146,7 @@ title =
 paperShadow : Theme -> Style
 paperShadow =
     themed
-        (border3 (px 1) solid grey.c50)
+        (border3 (px 1) solid grey.c050)
         (batch
             [ smoothGrayShadow
             , border3 (px 1) solid transparent

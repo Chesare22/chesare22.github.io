@@ -94,7 +94,7 @@ coloredBlock theme =
                     UI.Palette.primary.c400
                     0.1
                 )
-                UI.Palette.primary.c50
+                UI.Palette.primary.c050
                 theme
         , marginBottom (rem 1)
         , padding (rem 0.75)

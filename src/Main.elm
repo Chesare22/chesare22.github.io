@@ -153,7 +153,7 @@ view model =
             , Global.class "tooltip-text"
                 [ visibility hidden
                 , backgroundColor UI.Palette.grey.c900
-                , color UI.Palette.grey.c50
+                , color UI.Palette.grey.c050
                 , textAlign center
                 , borderRadius (px 6)
                 , padding2 (rem 0.32) (rem 1)
@@ -291,7 +291,7 @@ view model =
                         , top UI.Size.paperPadding.vertical
                         , backgroundColor
                             (themed
-                                UI.Palette.grey.c50
+                                UI.Palette.grey.c050
                                 UI.Palette.grey.c500
                                 model.theme
                             )
@@ -540,7 +540,7 @@ qrCode url =
                 |> Result.withDefault (Html.text "")
             )
         , styled div
-            [ color UI.Palette.grey.c50
+            [ color UI.Palette.grey.c050
             , backgroundColor UI.Palette.grey.c900
             , textAlign center
             , paddingTop (rem 0.3)
