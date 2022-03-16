@@ -1,7 +1,6 @@
 module UI.Style exposing
     ( centeredContent
     , coloredBlock
-    , displayGrid
     , divider
     , ghost
     , paper
@@ -20,14 +19,9 @@ import UI.Size
 centeredContent : Style
 centeredContent =
     batch
-        [ displayGrid
+        [ property "display" "grid"
         , property "place-items" "center"
         ]
-
-
-displayGrid : Style
-displayGrid =
-    property "display" "grid"
 
 
 round : Style

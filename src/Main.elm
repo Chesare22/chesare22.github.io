@@ -125,7 +125,7 @@ view model =
         [ Attributes.css
             [ minHeight (vh 100)
             , maxWidth (vw 100)
-            , UI.Style.displayGrid
+            , property "display" "grid"
             , property "grid-template-columns" "1fr"
             , property "justify-items" "center"
             , color <| UI.Palette.paragraph model.theme
@@ -188,7 +188,7 @@ view model =
                 , property "transition" "all .3s ease"
                 , UI.Style.centeredContent
                 , color <| UI.Palette.paragraph Dark
-                , UI.Style.displayGrid
+                , property "display" "grid"
                 , property "grid-template-columns" "repeat(3, auto)"
                 , property "grid-gap" "1.5rem"
                 , justifyContent center
@@ -259,7 +259,7 @@ view model =
         , div
             [ Attributes.css
                 [ UI.Style.paper model.theme
-                , UI.Style.displayGrid
+                , property "display" "grid"
                 , property "grid-template-columns" "3fr 5fr"
                 , property "column-gap" "2rem"
                 , property "align-content" "start"
@@ -367,7 +367,7 @@ view model =
                     ]
                  , styled div
                     [ UI.Style.coloredBlock model.theme
-                    , UI.Style.displayGrid
+                    , property "display" "grid"
                     , property "grid-template-columns" "auto 1fr"
                     , property "column-gap" "1rem"
                     , property "row-gap" "1rem"
@@ -412,7 +412,7 @@ view model =
                 [ padding2 (rem 5) (px 0)
                 , boxSizing borderBox
                 , width (pct 100)
-                , UI.Style.displayGrid
+                , property "display" "grid"
                 , property "grid-template-columns" "auto auto"
                 , property "grid-gap" "2rem"
                 , property "justify-content" "center"
@@ -487,7 +487,7 @@ qrCode url =
             [ width (rem 5)
             , margin auto
             , marginBottom (rem 0.5)
-            , UI.Style.displayGrid
+            , property "display" "grid"
             , border3 (rem 0.3) solid UI.Palette.grey.c900
             , borderRadius (rem 0.5)
             , textDecoration none
