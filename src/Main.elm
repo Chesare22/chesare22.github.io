@@ -258,44 +258,13 @@ view model =
         -- Paper
         , div
             [ Attributes.css
-                [ maxWidth UI.Size.paperWidth
-                , width (pct 100)
-                , padding2
-                    UI.Size.paperPadding.vertical
-                    UI.Size.paperPadding.horizontal
-                , backgroundColor <| UI.Palette.paperBackground model.theme
+                [ UI.Style.paper model.theme
                 , UI.Style.displayGrid
                 , property "grid-template-columns" "3fr 5fr"
                 , property "column-gap" "2rem"
                 , property "align-content" "start"
-                , UI.Media.onPrint
-                    [ themed
-                        (batch [])
-                        (backgroundColor (hex "fff"))
-                        model.theme
-                    , height UI.Size.paperHeight
-                    ]
-                , UI.Media.onBigScreen
-                    [ margin2 (rem 2) (px 0)
-                    , UI.Palette.paperShadow model.theme
-                    , borderRadius (px 10)
-                    ]
                 , UI.Media.belowBigScreen
-                    [ boxSizing borderBox
-                    , maxWidth (rem UI.Size.paperWidthInt)
-                    , after
-                        [ property "content" "\"\""
-                        , width (pct 100)
-                        , height (px 1)
-                        , position relative
-                        , top UI.Size.paperPadding.vertical
-                        , backgroundColor
-                            (themed
-                                UI.Palette.grey.c050
-                                UI.Palette.grey.c500
-                                model.theme
-                            )
-                        ]
+                    [ after [ UI.Style.divider model.theme ]
                     ]
                 , UI.Media.onMediumScreen
                     [ after [ property "grid-column-end" "span 2" ]

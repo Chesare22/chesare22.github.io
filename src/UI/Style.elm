@@ -2,7 +2,9 @@ module UI.Style exposing
     ( centeredContent
     , coloredBlock
     , displayGrid
+    , divider
     , ghost
+    , paper
     , paragraph
     , round
     , subtitle
@@ -12,6 +14,7 @@ module UI.Style exposing
 import Css exposing (..)
 import UI.Media
 import UI.Palette
+import UI.Size
 
 
 centeredContent : Style
@@ -105,6 +108,51 @@ coloredBlock theme =
             (UI.Palette.themed
                 UI.Palette.primary.c400
                 UI.Palette.primary.c600
+                theme
+            )
+        ]
+
+
+paper : UI.Palette.Theme -> Style
+paper theme =
+    batch
+        [ maxWidth UI.Size.paperWidth
+        , width (pct 100)
+        , padding2
+            UI.Size.paperPadding.vertical
+            UI.Size.paperPadding.horizontal
+        , backgroundColor <| UI.Palette.paperBackground theme
+        , UI.Media.onPrint
+            [ UI.Palette.themed
+                (batch [])
+                (backgroundColor (hex "fff"))
+                theme
+            , height UI.Size.paperHeight
+            ]
+        , UI.Media.onBigScreen
+            [ margin2 (rem 2) (px 0)
+            , UI.Palette.paperShadow theme
+            , borderRadius (px 10)
+            ]
+        , UI.Media.belowBigScreen
+            [ boxSizing borderBox
+            , maxWidth (rem UI.Size.paperWidthInt)
+            ]
+        ]
+
+
+divider : UI.Palette.Theme -> Style
+divider theme =
+    batch
+        [ property "content" "\"\""
+        , width (pct 100)
+        , height (px 1)
+        , position relative
+        , top UI.Size.paperPadding.vertical
+        , backgroundColor
+            (UI.Palette.themed
+                UI.Palette.grey.c050
+                UI.Palette.grey.c500
                 theme
             )
         ]
