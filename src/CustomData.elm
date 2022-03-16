@@ -114,7 +114,6 @@ familiarSkills =
     , always "React JS"
     , always "Vue"
     , always "Figma"
-    , always "SQL"
     , translated "Googlear" "Googling"
     ]
 
@@ -127,6 +126,7 @@ learningSkills =
     , translated "Microservicios" "Microservices"
     , translated "Diseño guiado por el dominio" "Domain-driven design"
     , always "MongoDB"
+    , always "SQL"
     ]
 
 
@@ -190,7 +190,7 @@ studies =
         (always "Lightbend Academy")
         (Language.translated
             "Tomé seis cursos en línea donde aprendí lo básico sobre sistemas reactivos, microservicios, DDD, mensajes distribuidos y event sourcing."
-            "I took six free online courses where I learned the basics of reactive systems, microservices, DDD, distributed messaging and event sourcing."
+            "I took six online courses where I learned the basics of reactive systems, microservices, DDD, distributed messaging and event sourcing."
         )
     ]
 
