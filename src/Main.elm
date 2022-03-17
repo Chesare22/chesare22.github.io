@@ -349,57 +349,43 @@ view model =
 
             -- Column 2
             , div [] <|
-                [ styled h2
-                    [ UI.Style.subtitle model.theme
-                    , UI.Media.aboveSmallScreen [ marginTop (px 0) ]
-                    , UI.Media.onPrint [ marginTop (px 0) ]
+                List.concat
+                    [ [ styled h2
+                            [ UI.Style.subtitle model.theme
+                            , UI.Media.aboveSmallScreen [ marginTop (px 0) ]
+                            , UI.Media.onPrint [ marginTop (px 0) ]
+                            ]
+                            []
+                            [ text
+                                (Language.translated
+                                    "Habilidades técnicas"
+                                    "Hard skills"
+                                    model.language
+                                )
+                            ]
+                      , styled div
+                            [ UI.Style.coloredBlock model.theme
+                            , property "display" "grid"
+                            , property "grid-template-columns" "auto 1fr"
+                            , property "column-gap" "1rem"
+                            , property "row-gap" "1rem"
+                            ]
+                            []
+                            [ skillSubtitle [] [ text (translated "Competente" "Proficient" model.language) ]
+                            , span [] [ text (Language.toSentence model.language CustomData.proficientSkills) ]
+                            , skillSubtitle [] [ text (always "Familiar" model.language) ]
+                            , span [] [ text (Language.toSentence model.language CustomData.familiarSkills) ]
+                            , skillSubtitle [] [ text (translated "Aprendiendo" "Learning" model.language) ]
+                            , span [] [ text (Language.toSentence model.language CustomData.learningSkills) ]
+                            ]
+                      ]
+                    , [ jobsSubtitle model.theme model.language ]
+                    , CustomData.jobs
+                        |> List.map (displayExperience model.language)
+                    , [ studiesSubtitle model.theme model.language ]
+                    , CustomData.studies
+                        |> List.map (displayExperience model.language)
                     ]
-                    []
-                    [ text
-                        (Language.translated
-                            "Habilidades técnicas"
-                            "Hard skills"
-                            model.language
-                        )
-                    ]
-                , styled div
-                    [ UI.Style.coloredBlock model.theme
-                    , property "display" "grid"
-                    , property "grid-template-columns" "auto 1fr"
-                    , property "column-gap" "1rem"
-                    , property "row-gap" "1rem"
-                    ]
-                    []
-                    [ skillSubtitle [] [ text (translated "Competente" "Proficient" model.language) ]
-                    , span [] [ text (Language.toSentence model.language CustomData.proficientSkills) ]
-                    , skillSubtitle [] [ text (always "Familiar" model.language) ]
-                    , span [] [ text (Language.toSentence model.language CustomData.familiarSkills) ]
-                    , skillSubtitle [] [ text (translated "Aprendiendo" "Learning" model.language) ]
-                    , span [] [ text (Language.toSentence model.language CustomData.learningSkills) ]
-                    ]
-                , styled h2
-                    [ UI.Style.subtitle model.theme ]
-                    []
-                    [ text
-                        (Language.translated
-                            "Experiencia laboral"
-                            "Work experience"
-                            model.language
-                        )
-                    ]
-                ]
-                    ++ List.map (displayExperience model.language) CustomData.jobs
-                    ++ styled h2
-                        [ UI.Style.subtitle model.theme ]
-                        []
-                        [ text
-                            (Language.translated
-                                "Estudios"
-                                "Studies"
-                                model.language
-                            )
-                        ]
-                    :: List.map (displayExperience model.language) CustomData.studies
             ]
 
         -- Page 2
@@ -462,6 +448,34 @@ view model =
                     )
                 ]
             ]
+        ]
+
+
+jobsSubtitle : Theme -> Language -> Html msg
+jobsSubtitle theme language =
+    styled h2
+        [ UI.Style.subtitle theme ]
+        []
+        [ text
+            (Language.translated
+                "Experiencia laboral"
+                "Work experience"
+                language
+            )
+        ]
+
+
+studiesSubtitle : Theme -> Language -> Html msg
+studiesSubtitle theme language =
+    styled h2
+        [ UI.Style.subtitle theme ]
+        []
+        [ text
+            (Language.translated
+                "Estudios"
+                "Studies"
+                language
+            )
         ]
 
 
