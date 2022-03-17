@@ -235,7 +235,7 @@ books =
     , Book "CSS Secrets"
         "Lea Verou"
         (Midway 25)
-        Highlighted
+        Regular
     , Book "Programming Elixir"
         "Dave Thomas"
         (Midway 70)
