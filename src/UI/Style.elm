@@ -126,6 +126,7 @@ paper theme =
             [ margin2 (rem 2) (px 0)
             , UI.Palette.paperShadow theme
             , borderRadius (px 10)
+            , minHeight (em (UI.Size.paperHeightInt / 3 * 2))
             ]
         , UI.Media.belowBigScreen
             [ boxSizing borderBox
