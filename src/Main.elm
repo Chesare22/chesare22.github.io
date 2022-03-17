@@ -393,6 +393,7 @@ view model =
             [ Attributes.css
                 [ UI.Style.paper model.theme
                 , property "display" "grid"
+                , property "align-content" "start"
                 , UI.Media.belowBigScreen
                     [ after
                         [ UI.Style.divider model.theme
@@ -401,18 +402,21 @@ view model =
                     ]
                 ]
             ]
-            [ h2
+            [ booksSubtitle model.theme model.language
+            , div
                 [ Attributes.css
-                    [ UI.Style.subtitle model.theme
+                    [ property "display" "grid"
+                    , property "grid-template-columns" "1fr 1fr"
+                    , property "column-gap" "1rem"
+                    , property "align-content" "start"
+                    , UI.Media.onSmallestScreen
+                        [ property "grid-template-columns" "1fr"
+                        ]
                     ]
                 ]
-                [ text
-                    (translated
-                        "Libros leídos"
-                        "Books I've read"
-                        model.language
-                    )
-                ]
+                (CustomData.books
+                    |> List.map (displayBook model.language)
+                )
             ]
 
         -- Footnote
@@ -476,6 +480,53 @@ studiesSubtitle theme language =
                 "Studies"
                 language
             )
+        ]
+
+
+booksSubtitle : Theme -> Language -> Html msg
+booksSubtitle theme language =
+    h2
+        [ Attributes.css
+            [ UI.Style.subtitle theme
+            ]
+        ]
+        [ text
+            (translated
+                "Libros leídos"
+                "Books I've read"
+                language
+            )
+        ]
+
+
+displayBook : Language -> CustomData.Book -> Html msg
+displayBook lang book =
+    div
+        [ Attributes.css
+            [ marginBottom (rem 0.85)
+            ]
+        ]
+        [ h3
+            [ Attributes.css
+                [ display inline
+                , fontSize (Css.em 1.17)
+                , fontWeight (int 700)
+                ]
+            ]
+            [ text book.title ]
+        , span
+            [ Attributes.css [ display block ]
+            ]
+            [ text book.author ]
+        , span
+            [ Attributes.css
+                [ display block
+                , margin2 (rem 0.2) (px 0)
+                , letterSpacing (Css.em 0.075)
+                , fontSize (Css.em 0.8)
+                ]
+            ]
+            [ text (CustomData.formatBookCompletion lang book.completion) ]
         ]
 
 

@@ -8,6 +8,7 @@ module CustomData exposing
     , contactList
     , email
     , familiarSkills
+    , formatBookCompletion
     , formatDateRange
     , jobs
     , learningSkills
@@ -207,14 +208,14 @@ type alias Book =
 
 type BookCompletion
     = Finished
-    | Midway Float
+    | Midway Int
 
 
 books : List Book
 books =
     [ Book "You Don't Know JS (book series)"
         "Kyle Simpson"
-        (Midway 0.85)
+        (Midway 85)
     , Book "JavaScript: The Good Parts"
         "Douglas Crockford"
         Finished
@@ -223,19 +224,19 @@ books =
         Finished
     , Book "CSS Secrets"
         "Lea Verou"
-        (Midway 0.25)
+        (Midway 25)
     , Book "Programming Elixir"
         "Dave Thomas"
-        (Midway 0.7)
+        (Midway 70)
     , Book "Domain Modeling Made Functional"
         "Scott Wlaschin"
-        (Midway 0.45)
+        (Midway 45)
     , Book "Effective TypeScript"
         "Dan Vanderkam"
-        (Midway (1 / 5))
+        (Midway 20)
     , Book "MongoDB: The Definitive Guide"
         "Kristina Chodorow"
-        (Midway (1 / 5))
+        (Midway 20)
     ]
 
 
@@ -348,3 +349,23 @@ monthsEs month =
 
         Time.Dec ->
             "diciembre"
+
+
+formatBookCompletion : Language -> BookCompletion -> String
+formatBookCompletion lang completion =
+    (case ( completion, lang ) of
+        ( Finished, Spanish ) ->
+            "Completado"
+
+        ( Finished, English ) ->
+            "Finished"
+
+        ( Midway percentage, Spanish ) ->
+            String.fromInt percentage
+                ++ "% de terminación"
+
+        ( Midway percentage, English ) ->
+            String.fromInt percentage
+                ++ "% completion"
+    )
+        |> String.toUpper
