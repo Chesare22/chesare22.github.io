@@ -422,6 +422,27 @@ view model =
                 (CustomData.books
                     |> List.map (displayBook model.language model.theme)
                 )
+            , div
+                [ Attributes.css
+                    [ property "justify-self" "center"
+                    , margin2 (rem 4) (rem 0)
+                    , maxWidth (rem 20)
+                    , fontSize (Css.em 1)
+                    , textAlign center
+                    ]
+                ]
+                [ span
+                    [ Attributes.css
+                        [ fontWeight (int 700)
+                        ]
+                    ]
+                    [ text "Fun fact: " ]
+                , text
+                    (translated "mis lenguajes de programación favoritos son Elm y Elixir"
+                        "my favorite programming languages are Elm and Elixir"
+                        model.language
+                    )
+                ]
             ]
 
         -- Footnote
