@@ -3,6 +3,7 @@ module CustomData exposing
     , BookCompletion(..)
     , ContactInfo
     , Experience
+    , Highlight(..)
     , SimpleDate
     , books
     , contactList
@@ -203,6 +204,7 @@ type alias Book =
     { title : String
     , author : String
     , completion : BookCompletion
+    , highlight : Highlight
     }
 
 
@@ -211,32 +213,45 @@ type BookCompletion
     | Midway Int
 
 
+type Highlight
+    = Regular
+    | Highlighted
+
+
 books : List Book
 books =
     [ Book "You Don't Know JS (book series)"
         "Kyle Simpson"
         (Midway 85)
+        Highlighted
     , Book "JavaScript: The Good Parts"
         "Douglas Crockford"
         Finished
+        Regular
     , Book "Functional-Light JavaScript"
         "Kyle Simpson"
         Finished
+        Highlighted
     , Book "CSS Secrets"
         "Lea Verou"
         (Midway 25)
+        Highlighted
     , Book "Programming Elixir"
         "Dave Thomas"
         (Midway 70)
+        Highlighted
     , Book "Domain Modeling Made Functional"
         "Scott Wlaschin"
         (Midway 45)
+        Regular
     , Book "Effective TypeScript"
         "Dan Vanderkam"
         (Midway 20)
+        Regular
     , Book "MongoDB: The Definitive Guide"
         "Kristina Chodorow"
         (Midway 20)
+        Regular
     ]
 
 

@@ -81,7 +81,7 @@ mediumScreen =
 
 smallestScreen : Em
 smallestScreen =
-    em 28
+    em 30
 
 
 

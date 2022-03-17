@@ -93,7 +93,6 @@ coloredBlock theme =
                 )
                 UI.Palette.primary.c050
                 theme
-        , marginBottom (rem 1)
         , padding (rem 0.75)
         , paddingRight (rem 1)
         , borderLeft3

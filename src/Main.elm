@@ -3,7 +3,7 @@ port module Main exposing (..)
 import Browser
 import Css exposing (..)
 import Css.Global as Global
-import CustomData
+import CustomData exposing (Highlight(..))
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
@@ -301,7 +301,9 @@ view model =
                         )
                     ]
                 , styled h2
-                    [ UI.Style.subtitle model.theme ]
+                    [ UI.Style.subtitle model.theme
+                    , marginBottom (rem 1)
+                    ]
                     []
                     [ text
                         (Language.translated
@@ -311,7 +313,9 @@ view model =
                         )
                     ]
                 , styled div
-                    [ UI.Style.coloredBlock model.theme ]
+                    [ UI.Style.coloredBlock model.theme
+                    , marginBottom (rem 1)
+                    ]
                     []
                     [ ul
                         [ Attributes.css
@@ -408,6 +412,7 @@ view model =
                     [ property "display" "grid"
                     , property "grid-template-columns" "1fr 1fr"
                     , property "column-gap" "1rem"
+                    , property "row-gap" "0.85rem"
                     , property "align-content" "start"
                     , UI.Media.onSmallestScreen
                         [ property "grid-template-columns" "1fr"
@@ -415,7 +420,7 @@ view model =
                     ]
                 ]
                 (CustomData.books
-                    |> List.map (displayBook model.language)
+                    |> List.map (displayBook model.language model.theme)
                 )
             ]
 
@@ -499,11 +504,11 @@ booksSubtitle theme language =
         ]
 
 
-displayBook : Language -> CustomData.Book -> Html msg
-displayBook lang book =
+displayBook : Language -> Theme -> CustomData.Book -> Html msg
+displayBook lang theme book =
     div
         [ Attributes.css
-            [ marginBottom (rem 0.85)
+            [ bookHighlight book.highlight theme
             ]
         ]
         [ h3
@@ -528,6 +533,16 @@ displayBook lang book =
             ]
             [ text (CustomData.formatBookCompletion lang book.completion) ]
         ]
+
+
+bookHighlight : CustomData.Highlight -> Theme -> Style
+bookHighlight highlight =
+    case highlight of
+        Regular ->
+            always (batch [])
+
+        Highlighted ->
+            UI.Style.coloredBlock
 
 
 displayExperience : Language -> CustomData.Experience -> Html msg
