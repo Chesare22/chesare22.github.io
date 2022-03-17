@@ -1,8 +1,9 @@
 module UI.Style exposing
     ( centeredContent
     , coloredBlock
-    , displayGrid
+    , divider
     , ghost
+    , paper
     , paragraph
     , round
     , subtitle
@@ -12,19 +13,15 @@ module UI.Style exposing
 import Css exposing (..)
 import UI.Media
 import UI.Palette
+import UI.Size
 
 
 centeredContent : Style
 centeredContent =
     batch
-        [ displayGrid
+        [ property "display" "grid"
         , property "place-items" "center"
         ]
-
-
-displayGrid : Style
-displayGrid =
-    property "display" "grid"
 
 
 round : Style
@@ -96,7 +93,6 @@ coloredBlock theme =
                 )
                 UI.Palette.primary.c050
                 theme
-        , marginBottom (rem 1)
         , padding (rem 0.75)
         , paddingRight (rem 1)
         , borderLeft3
@@ -105,6 +101,52 @@ coloredBlock theme =
             (UI.Palette.themed
                 UI.Palette.primary.c400
                 UI.Palette.primary.c600
+                theme
+            )
+        ]
+
+
+paper : UI.Palette.Theme -> Style
+paper theme =
+    batch
+        [ maxWidth UI.Size.paperWidth
+        , width (pct 100)
+        , padding2
+            UI.Size.paperPadding.vertical
+            UI.Size.paperPadding.horizontal
+        , backgroundColor <| UI.Palette.paperBackground theme
+        , UI.Media.onPrint
+            [ UI.Palette.themed
+                (batch [])
+                (backgroundColor (hex "fff"))
+                theme
+            , height UI.Size.paperHeight
+            ]
+        , UI.Media.onBigScreen
+            [ margin2 (rem 2) (px 0)
+            , UI.Palette.paperShadow theme
+            , borderRadius (px 10)
+            , minHeight (em (UI.Size.paperHeightInt / 3 * 2))
+            ]
+        , UI.Media.belowBigScreen
+            [ boxSizing borderBox
+            , maxWidth (rem UI.Size.paperWidthInt)
+            ]
+        ]
+
+
+divider : UI.Palette.Theme -> Style
+divider theme =
+    batch
+        [ property "content" "\"\""
+        , width (pct 100)
+        , height (px 1)
+        , position relative
+        , top UI.Size.paperPadding.vertical
+        , backgroundColor
+            (UI.Palette.themed
+                UI.Palette.grey.c050
+                UI.Palette.grey.c500
                 theme
             )
         ]

@@ -1,10 +1,15 @@
 module CustomData exposing
-    ( ContactInfo
+    ( Book
+    , BookCompletion(..)
+    , ContactInfo
     , Experience
+    , Highlight(..)
     , SimpleDate
+    , books
     , contactList
     , email
     , familiarSkills
+    , formatBookCompletion
     , formatDateRange
     , jobs
     , learningSkills
@@ -114,7 +119,6 @@ familiarSkills =
     , always "React JS"
     , always "Vue"
     , always "Figma"
-    , always "SQL"
     , translated "Googlear" "Googling"
     ]
 
@@ -127,6 +131,7 @@ learningSkills =
     , translated "Microservicios" "Microservices"
     , translated "Diseño guiado por el dominio" "Domain-driven design"
     , always "MongoDB"
+    , always "SQL"
     ]
 
 
@@ -190,8 +195,63 @@ studies =
         (always "Lightbend Academy")
         (Language.translated
             "Tomé seis cursos en línea donde aprendí lo básico sobre sistemas reactivos, microservicios, DDD, mensajes distribuidos y event sourcing."
-            "I took six free online courses where I learned the basics of reactive systems, microservices, DDD, distributed messaging and event sourcing."
+            "I took six online courses where I learned the basics of reactive systems, microservices, DDD, distributed messaging and event sourcing."
         )
+    ]
+
+
+type alias Book =
+    { title : String
+    , author : String
+    , completion : BookCompletion
+    , highlight : Highlight
+    }
+
+
+type BookCompletion
+    = Finished
+    | Midway Int
+
+
+type Highlight
+    = Regular
+    | Highlighted
+
+
+books : List Book
+books =
+    [ Book "You Don't Know JS (book series)"
+        "Kyle Simpson"
+        (Midway 85)
+        Highlighted
+    , Book "JavaScript: The Good Parts"
+        "Douglas Crockford"
+        Finished
+        Regular
+    , Book "Functional-Light JavaScript"
+        "Kyle Simpson"
+        Finished
+        Highlighted
+    , Book "CSS Secrets"
+        "Lea Verou"
+        (Midway 25)
+        Highlighted
+    , Book "Programming Elixir"
+        "Dave Thomas"
+        (Midway 70)
+        Highlighted
+    , Book "Domain Modeling Made Functional"
+        "Scott Wlaschin"
+        (Midway 45)
+        Regular
+    , Book "Effective TypeScript"
+        "Dan Vanderkam"
+        (Midway 20)
+        Regular
+    , Book "MongoDB: The Definitive Guide"
+        "Kristina Chodorow"
+        (Midway 20)
+        Regular
     ]
 
 
@@ -304,3 +364,23 @@ monthsEs month =
 
         Time.Dec ->
             "diciembre"
+
+
+formatBookCompletion : Language -> BookCompletion -> String
+formatBookCompletion lang completion =
+    (case ( completion, lang ) of
+        ( Finished, Spanish ) ->
+            "Completado"
+
+        ( Finished, English ) ->
+            "Finished"
+
+        ( Midway percentage, Spanish ) ->
+            String.fromInt percentage
+                ++ "% de terminación"
+
+        ( Midway percentage, English ) ->
+            String.fromInt percentage
+                ++ "% completion"
+    )
+        |> String.toUpper

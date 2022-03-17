@@ -3,7 +3,7 @@ port module Main exposing (..)
 import Browser
 import Css exposing (..)
 import Css.Global as Global
-import CustomData
+import CustomData exposing (Highlight(..))
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
@@ -125,7 +125,7 @@ view model =
         [ Attributes.css
             [ minHeight (vh 100)
             , maxWidth (vw 100)
-            , UI.Style.displayGrid
+            , property "display" "grid"
             , property "grid-template-columns" "1fr"
             , property "justify-items" "center"
             , color <| UI.Palette.paragraph model.theme
@@ -188,7 +188,7 @@ view model =
                 , property "transition" "all .3s ease"
                 , UI.Style.centeredContent
                 , color <| UI.Palette.paragraph Dark
-                , UI.Style.displayGrid
+                , property "display" "grid"
                 , property "grid-template-columns" "repeat(3, auto)"
                 , property "grid-gap" "1.5rem"
                 , justifyContent center
@@ -255,53 +255,19 @@ view model =
                 ]
             ]
 
-        -- Paper
+        -- Page 1
         , div
             [ Attributes.css
-                [ maxWidth UI.Size.paperWidth
-                , width (pct 100)
-                , padding2
-                    UI.Size.paperPadding.vertical
-                    UI.Size.paperPadding.horizontal
-                , backgroundColor <| UI.Palette.paperBackground model.theme
-                , UI.Style.displayGrid
+                [ UI.Style.paper model.theme
+                , property "display" "grid"
                 , property "grid-template-columns" "3fr 5fr"
                 , property "column-gap" "2rem"
                 , property "align-content" "start"
-                , UI.Media.onPrint
-                    [ themed
-                        (batch [])
-                        (backgroundColor (hex "fff"))
-                        model.theme
-                    , height UI.Size.paperHeight
-                    ]
-                , UI.Media.onBigScreen
-                    [ margin2 (rem 2) (px 0)
-                    , UI.Palette.paperShadow model.theme
-                    , borderRadius (px 10)
-                    ]
-                , UI.Media.belowBigScreen
-                    [ boxSizing borderBox
-                    , maxWidth (rem UI.Size.paperWidthInt)
-                    , after
-                        [ property "content" "\"\""
-                        , width (pct 100)
-                        , height (px 1)
-                        , position relative
-                        , top UI.Size.paperPadding.vertical
-                        , backgroundColor
-                            (themed
-                                UI.Palette.grey.c050
-                                UI.Palette.grey.c500
-                                model.theme
-                            )
-                        ]
-                    ]
-                , UI.Media.onMediumScreen
-                    [ after [ property "grid-column-end" "span 2" ]
-                    ]
                 , UI.Media.onSmallScreen
                     [ property "grid-template-columns" "1fr"
+                    ]
+                , UI.Media.belowBigScreen
+                    [ paddingBottom (px 0)
                     ]
                 ]
             ]
@@ -335,7 +301,9 @@ view model =
                         )
                     ]
                 , styled h2
-                    [ UI.Style.subtitle model.theme ]
+                    [ UI.Style.subtitle model.theme
+                    , marginBottom (rem 1)
+                    ]
                     []
                     [ text
                         (Language.translated
@@ -345,7 +313,9 @@ view model =
                         )
                     ]
                 , styled div
-                    [ UI.Style.coloredBlock model.theme ]
+                    [ UI.Style.coloredBlock model.theme
+                    , marginBottom (rem 1)
+                    ]
                     []
                     [ ul
                         [ Attributes.css
@@ -382,58 +352,75 @@ view model =
                 ]
 
             -- Column 2
-            , div []
-                ([ styled h2
-                    [ UI.Style.subtitle model.theme
-                    , UI.Media.aboveSmallScreen [ marginTop (px 0) ]
-                    , UI.Media.onPrint [ marginTop (px 0) ]
+            , div [] <|
+                List.concat
+                    [ [ styled h2
+                            [ UI.Style.subtitle model.theme
+                            , UI.Media.aboveSmallScreen [ marginTop (px 0) ]
+                            , UI.Media.onPrint [ marginTop (px 0) ]
+                            ]
+                            []
+                            [ text
+                                (Language.translated
+                                    "Habilidades técnicas"
+                                    "Hard skills"
+                                    model.language
+                                )
+                            ]
+                      , styled div
+                            [ UI.Style.coloredBlock model.theme
+                            , property "display" "grid"
+                            , property "grid-template-columns" "auto 1fr"
+                            , property "column-gap" "1rem"
+                            , property "row-gap" "1rem"
+                            ]
+                            []
+                            [ skillSubtitle [] [ text (translated "Competente" "Proficient" model.language) ]
+                            , span [] [ text (Language.toSentence model.language CustomData.proficientSkills) ]
+                            , skillSubtitle [] [ text (always "Familiar" model.language) ]
+                            , span [] [ text (Language.toSentence model.language CustomData.familiarSkills) ]
+                            , skillSubtitle [] [ text (translated "Aprendiendo" "Learning" model.language) ]
+                            , span [] [ text (Language.toSentence model.language CustomData.learningSkills) ]
+                            ]
+                      ]
+                    , [ jobsSubtitle model.theme model.language ]
+                    , CustomData.jobs
+                        |> List.map (displayExperience model.language)
+                    , [ studiesSubtitle model.theme model.language ]
+                    , CustomData.studies
+                        |> List.map (displayExperience model.language)
                     ]
-                    []
-                    [ text
-                        (Language.translated
-                            "Habilidades técnicas"
-                            "Hard skills"
-                            model.language
-                        )
-                    ]
-                 , styled div
-                    [ UI.Style.coloredBlock model.theme
-                    , UI.Style.displayGrid
-                    , property "grid-template-columns" "auto 1fr"
-                    , property "column-gap" "1rem"
-                    , property "row-gap" "1rem"
-                    ]
-                    []
-                    [ skillSubtitle [] [ text (translated "Competente" "Proficient" model.language) ]
-                    , span [] [ text (Language.toSentence model.language CustomData.proficientSkills) ]
-                    , skillSubtitle [] [ text (always "Familiar" model.language) ]
-                    , span [] [ text (Language.toSentence model.language CustomData.familiarSkills) ]
-                    , skillSubtitle [] [ text (translated "Aprendiendo" "Learning" model.language) ]
-                    , span [] [ text (Language.toSentence model.language CustomData.learningSkills) ]
-                    ]
-                 , styled h2
-                    [ UI.Style.subtitle model.theme ]
-                    []
-                    [ text
-                        (Language.translated
-                            "Experiencia laboral"
-                            "Work experience"
-                            model.language
-                        )
-                    ]
-                 ]
-                    ++ List.map (displayExperience model.language) CustomData.jobs
-                    ++ styled h2
-                        [ UI.Style.subtitle model.theme ]
-                        []
-                        [ text
-                            (Language.translated
-                                "Estudios"
-                                "Studies"
-                                model.language
-                            )
+            ]
+
+        -- Page 2
+        , div
+            [ Attributes.css
+                [ UI.Style.paper model.theme
+                , property "display" "grid"
+                , property "align-content" "start"
+                , UI.Media.belowBigScreen
+                    [ after
+                        [ UI.Style.divider model.theme
                         ]
-                    :: List.map (displayExperience model.language) CustomData.studies
+                    , paddingTop (px 0)
+                    ]
+                ]
+            ]
+            [ booksSubtitle model.theme model.language
+            , div
+                [ Attributes.css
+                    [ property "display" "grid"
+                    , property "grid-template-columns" "1fr 1fr"
+                    , property "column-gap" "1rem"
+                    , property "row-gap" "0.85rem"
+                    , property "align-content" "start"
+                    , UI.Media.onSmallestScreen
+                        [ property "grid-template-columns" "1fr"
+                        ]
+                    ]
+                ]
+                (CustomData.books
+                    |> List.map (displayBook model.language model.theme)
                 )
             ]
 
@@ -443,7 +430,7 @@ view model =
                 [ padding2 (rem 5) (px 0)
                 , boxSizing borderBox
                 , width (pct 100)
-                , UI.Style.displayGrid
+                , property "display" "grid"
                 , property "grid-template-columns" "auto auto"
                 , property "grid-gap" "2rem"
                 , property "justify-content" "center"
@@ -471,6 +458,91 @@ view model =
                 ]
             ]
         ]
+
+
+jobsSubtitle : Theme -> Language -> Html msg
+jobsSubtitle theme language =
+    styled h2
+        [ UI.Style.subtitle theme ]
+        []
+        [ text
+            (Language.translated
+                "Experiencia laboral"
+                "Work experience"
+                language
+            )
+        ]
+
+
+studiesSubtitle : Theme -> Language -> Html msg
+studiesSubtitle theme language =
+    styled h2
+        [ UI.Style.subtitle theme ]
+        []
+        [ text
+            (Language.translated
+                "Estudios"
+                "Studies"
+                language
+            )
+        ]
+
+
+booksSubtitle : Theme -> Language -> Html msg
+booksSubtitle theme language =
+    h2
+        [ Attributes.css
+            [ UI.Style.subtitle theme
+            ]
+        ]
+        [ text
+            (translated
+                "Libros leídos"
+                "Books I've read"
+                language
+            )
+        ]
+
+
+displayBook : Language -> Theme -> CustomData.Book -> Html msg
+displayBook lang theme book =
+    div
+        [ Attributes.css
+            [ bookHighlight book.highlight theme
+            ]
+        ]
+        [ h3
+            [ Attributes.css
+                [ display inline
+                , fontSize (Css.em 1.17)
+                , fontWeight (int 700)
+                ]
+            ]
+            [ text book.title ]
+        , span
+            [ Attributes.css [ display block ]
+            ]
+            [ text book.author ]
+        , span
+            [ Attributes.css
+                [ display block
+                , margin2 (rem 0.2) (px 0)
+                , letterSpacing (Css.em 0.075)
+                , fontSize (Css.em 0.8)
+                ]
+            ]
+            [ text (CustomData.formatBookCompletion lang book.completion) ]
+        ]
+
+
+bookHighlight : CustomData.Highlight -> Theme -> Style
+bookHighlight highlight =
+    case highlight of
+        Regular ->
+            always (batch [])
+
+        Highlighted ->
+            UI.Style.coloredBlock
 
 
 displayExperience : Language -> CustomData.Experience -> Html msg
@@ -518,7 +590,7 @@ qrCode url =
             [ width (rem 5)
             , margin auto
             , marginBottom (rem 0.5)
-            , UI.Style.displayGrid
+            , property "display" "grid"
             , border3 (rem 0.3) solid UI.Palette.grey.c900
             , borderRadius (rem 0.5)
             , textDecoration none

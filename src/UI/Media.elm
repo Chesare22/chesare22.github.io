@@ -4,9 +4,9 @@ module UI.Media exposing
     , notOnPrint
     , onAnyScreen
     , onBigScreen
-    , onMediumScreen
     , onPrint
     , onSmallScreen
+    , onSmallestScreen
     )
 
 import Css exposing (..)
@@ -32,12 +32,11 @@ aboveSmallScreen =
     withMedia [ only screen [ Media.minWidth smallScreen ] ]
 
 
-onMediumScreen : List Style -> Style
-onMediumScreen =
+onSmallestScreen : List Style -> Style
+onSmallestScreen =
     withMedia
         [ only screen
-            [ Media.minWidth smallScreen
-            , Media.maxWidth mediumScreen
+            [ Media.maxWidth smallestScreen
             ]
         ]
 
@@ -78,6 +77,11 @@ smallScreen =
 mediumScreen : Em
 mediumScreen =
     em 56
+
+
+smallestScreen : Em
+smallestScreen =
+    em 30
 
 
 
