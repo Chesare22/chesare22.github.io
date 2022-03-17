@@ -1,7 +1,10 @@
 module CustomData exposing
-    ( ContactInfo
+    ( Book
+    , BookCompletion(..)
+    , ContactInfo
     , Experience
     , SimpleDate
+    , books
     , contactList
     , email
     , familiarSkills
@@ -192,6 +195,47 @@ studies =
             "Tomé seis cursos en línea donde aprendí lo básico sobre sistemas reactivos, microservicios, DDD, mensajes distribuidos y event sourcing."
             "I took six online courses where I learned the basics of reactive systems, microservices, DDD, distributed messaging and event sourcing."
         )
+    ]
+
+
+type alias Book =
+    { title : String
+    , author : String
+    , completion : BookCompletion
+    }
+
+
+type BookCompletion
+    = Finished
+    | Midway Float
+
+
+books : List Book
+books =
+    [ Book "You Don't Know JS (book series)"
+        "Kyle Simpson"
+        (Midway 0.85)
+    , Book "JavaScript: The Good Parts"
+        "Douglas Crockford"
+        Finished
+    , Book "Functional-Light JavaScript"
+        "Kyle Simpson"
+        Finished
+    , Book "CSS Secrets"
+        "Lea Verou"
+        (Midway 0.25)
+    , Book "Programming Elixir"
+        "Dave Thomas"
+        (Midway 0.7)
+    , Book "Domain Modeling Made Functional"
+        "Scott Wlaschin"
+        (Midway 0.45)
+    , Book "Effective TypeScript"
+        "Dan Vanderkam"
+        (Midway (1 / 5))
+    , Book "MongoDB: The Definitive Guide"
+        "Kristina Chodorow"
+        (Midway (1 / 5))
     ]
 
 
