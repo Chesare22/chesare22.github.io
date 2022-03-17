@@ -255,7 +255,7 @@ view model =
                 ]
             ]
 
-        -- Paper
+        -- Page 1
         , div
             [ Attributes.css
                 [ UI.Style.paper model.theme
@@ -263,14 +263,11 @@ view model =
                 , property "grid-template-columns" "3fr 5fr"
                 , property "column-gap" "2rem"
                 , property "align-content" "start"
-                , UI.Media.belowBigScreen
-                    [ after [ UI.Style.divider model.theme ]
-                    ]
-                , UI.Media.onMediumScreen
-                    [ after [ property "grid-column-end" "span 2" ]
-                    ]
                 , UI.Media.onSmallScreen
                     [ property "grid-template-columns" "1fr"
+                    ]
+                , UI.Media.belowBigScreen
+                    [ paddingBottom (px 0)
                     ]
                 ]
             ]
@@ -351,8 +348,8 @@ view model =
                 ]
 
             -- Column 2
-            , div []
-                ([ styled h2
+            , div [] <|
+                [ styled h2
                     [ UI.Style.subtitle model.theme
                     , UI.Media.aboveSmallScreen [ marginTop (px 0) ]
                     , UI.Media.onPrint [ marginTop (px 0) ]
@@ -365,7 +362,7 @@ view model =
                             model.language
                         )
                     ]
-                 , styled div
+                , styled div
                     [ UI.Style.coloredBlock model.theme
                     , property "display" "grid"
                     , property "grid-template-columns" "auto 1fr"
@@ -380,7 +377,7 @@ view model =
                     , skillSubtitle [] [ text (translated "Aprendiendo" "Learning" model.language) ]
                     , span [] [ text (Language.toSentence model.language CustomData.learningSkills) ]
                     ]
-                 , styled h2
+                , styled h2
                     [ UI.Style.subtitle model.theme ]
                     []
                     [ text
@@ -390,7 +387,7 @@ view model =
                             model.language
                         )
                     ]
-                 ]
+                ]
                     ++ List.map (displayExperience model.language) CustomData.jobs
                     ++ styled h2
                         [ UI.Style.subtitle model.theme ]
@@ -403,7 +400,33 @@ view model =
                             )
                         ]
                     :: List.map (displayExperience model.language) CustomData.studies
-                )
+            ]
+
+        -- Page 2
+        , div
+            [ Attributes.css
+                [ UI.Style.paper model.theme
+                , property "display" "grid"
+                , UI.Media.belowBigScreen
+                    [ after
+                        [ UI.Style.divider model.theme
+                        ]
+                    , paddingTop (px 0)
+                    ]
+                ]
+            ]
+            [ h2
+                [ Attributes.css
+                    [ UI.Style.subtitle model.theme
+                    ]
+                ]
+                [ text
+                    (translated
+                        "Libros leídos"
+                        "Books I've read"
+                        model.language
+                    )
+                ]
             ]
 
         -- Footnote
