@@ -1,9 +1,10 @@
 port module Main exposing (..)
 
 import Browser
+import Constants exposing (Highlight(..))
 import Css exposing (..)
 import Css.Global as Global
-import Constants exposing (Highlight(..))
+import Formatters
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
@@ -552,7 +553,7 @@ displayBook lang theme book =
                 , fontSize (Css.em 0.8)
                 ]
             ]
-            [ text (Constants.formatBookCompletion lang book.completion) ]
+            [ text (Formatters.formatBookCompletion lang book.completion) ]
         ]
 
 
@@ -590,7 +591,7 @@ displayExperience lang experience =
                 , fontSize (Css.em 0.8)
                 ]
             ]
-            [ text (Constants.formatDateRange lang experience.start experience.end) ]
+            [ text (Formatters.formatDateRange lang experience.start experience.end) ]
         , p
             [ Attributes.css [ UI.Style.paragraph ] ]
             [ text (experience.description lang) ]
