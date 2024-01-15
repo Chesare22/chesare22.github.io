@@ -51,10 +51,17 @@ port printPage : () -> Cmd msg
 -- MODEL
 
 
+type alias Fonts =
+    { renogare : String
+    , trajanPro : String
+    }
+
+
 type alias Flags =
     { profilePicture : String
     , preferredTheme : String
     , qrUrl : String
+    , fonts : Fonts
     }
 
 
@@ -63,11 +70,12 @@ type alias Model =
     , language : Language.Language
     , profilePicture : String
     , qrUrl : String
+    , fonts : Fonts
     }
 
 
 init : Flags -> ( Model, Cmd Msg )
-init { profilePicture, preferredTheme, qrUrl } =
+init { profilePicture, fonts, preferredTheme, qrUrl } =
     ( { theme =
             if preferredTheme == "dark" then
                 Dark
@@ -77,6 +85,7 @@ init { profilePicture, preferredTheme, qrUrl } =
       , language = Language.English
       , profilePicture = profilePicture
       , qrUrl = qrUrl
+      , fonts = fonts
       }
     , Cmd.none
     )
@@ -173,6 +182,24 @@ view model =
                 , borderWidth (rem 0.32)
                 , borderStyle solid
                 , borderColor4 transparent transparent UI.Palette.grey.c900 transparent
+                ]
+            , Global.selector "@font-face"
+                [ fontFamilies [ "Renogare" ]
+                , property "src"
+                    ("local(\"Renogare\"),"
+                        ++ "url(\""
+                        ++ model.fonts.renogare
+                        ++ "\") format(\"opentype\")"
+                    )
+                ]
+            , Global.selector "@font-face"
+                [ fontFamilies [ "Trajan Pro" ]
+                , property "src"
+                    ("local(\"Trajan Pro\"),"
+                        ++ "url(\""
+                        ++ model.fonts.trajanPro
+                        ++ "\") format(\"truetype\")"
+                    )
                 ]
             ]
 
