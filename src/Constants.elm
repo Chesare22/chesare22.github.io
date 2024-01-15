@@ -1,4 +1,4 @@
-module CustomData exposing
+module Constants exposing
     ( Book
     , BookCompletion(..)
     , ContactInfo

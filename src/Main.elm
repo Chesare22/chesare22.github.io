@@ -3,7 +3,7 @@ port module Main exposing (..)
 import Browser
 import Css exposing (..)
 import Css.Global as Global
-import CustomData exposing (Highlight(..))
+import Constants exposing (Highlight(..))
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
@@ -286,7 +286,7 @@ view model =
                 , styled h1
                     [ UI.Style.title model.theme ]
                     []
-                    [ text CustomData.name ]
+                    [ text Constants.name ]
                 , p
                     [ Attributes.css
                         [ UI.Style.paragraph
@@ -324,7 +324,7 @@ view model =
                             , margin (px 0)
                             ]
                         ]
-                        (List.map displayContact <| CustomData.contactList 16)
+                        (List.map displayContact <| Constants.contactList 16)
                     ]
                 , qrCode model.qrUrl
                 , a
@@ -376,18 +376,18 @@ view model =
                             ]
                             []
                             [ skillSubtitle [] [ text (translated "Competente" "Proficient" model.language) ]
-                            , span [] [ text (Language.toSentence model.language CustomData.proficientSkills) ]
+                            , span [] [ text (Language.toSentence model.language Constants.proficientSkills) ]
                             , skillSubtitle [] [ text (always "Familiar" model.language) ]
-                            , span [] [ text (Language.toSentence model.language CustomData.familiarSkills) ]
+                            , span [] [ text (Language.toSentence model.language Constants.familiarSkills) ]
                             , skillSubtitle [] [ text (translated "Aprendiendo" "Learning" model.language) ]
-                            , span [] [ text (Language.toSentence model.language CustomData.learningSkills) ]
+                            , span [] [ text (Language.toSentence model.language Constants.learningSkills) ]
                             ]
                       ]
                     , [ jobsSubtitle model.theme model.language ]
-                    , CustomData.jobs
+                    , Constants.jobs
                         |> List.map (displayExperience model.language)
                     , [ studiesSubtitle model.theme model.language ]
-                    , CustomData.studies
+                    , Constants.studies
                         |> List.map (displayExperience model.language)
                     ]
             ]
@@ -419,7 +419,7 @@ view model =
                         ]
                     ]
                 ]
-                (CustomData.books
+                (Constants.books
                     |> List.map (displayBook model.language model.theme)
                 )
             , div
@@ -525,7 +525,7 @@ booksSubtitle theme language =
         ]
 
 
-displayBook : Language -> Theme -> CustomData.Book -> Html msg
+displayBook : Language -> Theme -> Constants.Book -> Html msg
 displayBook lang theme book =
     div
         [ Attributes.css
@@ -552,11 +552,11 @@ displayBook lang theme book =
                 , fontSize (Css.em 0.8)
                 ]
             ]
-            [ text (CustomData.formatBookCompletion lang book.completion) ]
+            [ text (Constants.formatBookCompletion lang book.completion) ]
         ]
 
 
-bookHighlight : CustomData.Highlight -> Theme -> Style
+bookHighlight : Constants.Highlight -> Theme -> Style
 bookHighlight highlight =
     case highlight of
         Regular ->
@@ -566,7 +566,7 @@ bookHighlight highlight =
             UI.Style.coloredBlock
 
 
-displayExperience : Language -> CustomData.Experience -> Html msg
+displayExperience : Language -> Constants.Experience -> Html msg
 displayExperience lang experience =
     div
         [ Attributes.css
@@ -590,7 +590,7 @@ displayExperience lang experience =
                 , fontSize (Css.em 0.8)
                 ]
             ]
-            [ text (CustomData.formatDateRange lang experience.start experience.end) ]
+            [ text (Constants.formatDateRange lang experience.start experience.end) ]
         , p
             [ Attributes.css [ UI.Style.paragraph ] ]
             [ text (experience.description lang) ]
@@ -689,7 +689,7 @@ switchThemeIcon size =
 -- VIEW OF CUSTOM DATA
 
 
-displayContact : CustomData.ContactInfo Msg -> Html Msg
+displayContact : Constants.ContactInfo Msg -> Html Msg
 displayContact contact =
     li []
         [ a
