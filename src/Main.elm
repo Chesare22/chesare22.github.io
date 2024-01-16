@@ -58,8 +58,7 @@ type alias Fonts =
 
 
 type alias Flags =
-    { profilePicture : String
-    , preferredTheme : String
+    { preferredTheme : String
     , qrUrl : String
     , fonts : Fonts
     }
@@ -68,14 +67,13 @@ type alias Flags =
 type alias Model =
     { theme : Theme
     , language : Language.Language
-    , profilePicture : String
     , qrUrl : String
     , fonts : Fonts
     }
 
 
 init : Flags -> ( Model, Cmd Msg )
-init { profilePicture, fonts, preferredTheme, qrUrl } =
+init { fonts, preferredTheme, qrUrl } =
     ( { theme =
             if preferredTheme == "dark" then
                 Dark
@@ -83,7 +81,6 @@ init { profilePicture, fonts, preferredTheme, qrUrl } =
             else
                 Light
       , language = Language.English
-      , profilePicture = profilePicture
       , qrUrl = qrUrl
       , fonts = fonts
       }
@@ -302,16 +299,7 @@ view model =
             -- Column 1
             [ div
                 []
-                [ roundImg UI.Size.profilePicture
-                    [ Attributes.src model.profilePicture
-                    , Attributes.alt
-                        (Language.translated
-                            "Foto de César con lentes"
-                            "Photo of César with glasses"
-                            model.language
-                        )
-                    ]
-                , styled h1
+                [ styled h1
                     [ UI.Style.title model.theme ]
                     []
                     [ text Constants.name ]
@@ -675,30 +663,6 @@ qrCode url =
             ]
             []
             [ text "Click or Scan" ]
-        ]
-
-
-
--- ATOMS
-
-
-roundImg : LengthOrAuto compatible -> List (Attribute msg) -> Html msg
-roundImg size attributes =
-    div
-        [ Attributes.css
-            [ width size
-            , height size
-            , UI.Style.round
-            , overflow hidden
-            , margin auto
-            ]
-        ]
-        [ styled img
-            [ width (pct 100)
-            , height (pct 100)
-            ]
-            attributes
-            []
         ]
 
 

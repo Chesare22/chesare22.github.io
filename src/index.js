@@ -1,4 +1,3 @@
-import profile from "../static/profile_3.jpg";
 import renogare from "../static/Renogare-Regular.otf";
 import trajanPro from "../static/Trajan Pro Regular.ttf";
 import "./main.css";
@@ -12,7 +11,6 @@ const userPrefersDark =
 const app = Elm.Main.init({
   node: document.getElementById("root"),
   flags: {
-    profilePicture: profile,
     fonts: { renogare, trajanPro },
     preferredTheme: userPrefersDark ? "dark" : "light",
     qrUrl: process.env.ELM_APP_QR_URL,
