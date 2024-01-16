@@ -34,7 +34,6 @@ paragraph =
     batch
         [ lineHeight (Css.em 1.5)
         , marginBottom (Css.em 1)
-        , marginTop (px 0)
         , UI.Media.onPrint
             [ lineHeight (Css.em 1.35)
             ]
@@ -77,7 +76,6 @@ subtitle theme =
         , fontSize (rem 1.4)
         , fontWeight (int 700)
         , marginBottom (Css.em 0.5)
-        , marginTop (Css.em 0.85)
         ]
 
 
