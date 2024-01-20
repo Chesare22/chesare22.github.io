@@ -33,7 +33,7 @@ name =
 
 email : String
 email =
-    "chesarglez429@gmail.com"
+    "ces.gonzalezortega@gmail.com"
 
 
 phone : Phone.InternationalPhone
@@ -57,29 +57,11 @@ contactList iconSize =
       , text = email
       , icon = Svg.Styled.fromUnstyled <| Filled.email iconSize Inherit
       }
-    , { href = Phone.toWhatsAppUrl phone
-      , text = Phone.toString phone
-      , icon =
-            Svg.Styled.fromUnstyled
-                (FeatherIcons.smartphone
-                    |> FeatherIcons.withSize (toFloat iconSize)
-                    |> FeatherIcons.toHtml []
-                )
-      }
     , { href = "https://github.com/Chesare22"
       , text = "/Chesare22"
       , icon =
             Svg.Styled.fromUnstyled
                 (FeatherIcons.github
-                    |> FeatherIcons.withSize (toFloat iconSize)
-                    |> FeatherIcons.toHtml []
-                )
-      }
-    , { href = "https://gitlab.com/Chesare22"
-      , text = "/Chesare22"
-      , icon =
-            Svg.Styled.fromUnstyled
-                (FeatherIcons.gitlab
                     |> FeatherIcons.withSize (toFloat iconSize)
                     |> FeatherIcons.toHtml []
                 )

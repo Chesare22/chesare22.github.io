@@ -285,7 +285,12 @@ view model =
             [ Attributes.css
                 [ UI.Style.paper model.theme
                 , property "display" "grid"
-                , property "grid-template-columns" "3fr 5fr"
+                , property "grid-template-columns" "1fr 1fr"
+                , property "grid-template-areas"
+                    """
+                    "name contact-info"
+                    "content content"
+                    """
                 , property "column-gap" "2rem"
                 , property "align-content" "start"
                 , UI.Media.onSmallScreen
@@ -296,7 +301,44 @@ view model =
                     ]
                 ]
             ]
-            []
+            [ styled div
+                [ property "grid-area" "name" ]
+                []
+                [ styled h1
+                    [ UI.Style.title model.theme
+                    , marginBottom (Css.rem 0.2)
+                    ]
+                    []
+                    [ text Constants.name ]
+                , styled p
+                    [ paddingLeft (Css.rem 0.25) ]
+                    []
+                    [ text
+                        (translated
+                            "Desarrollador web Full-Stack"
+                            "Full-Stack Web Developer"
+                            model.language
+                        )
+                    ]
+                ]
+            , styled div
+                [ property "grid-area" "contact-info" ]
+                []
+                [ ul
+                    [ Attributes.css
+                        [ listStyle none
+                        , paddingLeft (px 0)
+                        , textAlign right
+                        , margin (px 0)
+                        ]
+                    ]
+                    (List.map displayContact (Constants.contactList 16))
+                ]
+            , styled div
+                [ property "grid-area" "content" ]
+                []
+                []
+            ]
 
         -- Page 2
         , div
@@ -579,18 +621,17 @@ displayContact contact =
             , Attributes.target "_blank"
             , Attributes.css
                 [ color inherit
-                , textDecoration none
                 , lineHeight (rem 1.365)
                 ]
             ]
-            [ span
+            [ span [] [ text contact.text ]
+            , span
                 [ Attributes.css
-                    [ paddingRight (rem 0.4)
+                    [ paddingLeft (rem 0.4)
                     , position relative
                     , top (rem 0.12)
                     ]
                 ]
                 [ contact.icon ]
-            , span [] [ text contact.text ]
             ]
         ]
