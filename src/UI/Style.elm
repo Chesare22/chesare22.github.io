@@ -63,6 +63,8 @@ title theme =
     batch
         [ color (UI.Palette.title theme)
         , fontSize (Css.em 2)
+        , fontFamilies [ "Trajan Pro" ]
+        , letterSpacing (em 0.02)
         , UI.Media.onSmallScreen
             [ textAlign center
             ]
@@ -74,7 +76,9 @@ subtitle theme =
     batch
         [ color (UI.Palette.title theme)
         , fontSize (rem 1.4)
+        , letterSpacing (em 0.02)
         , fontWeight (int 700)
+        , fontFamilies [ "Trajan Pro" ]
         , marginBottom (Css.em 0.5)
         ]
 

@@ -28,7 +28,7 @@ import Time
 
 name : String
 name =
-    "César Alejandro González Ortega"
+    "César González"
 
 
 email : String
