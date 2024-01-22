@@ -196,17 +196,17 @@ type Highlight
 
 books : List Book
 books =
-    [ Book "You Don't Know JS (book series)"
-        "Kyle Simpson"
-        (Midway 85)
-        Highlighted
-    , Book "JavaScript: The Good Parts"
+    [ Book "JavaScript: The Good Parts"
         "Douglas Crockford"
         Finished
-        Regular
-    , Book "Functional-Light JavaScript"
+        Highlighted
+    , Book "You Don't Know JS (book series)"
         "Kyle Simpson"
-        Finished
+        (Midway 85)
+        Regular
+    , Book "Domain Modeling Made Functional"
+        "Scott Wlaschin"
+        (Midway 50)
         Highlighted
     , Book "CSS Secrets"
         "Lea Verou"
@@ -216,9 +216,9 @@ books =
         "Dave Thomas"
         (Midway 70)
         Highlighted
-    , Book "Domain Modeling Made Functional"
-        "Scott Wlaschin"
-        (Midway 45)
+    , Book "Functional-Light JavaScript"
+        "Kyle Simpson"
+        Finished
         Regular
     , Book "Effective TypeScript"
         "Dan Vanderkam"
@@ -227,5 +227,9 @@ books =
     , Book "MongoDB: The Definitive Guide"
         "Kristina Chodorow"
         (Midway 20)
+        Regular
+    , Book "Python Distilled"
+        "David M. Beazley"
+        (Midway 15)
         Regular
     ]
