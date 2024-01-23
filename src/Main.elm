@@ -285,7 +285,7 @@ view model =
             [ Attributes.css
                 [ UI.Style.paper model.theme
                 , property "display" "grid"
-                , property "grid-template-columns" "1fr 1fr"
+                , property "grid-template-columns" "1fr auto"
                 , property "grid-template-areas"
                     """
                     "name contact-info"
@@ -306,7 +306,7 @@ view model =
                 []
                 [ styled h1
                     [ UI.Style.title model.theme
-                    , marginBottom (Css.rem 0.2)
+                    , marginBottom (Css.rem 0)
                     ]
                     []
                     [ text Constants.name ]

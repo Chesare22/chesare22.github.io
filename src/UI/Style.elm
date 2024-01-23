@@ -62,7 +62,7 @@ title : UI.Palette.Theme -> Style
 title theme =
     batch
         [ color (UI.Palette.title theme)
-        , fontSize (Css.em 2)
+        , fontSize (Css.em 2.4)
         , fontFamilies [ "Trajan Pro" ]
         , letterSpacing (em 0.02)
         , UI.Media.onSmallScreen
