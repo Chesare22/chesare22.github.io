@@ -291,7 +291,7 @@ view model =
                     "name contact-info"
                     "content content"
                     """
-                , property "column-gap" "2rem"
+                , property "row-gap" "2rem"
                 , property "align-content" "start"
                 , UI.Media.onSmallScreen
                     [ property "grid-template-columns" "1fr"
@@ -337,7 +337,12 @@ view model =
             , styled div
                 [ property "grid-area" "content" ]
                 []
-                []
+                (List.concat
+                    [ [ jobsSubtitle model.theme model.language ]
+                    , Constants.jobs
+                        |> List.map (displayExperience model.language)
+                    ]
+                )
             ]
 
         -- Page 2
