@@ -152,6 +152,14 @@ jobs =
             "Empresa de programación web donde me familiaricé con algunos eventos de scrum. Mi labor principal era el desarrollo de páginas web con React y TypeScript."
             "A web-programming company where I got familiarized with some scrum events. My primary labour was to develop web pages with React and TypeScript."
         )
+    , Experience (always "MID Software")
+        (SimpleDate Time.Mar 2022)
+        (Just <| SimpleDate Time.Aug 2023)
+        (Language.translated "Desarrollador Web Full-Stack" "Full-Stack Web Developer")
+        (Language.translated
+            "Cupcake ipsum dolor sit amet fruitcake chocolate bar powder. Soufflé gingerbread lemon drops icing danish gingerbread bonbon. Candy pie marzipan chocolate bar liquorice dragée pudding candy. Caramels lollipop chocolate bar dessert cotton candy sweet."
+            "Cat ipsum dolor sit amet, stare at the wall, play with food and get confused by dust, making sure that fluff gets into the owner's eyes. Prow?? ew dog you drink from the toilet, yum yum warm milk hotter pls, ouch too hot. Gate keepers of hell murr i hate humans they are so annoying."
+        )
     ]
 
 
