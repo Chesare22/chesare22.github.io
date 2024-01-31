@@ -128,21 +128,13 @@ type alias SimpleDate =
 
 jobs : List Experience
 jobs =
-    [ Experience (always "SoldAI")
-        (SimpleDate Time.Jul 2019)
-        (Just <| SimpleDate Time.Sep 2020)
-        (Language.translated "Desarrollador Web Frontend" "Frontend Web Developer")
+    [ Experience (always "MID Software")
+        (SimpleDate Time.Mar 2022)
+        (Just <| SimpleDate Time.Aug 2023)
+        (Language.translated "Desarrollador Web Full-Stack" "Full-Stack Web Developer")
         (Language.translated
-            "SoldAI es una empresa yucateca dedicada a la inteligencia artificial. Ayudé en pruebas, desarrollo, mantenimiento y documentación de varios proyectos."
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        )
-    , Experience (always "Sumerian")
-        (SimpleDate Time.Jun 2020)
-        (Just <| SimpleDate Time.Jul 2021)
-        (Language.translated "Ingeniero de Software" "Software Engineer")
-        (Language.translated
-            "Sumerian hace aplicaciones web. En cada proyecto experimentábamos con nuevas herramientas y metodologías."
-            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+            "Cupcake ipsum dolor sit amet fruitcake chocolate bar powder. Soufflé gingerbread lemon drops icing danish gingerbread bonbon. Candy pie marzipan chocolate bar liquorice dragée pudding candy. Caramels lollipop chocolate bar dessert cotton candy sweet."
+            "Cat ipsum dolor sit amet, stare at the wall, play with food and get confused by dust, making sure that fluff gets into the owner's eyes. Prow?? ew dog you drink from the toilet, yum yum warm milk hotter pls, ouch too hot. Gate keepers of hell murr i hate humans they are so annoying."
         )
     , Experience (always "Coatí Labs")
         (SimpleDate Time.Jan 2021)
@@ -152,13 +144,21 @@ jobs =
             "Empresa de programación web donde me familiaricé con algunos eventos de scrum. Mi labor principal era el desarrollo de páginas web con React y TypeScript."
             "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus."
         )
-    , Experience (always "MID Software")
-        (SimpleDate Time.Mar 2022)
-        (Just <| SimpleDate Time.Aug 2023)
-        (Language.translated "Desarrollador Web Full-Stack" "Full-Stack Web Developer")
+    , Experience (always "Sumerian")
+        (SimpleDate Time.Jun 2020)
+        (Just <| SimpleDate Time.Jul 2021)
+        (Language.translated "Ingeniero de Software" "Software Engineer")
         (Language.translated
-            "Cupcake ipsum dolor sit amet fruitcake chocolate bar powder. Soufflé gingerbread lemon drops icing danish gingerbread bonbon. Candy pie marzipan chocolate bar liquorice dragée pudding candy. Caramels lollipop chocolate bar dessert cotton candy sweet."
-            "Cat ipsum dolor sit amet, stare at the wall, play with food and get confused by dust, making sure that fluff gets into the owner's eyes. Prow?? ew dog you drink from the toilet, yum yum warm milk hotter pls, ouch too hot. Gate keepers of hell murr i hate humans they are so annoying."
+            "Sumerian hace aplicaciones web. En cada proyecto experimentábamos con nuevas herramientas y metodologías."
+            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+        )
+    , Experience (always "SoldAI")
+        (SimpleDate Time.Jul 2019)
+        (Just <| SimpleDate Time.Sep 2020)
+        (Language.translated "Desarrollador Web Frontend" "Frontend Web Developer")
+        (Language.translated
+            "SoldAI es una empresa yucateca dedicada a la inteligencia artificial. Ayudé en pruebas, desarrollo, mantenimiento y documentación de varios proyectos."
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         )
     ]
 
