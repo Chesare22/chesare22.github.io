@@ -524,28 +524,42 @@ displayExperience lang experience =
     div
         [ Attributes.css
             [ marginBottom (rem 1.5)
+            , property "display" "grid"
+            , property "grid-template-columns" "1fr auto"
+            , property "row-gap" "0.5rem"
+            , property "grid-template-areas"
+                """
+                "title date"
+                "description description"
+                """
             ]
         ]
-        [ h3
-            [ Attributes.css
-                [ display inline
-                , fontSize (Css.em 1.17)
-                , fontWeight (int 700)
+        [ div
+            [ Attributes.css [ property "grid-area" "title" ] ]
+            [ h3
+                [ Attributes.css
+                    [ display inline
+                    , fontSize (Css.em 1.17)
+                    , fontWeight (int 700)
+                    ]
                 ]
+                [ text (experience.title lang) ]
+            , span [] [ text (", " ++ experience.position lang) ]
             ]
-            [ text (experience.title lang) ]
-        , span [] [ text (", " ++ experience.position lang) ]
         , span
             [ Attributes.css
-                [ display block
-                , margin2 (rem 0.4) (px 0)
-                , letterSpacing (Css.em 0.075)
-                , fontSize (Css.em 0.8)
+                [ property "grid-area" "date"
+                , fontStyle italic
                 ]
             ]
             [ text (Formatters.formatDateRange lang experience.start experience.end) ]
         , p
-            [ Attributes.css [ UI.Style.paragraph ] ]
+            [ Attributes.css
+                [ UI.Style.paragraph
+                , property "grid-area" "description"
+                , fontSize (Css.em 0.9)
+                ]
+            ]
             [ text (experience.description lang) ]
         ]
 

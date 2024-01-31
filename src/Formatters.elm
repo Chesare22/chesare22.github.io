@@ -2,12 +2,13 @@ module Formatters exposing (formatBookCompletion, formatDateRange)
 
 import Constants exposing (BookCompletion(..), SimpleDate)
 import Language exposing (Language(..))
+import String.Extra
 import Time
 
 
 formatDateRange : Language -> SimpleDate -> Maybe SimpleDate -> String
 formatDateRange language start end =
-    String.toUpper
+    String.Extra.toTitleCase
         (formatDate language start
             ++ " — "
             ++ (case end of
