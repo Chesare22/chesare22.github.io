@@ -2,8 +2,8 @@ module Constants exposing
     ( Book
     , BookCompletion(..)
     , ContactInfo
-    , Experience
     , Highlight(..)
+    , Job
     , SimpleDate
     , books
     , contactList
@@ -64,7 +64,7 @@ contactList iconSize =
     ]
 
 
-type alias Experience =
+type alias Job =
     { title : Language.Language -> String
     , start : SimpleDate
     , end : Maybe SimpleDate
@@ -79,9 +79,9 @@ type alias SimpleDate =
     }
 
 
-jobs : List Experience
+jobs : List Job
 jobs =
-    [ Experience (always "MID Software")
+    [ Job (always "MID Software")
         (SimpleDate Time.Mar 2022)
         (Just <| SimpleDate Time.Aug 2023)
         (Language.translated "Desarrollador Web Full-Stack" "Full-Stack Web Developer")
@@ -99,7 +99,7 @@ jobs =
             I also led the development of a WPF application, where I created a library to easily manage data stored in recursive CTEs.
             """
         )
-    , Experience (always "Coatí Labs")
+    , Job (always "Coatí Labs")
         (SimpleDate Time.Jan 2021)
         (Just <| SimpleDate Time.Apr 2021)
         (Language.translated "Desarrollador Web Frontend" "Frontend Web Developer")
@@ -113,7 +113,7 @@ jobs =
             I was involved in several projects where my main contributions included programming in React and take part in architectural decision making.
             """
         )
-    , Experience (always "Sumerian")
+    , Job (always "Sumerian")
         (SimpleDate Time.Jun 2020)
         (Just <| SimpleDate Time.Jul 2021)
         (Language.translated "Ingeniero de Software" "Software Engineer")
@@ -133,7 +133,7 @@ jobs =
             Here I learned the most about software engineering, project management and how to have agreements with clients.
             """
         )
-    , Experience (always "SoldAI")
+    , Job (always "SoldAI")
         (SimpleDate Time.Jul 2019)
         (Just <| SimpleDate Time.Sep 2020)
         (Language.translated "Desarrollador Web Frontend" "Frontend Web Developer")

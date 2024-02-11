@@ -340,7 +340,7 @@ view model =
                 (List.concat
                     [ [ jobsSubtitle model.theme model.language ]
                     , Constants.jobs
-                        |> List.map (displayExperience model.language)
+                        |> List.map (displayJob model.language)
                     ]
                 )
             ]
@@ -519,8 +519,8 @@ bookHighlight highlight =
             UI.Style.coloredBlock
 
 
-displayExperience : Language -> Constants.Experience -> Html msg
-displayExperience lang experience =
+displayJob : Language -> Constants.Job -> Html msg
+displayJob lang job =
     div
         [ Attributes.css
             [ marginBottom (rem 1.5)
@@ -543,8 +543,8 @@ displayExperience lang experience =
                     , fontWeight (int 700)
                     ]
                 ]
-                [ text (experience.title lang) ]
-            , span [] [ text (", " ++ experience.position lang) ]
+                [ text (job.title lang) ]
+            , span [] [ text (", " ++ job.position lang) ]
             ]
         , span
             [ Attributes.css
@@ -552,7 +552,7 @@ displayExperience lang experience =
                 , fontStyle italic
                 ]
             ]
-            [ text (Formatters.formatDateRange lang experience.start experience.end) ]
+            [ text (Formatters.formatDateRange lang job.start job.end) ]
         , p
             [ Attributes.css
                 [ UI.Style.paragraph
@@ -560,7 +560,7 @@ displayExperience lang experience =
                 , fontSize (Css.em 0.9)
                 ]
             ]
-            [ text (experience.description lang) ]
+            [ text (job.description lang) ]
         ]
 
 
