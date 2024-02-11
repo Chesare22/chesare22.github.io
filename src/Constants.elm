@@ -8,20 +8,14 @@ module Constants exposing
     , books
     , contactList
     , email
-    , familiarSkills
     , jobs
-    , learningSkills
     , name
-    , phone
-    , proficientSkills
-    , studies
     )
 
 import FeatherIcons
 import Language exposing (..)
 import Material.Icons as Filled
 import Material.Icons.Types exposing (Coloring(..), Icon)
-import Phone
 import Svg.Styled
 import Time
 
@@ -34,14 +28,6 @@ name =
 email : String
 email =
     "ces.gonzalezortega@gmail.com"
-
-
-phone : Phone.InternationalPhone
-phone =
-    Phone.InternationalPhone
-        52
-        1
-        9993912495
 
 
 type alias ContactInfo msg =
@@ -75,39 +61,6 @@ contactList iconSize =
                     |> FeatherIcons.toHtml []
                 )
       }
-    ]
-
-
-proficientSkills : List (Language -> String)
-proficientSkills =
-    [ always "JavaScript"
-    , always "HTML"
-    , always "(S)CSS"
-    ]
-
-
-familiarSkills : List (Language -> String)
-familiarSkills =
-    [ always "Elm"
-    , always "C#"
-    , translated "Programación funcional" "Functional programming"
-    , always "Git"
-    , always "React JS"
-    , always "Vue"
-    , always "Figma"
-    , translated "Googlear" "Googling"
-    ]
-
-
-learningSkills : List (Language -> String)
-learningSkills =
-    [ always "Elixir"
-    , always "Event sourcing"
-    , always "CQRS"
-    , translated "Microservicios" "Microservices"
-    , translated "Diseño guiado por el dominio" "Domain-driven design"
-    , always "MongoDB"
-    , always "SQL"
     ]
 
 
@@ -197,27 +150,6 @@ jobs =
             Although I have programmed in academic environments, here I learned in depth about web development,
             the personalization of my work environment, git, testing and other basic programming skills.
             """
-        )
-    ]
-
-
-studies : List Experience
-studies =
-    [ Experience (Language.translated "Licenciatura en Ingeniería de Software" "Bachelor of Software Engineering")
-        (SimpleDate Time.Aug 2017)
-        Nothing
-        (always "UADY")
-        (Language.translated
-            "Carrera que enseña cómo aplicar ingeniería en la producción de software. También  conlleva aprender programación, pruebas, requisitos y otras habilidades."
-            "Career that teaches how to apply engineering to the production of software. It also involves learning programming, testing, requirements and other abilities."
-        )
-    , Experience (Language.translated "Cursos sobre Arquitectura Reactiva" "Courses about Reactive Architecture")
-        (SimpleDate Time.May 2021)
-        (Just <| SimpleDate Time.Jul 2021)
-        (always "Lightbend Academy")
-        (Language.translated
-            "Tomé seis cursos en línea donde aprendí lo básico sobre sistemas reactivos, microservicios, DDD, mensajes distribuidos y event sourcing."
-            "I took six online courses where I learned the basics of reactive systems, microservices, DDD, distributed messaging and event sourcing."
         )
     ]
 
