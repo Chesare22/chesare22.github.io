@@ -133,7 +133,12 @@ jobs =
         (Just <| SimpleDate Time.Aug 2023)
         (Language.translated "Desarrollador Web Full-Stack" "Full-Stack Web Developer")
         (Language.translated
-            "Cupcake ipsum dolor sit amet fruitcake chocolate bar powder. Soufflé gingerbread lemon drops icing danish gingerbread bonbon. Candy pie marzipan chocolate bar liquorice dragée pudding candy. Caramels lollipop chocolate bar dessert cotton candy sweet."
+            """
+            Empresa enfocada en la creación de herramientas para facilitar tareas administrativas complejas.
+            Mis principales actividades incluyeron programar una aplicación web hecha en React y Django,
+            donde pude implementar varios patrones de diseño funcionales que facilitaron la modificación del código fuente.
+            También lideré el desarrollo de una aplicación WPF, donde creé una librería para manejar fácilmente datos almacenados en CTEs recursivos.
+            """
             "Cat ipsum dolor sit amet, stare at the wall, play with food and get confused by dust, making sure that fluff gets into the owner's eyes. Prow?? ew dog you drink from the toilet, yum yum warm milk hotter pls, ouch too hot. Gate keepers of hell murr i hate humans they are so annoying."
         )
     , Experience (always "Coatí Labs")
@@ -141,7 +146,10 @@ jobs =
         (Just <| SimpleDate Time.Apr 2021)
         (Language.translated "Desarrollador Web Frontend" "Frontend Web Developer")
         (Language.translated
-            "Empresa de programación web donde me familiaricé con algunos eventos de scrum. Mi labor principal era el desarrollo de páginas web con React y TypeScript."
+            """
+            En Coatí se desarrollan aplicaciones web a la medida, como sistemas de CRM y comercios electrónicos.
+            Estuve involucrado en varios proyectos donde mis contribuciones incluían programar en React y participar en tomas de decisiones arquitectónicas.
+            """
             "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus."
         )
     , Experience (always "Sumerian")
@@ -149,7 +157,13 @@ jobs =
         (Just <| SimpleDate Time.Jul 2021)
         (Language.translated "Ingeniero de Software" "Software Engineer")
         (Language.translated
-            "Sumerian hace aplicaciones web. En cada proyecto experimentábamos con nuevas herramientas y metodologías."
+            """
+            Una startup formada por mí y un equipo de compañeros capaces.
+            Nuestros principales proyectos fueron un exitoso blog de música y una pequeña aplicación para la administración de facturas.
+            Mis tareas incluyeron la participación en reuniones con clientes dirigidas a entender requisitos y proponer soluciones, la programación en Vue y React,
+            definir un estándar de programación y participar en la investigación y toma de decisiones sobre tecnologías a emplear.
+            Fue donde más aprendí sobre ingeniería de software, trato con clientes y organización de proyectos.
+            """
             "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
         )
     , Experience (always "SoldAI")
@@ -157,7 +171,12 @@ jobs =
         (Just <| SimpleDate Time.Sep 2020)
         (Language.translated "Desarrollador Web Frontend" "Frontend Web Developer")
         (Language.translated
-            "SoldAI es una empresa yucateca dedicada a la inteligencia artificial. Ayudé en pruebas, desarrollo, mantenimiento y documentación de varios proyectos."
+            """
+            Empresa dedicada al desarrollo de inteligencia artificial para la creación de chatbots.
+            Mi principal labor fue la programación en Vue de una aplicación web que permitía personalizar y desplegar chatbots en distintas plataformas.
+            A pesar de que ya había programado en entornos académicos, aquí aprendí a profundidad sobre el desarrollo web,
+            la personalización de mi entorno de trabajo, el uso de git, pruebas y otras habilidades básicas como programador.
+            """
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         )
     ]
