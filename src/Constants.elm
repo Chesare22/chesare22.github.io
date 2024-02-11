@@ -139,7 +139,12 @@ jobs =
             donde pude implementar varios patrones de diseño funcionales que facilitaron la modificación del código fuente.
             También lideré el desarrollo de una aplicación WPF, donde creé una librería para manejar fácilmente datos almacenados en CTEs recursivos.
             """
-            "Cat ipsum dolor sit amet, stare at the wall, play with food and get confused by dust, making sure that fluff gets into the owner's eyes. Prow?? ew dog you drink from the toilet, yum yum warm milk hotter pls, ouch too hot. Gate keepers of hell murr i hate humans they are so annoying."
+            """
+            Enterprise focused on the development of tools to help complex administrative work.
+            My main duties included programming a web application made with React and Django,
+            where I could implement various functional design patterns that facilitated the modification of our source code.
+            I also led the development of a WPF application, where I created a library to easily manage data stored in recursive CTEs.
+            """
         )
     , Experience (always "Coatí Labs")
         (SimpleDate Time.Jan 2021)
@@ -150,7 +155,10 @@ jobs =
             En Coatí se desarrollan aplicaciones web a la medida, como sistemas de CRM y comercios electrónicos.
             Estuve involucrado en varios proyectos donde mis contribuciones incluían programar en React y participar en tomas de decisiones arquitectónicas.
             """
-            "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus."
+            """
+            Coatí Labs develops custom web applications, like CRM systems and e-commerces.
+            I was involved in several projects where my main contributions included programming in React and take part in architectural decision making.
+            """
         )
     , Experience (always "Sumerian")
         (SimpleDate Time.Jun 2020)
@@ -164,7 +172,13 @@ jobs =
             definir un estándar de programación y participar en la investigación y toma de decisiones sobre tecnologías a emplear.
             Fue donde más aprendí sobre ingeniería de software, trato con clientes y organización de proyectos.
             """
-            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+            """
+            Startup formed by me and a team of capable schoolfellows.
+            Our main projects were a successful music blog and a small application to manage invoices.
+            My tasks included programming in Vue and React, taking part in meetings with clients aimed at understanding their requirements and proposing solutions,
+            define a programming standard and participate in the research and decision-making around our tech stack.
+            Here I learned the most about software engineering, project management and how to have agreements with clients.
+            """
         )
     , Experience (always "SoldAI")
         (SimpleDate Time.Jul 2019)
@@ -177,7 +191,12 @@ jobs =
             A pesar de que ya había programado en entornos académicos, aquí aprendí a profundidad sobre el desarrollo web,
             la personalización de mi entorno de trabajo, el uso de git, pruebas y otras habilidades básicas como programador.
             """
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            """
+            Company dedicated to the development of artificial intelligence to create chatbots.
+            My main labour was to program a Vue application to personalize and deploy chatbots in multiple platforms.
+            Although I have programmed in academic environments, here I learned in depth about web development,
+            the personalization of my work environment, git, testing and other basic programming skills.
+            """
         )
     ]
 
