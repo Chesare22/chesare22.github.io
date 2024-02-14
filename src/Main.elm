@@ -126,6 +126,16 @@ toggleTheme =
 -- VIEW
 
 
+projectsInFirstPage : List Constants.Project
+projectsInFirstPage =
+    List.take 2 Constants.projects
+
+
+projectsInSecondPage : List Constants.Project
+projectsInSecondPage =
+    List.drop 2 Constants.projects
+
+
 view : Model -> Html Msg
 view model =
     div
@@ -341,6 +351,9 @@ view model =
                     [ [ jobsSubtitle model.theme model.language ]
                     , Constants.jobs
                         |> List.map (displayJob model.language)
+                    , [ projectsSubtitle model.theme model.language ]
+                    , projectsInFirstPage
+                        |> List.map (displayProject model.language)
                     ]
                 )
             ]
@@ -359,44 +372,49 @@ view model =
                     ]
                 ]
             ]
-            [ booksSubtitle model.theme model.language
-            , div
-                [ Attributes.css
-                    [ property "display" "grid"
-                    , property "grid-template-columns" "1fr 1fr"
-                    , property "column-gap" "1rem"
-                    , property "row-gap" "0.85rem"
-                    , property "align-content" "start"
-                    , UI.Media.onSmallestScreen
-                        [ property "grid-template-columns" "1fr"
+            (List.concat
+                [ projectsInSecondPage
+                    |> List.map (displayProject model.language)
+                , [ booksSubtitle model.theme model.language
+                  , div
+                        [ Attributes.css
+                            [ property "display" "grid"
+                            , property "grid-template-columns" "1fr 1fr"
+                            , property "column-gap" "1rem"
+                            , property "row-gap" "0.85rem"
+                            , property "align-content" "start"
+                            , UI.Media.onSmallestScreen
+                                [ property "grid-template-columns" "1fr"
+                                ]
+                            ]
                         ]
-                    ]
-                ]
-                (Constants.books
-                    |> List.map (displayBook model.language model.theme)
-                )
-            , div
-                [ Attributes.css
-                    [ property "justify-self" "center"
-                    , margin2 (rem 4) (rem 0)
-                    , maxWidth (rem 20)
-                    , fontSize (Css.em 1)
-                    , textAlign center
-                    ]
-                ]
-                [ span
-                    [ Attributes.css
-                        [ fontWeight (int 700)
+                        (Constants.books
+                            |> List.map (displayBook model.language model.theme)
+                        )
+                  , div
+                        [ Attributes.css
+                            [ property "justify-self" "center"
+                            , margin2 (rem 4) (rem 0)
+                            , maxWidth (rem 20)
+                            , fontSize (Css.em 1)
+                            , textAlign center
+                            ]
                         ]
-                    ]
-                    [ text "Fun fact: " ]
-                , text
-                    (translated "mis lenguajes de programación favoritos son Elm y Elixir"
-                        "my favorite programming languages are Elm and Elixir"
-                        model.language
-                    )
+                        [ span
+                            [ Attributes.css
+                                [ fontWeight (int 700)
+                                ]
+                            ]
+                            [ text "Fun fact: " ]
+                        , text
+                            (translated "mis lenguajes de programación favoritos son Elm y Elixir"
+                                "my favorite programming languages are Elm and Elixir"
+                                model.language
+                            )
+                        ]
+                  ]
                 ]
-            ]
+            )
 
         -- Footnote
         , div
@@ -443,6 +461,20 @@ jobsSubtitle theme language =
             (Language.translated
                 "Experiencia laboral"
                 "Work experience"
+                language
+            )
+        ]
+
+
+projectsSubtitle : Theme -> Language -> Html msg
+projectsSubtitle theme language =
+    styled h2
+        [ UI.Style.subtitle theme ]
+        []
+        [ text
+            (Language.translated
+                "Proyectos"
+                "Projects"
                 language
             )
         ]
@@ -561,6 +593,58 @@ displayJob lang job =
                 ]
             ]
             [ text (job.description lang) ]
+        ]
+
+
+displayProject : Language -> Constants.Project -> Html msg
+displayProject lang project =
+    div
+        [ Attributes.css
+            [ marginBottom (rem 1.5)
+            , property "display" "grid"
+            , property "grid-template-columns" "1fr auto"
+            , property "row-gap" "0.5rem"
+            , property "grid-template-areas"
+                """
+                "title date"
+                "description description"
+                """
+            ]
+        ]
+        [ div
+            [ Attributes.css [ property "grid-area" "title" ] ]
+            [ h3
+                [ Attributes.css
+                    [ display inline
+                    , fontSize (Css.em 1.17)
+                    , fontWeight (int 700)
+                    ]
+                ]
+                [ text (project.title lang) ]
+            , text " ("
+            , a
+                [ Attributes.href project.url
+                , Attributes.target "_blank"
+                , Attributes.css [ color inherit ]
+                ]
+                [ text project.url ]
+            , text ")"
+            ]
+        , span
+            [ Attributes.css
+                [ property "grid-area" "date"
+                , fontStyle italic
+                ]
+            ]
+            [ text (String.fromInt project.year) ]
+        , p
+            [ Attributes.css
+                [ UI.Style.paragraph
+                , property "grid-area" "description"
+                , fontSize (Css.em 0.9)
+                ]
+            ]
+            [ text (project.description lang) ]
         ]
 
 
