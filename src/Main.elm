@@ -437,8 +437,6 @@ view model =
                 , Attributes.target "_blank"
                 , Attributes.css
                     [ color currentColor
-                    , textDecoration none
-                    , hover [ textDecoration underline ]
                     ]
                 ]
                 [ text
