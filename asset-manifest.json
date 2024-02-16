@@ -1,16 +1,17 @@
 {
-  "main.css": "/static/css/main.0480e7d0.chunk.css",
-  "main.js": "/static/js/main.f5cf4e04.chunk.js",
-  "main.js.map": "/static/js/main.f5cf4e04.chunk.js.map",
+  "main.css": "/static/css/main.9dbc35f2.chunk.css",
+  "main.js": "/static/js/main.e244941a.chunk.js",
+  "main.js.map": "/static/js/main.e244941a.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.1b922744.js",
   "runtime~main.js.map": "/static/js/runtime~main.1b922744.js.map",
-  "vendors~main.js": "/static/js/vendors~main.354e092f.chunk.js",
-  "vendors~main.js.map": "/static/js/vendors~main.354e092f.chunk.js.map",
+  "vendors~main.js": "/static/js/vendors~main.b17b319b.chunk.js",
+  "vendors~main.js.map": "/static/js/vendors~main.b17b319b.chunk.js.map",
   "./service-worker.js": "/./service-worker.js",
   "favicon.ico": "/favicon.ico",
   "index.html": "/index.html",
   "logo.svg": "/logo.svg",
   "manifest.json": "/manifest.json",
-  "precache-manifest.0ecdffca81190716da1f7b691111dd9b.js": "/precache-manifest.0ecdffca81190716da1f7b691111dd9b.js",
-  "static/media/profile_3.704662bf.jpg": "/static/media/profile_3.704662bf.jpg"
+  "precache-manifest.280e1aa80c04df4a08cad534244b1bb0.js": "/precache-manifest.280e1aa80c04df4a08cad534244b1bb0.js",
+  "static/media/Renogare-Regular.e2167a7a.otf": "/static/media/Renogare-Regular.e2167a7a.otf",
+  "static/media/Trajan Pro Regular.7b34a885.ttf": "/static/media/Trajan Pro Regular.7b34a885.ttf"
 }
