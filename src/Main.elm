@@ -576,6 +576,15 @@ displayJob lang job =
                 "title date"
                 "description description"
                 """
+            , UI.Media.onSmallScreen
+                [ property "grid-template-columns" "1fr"
+                , property "grid-template-areas"
+                    """
+                    "title"
+                    "date"
+                    "description"
+                    """
+                ]
             ]
         ]
         [ div
@@ -621,6 +630,15 @@ displayProject lang project =
                 "title date"
                 "description description"
                 """
+            , UI.Media.onSmallScreen
+                [ property "grid-template-columns" "1fr"
+                , property "grid-template-areas"
+                    """
+                    "title"
+                    "date"
+                    "description"
+                    """
+                ]
             ]
         ]
         [ div
@@ -637,7 +655,7 @@ displayProject lang project =
             , a
                 [ Attributes.href project.url
                 , Attributes.target "_blank"
-                , Attributes.css [ color inherit ]
+                , Attributes.css [ color inherit, property "word-break" "break-all" ]
                 ]
                 [ text project.url ]
             , text ")"
