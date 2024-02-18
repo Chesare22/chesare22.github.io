@@ -305,6 +305,13 @@ view model =
                 , property "align-content" "start"
                 , UI.Media.onSmallScreen
                     [ property "grid-template-columns" "1fr"
+                    , property "grid-template-areas"
+                        """
+                        "name"
+                        "contact-info"
+                        "content"
+                        """
+                    , property "row-gap" "1rem"
                     ]
                 , UI.Media.belowBigScreen
                     [ paddingBottom (px 0)
@@ -344,6 +351,9 @@ view model =
                         , paddingLeft (px 0)
                         , textAlign right
                         , margin (px 0)
+                        , UI.Media.onSmallScreen
+                            [ textAlign left
+                            ]
                         ]
                     ]
                     (List.map displayContact (Constants.contactList 16))
@@ -727,14 +737,22 @@ displayContact contact =
             , Attributes.css
                 [ color inherit
                 , lineHeight (rem 1.365)
+                , UI.Media.onSmallScreen
+                    [ displayFlex
+                    , flexDirection rowReverse
+                    , justifyContent start
+                    ]
                 ]
             ]
             [ span [] [ text contact.text ]
             , span
                 [ Attributes.css
-                    [ paddingLeft (rem 0.4)
-                    , position relative
+                    [ position relative
                     , top (rem 0.12)
+                    , UI.Media.aboveSmallScreen
+                        [ paddingLeft (rem 0.4) ]
+                    , UI.Media.onSmallScreen
+                        [ paddingRight (rem 0.4) ]
                     ]
                 ]
                 [ contact.icon ]
