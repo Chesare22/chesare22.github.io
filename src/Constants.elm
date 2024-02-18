@@ -175,7 +175,7 @@ projects : List Project
 projects =
     [ Project (always "MiObra Export App")
         "https://apps.microsoft.com/detail/XPFF9W7DQL962Z"
-        2021
+        2022
         (Language.translated
             """
             Aplicación WPF para migrar proyectos hechos en una aplicación de terceros a MiObra.
@@ -191,7 +191,7 @@ projects =
         )
     , Project (always "MiObra")
         "https://www.miobra.mx/"
-        2021
+        2022
         (Language.translated
             """
             Aplicación para facilitar la administración a nivel empresarial de obras de construcción.
