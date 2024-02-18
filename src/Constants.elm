@@ -164,13 +164,6 @@ type alias Project =
     }
 
 
-dummyDescription : Language.Language -> String
-dummyDescription =
-    Language.translated
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam iaculis turpis et libero fringilla auctor. Curabitur imperdiet semper pulvinar. Aenean turpis magna, consequat sed orci a, scelerisque gravida nisi. Proin venenatis convallis mi, et euismod odio bibendum cursus. Nulla fermentum neque vel odio interdum molestie. Morbi sed odio a lorem tempor blandit. Donec fringilla lacinia tortor, quis vulputate felis malesuada et. Nullam nunc nibh, aliquet eget ligula viverra, consequat aliquet orci. Donec et ornare lacus."
-        "Cat ipsum dolor sit amet, dream about hunting birds eat half my food and ask for more. Kitty kitty chase dog then run away eat a plant, kill a hand walk on a keyboard and milk the cow leave hair everywhere. Shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff under the bed commence midnight zoomies for plays league of legends lick plastic bags. Have a lot of grump in yourself because you can't forget to be grumpy and not be like king grumpy cat relentlessly pursues moth chase laser curl up and sleep on the freshly laundered towels."
-
-
 projects : List Project
 projects =
     [ Project (always "MiObra Export App")
