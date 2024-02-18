@@ -321,7 +321,11 @@ view model =
                     []
                     [ text Constants.name ]
                 , styled p
-                    [ paddingLeft (Css.rem 0.25) ]
+                    [ paddingLeft (Css.rem 0.25)
+                    , UI.Media.onSmallScreen
+                        [ textAlign center
+                        ]
+                    ]
                     []
                     [ text
                         (translated
