@@ -176,31 +176,82 @@ projects =
     [ Project (always "MiObra Export App")
         "https://apps.microsoft.com/detail/XPFF9W7DQL962Z"
         2021
-        dummyDescription
+        (Language.translated
+            """
+            Aplicación WPF para migrar proyectos hechos en una aplicación de terceros a MiObra.
+            Es casi completamente de mi autoría, demorándome alrededor de tres meses para completar.
+            Entre las herramientas que creé para este proyecto se incluyen encriptación híbrida
+            y una librería declarativa para consultar datos almacenados en CTEs recursivas.
+            """
+            """
+            WPF application to migrate projects made with a third party app to MiObra.
+            I was tasked to develop almost the entire application, it took me around three months to complete.
+            The tools I developed for that project include hybrid encryption and a declarative library to query recursive CTEs.
+            """
+        )
     , Project (always "MiObra")
         "https://www.miobra.mx/"
         2021
-        dummyDescription
-    , Project (Language.translated "Mi currículum vitae" "My resume")
+        (Language.translated
+            """
+            Aplicación para facilitar la administración a nivel empresarial de obras de construcción.
+            Fui desarrollador para la versión web y el backend, usando un stack de React y Django.
+            Participé en reuniones con clientes, la toma de decisiones técnicas y muchos de mis aportes facilitaban la mantenibilidad de la aplicación.
+            """
+            """
+
+            """
+        )
+    , Project (Language.translated "Este currículum" "This resume")
         "https://chesare22.github.io/"
         2021
-        dummyDescription
+        (Language.translated
+            """
+            Página web que desarrollé usando Elm. Tiene modos oscuro y luminoso, selección de idioma, diseño responsivo y puede imprimirse.
+            El uso de un lenguaje de programación funcional me ayudó a entender a fondo dicho paradigma, marcando un antes y después en mi forma de programar.
+            """
+            """
+                
+            """
+        )
     , Project (always "Dark Impala")
         "https://darkimpala.com/"
         2020
-        dummyDescription
+        (Language.translated
+            """
+            Exitoso blog de música con una activa comunidad.
+            Cuenta con Lazy Loading para los lectores y un intuitivo panel de edición para el equipo de escritores.
+            """
+            """
+                
+            """
+        )
     , Project (always "Comportia")
         "https://medium.com/soldai/comportia-una-idea-hecha-realidad-6bd77e542882"
         2019
-        dummyDescription
-    , Project (Language.translated "Programa de votos usando MVC" "Votes system using MVC")
-        "https://github.com/Chesare22/Semestre-5/tree/arquitectura/Votes/src/main/java"
-        2019
-        dummyDescription
+        (Language.translated
+            """
+            Aplicación que permitía la creación y el despliegue de chatbots.
+            Fue mi primer proyecto en un equipo de profesionales. A pesar de mi poca experiencia en ese entonces,
+            aporté en la creación y mantenimiento de una variedad de componentes en Vue.
+            """
+            """
+                
+            """
+        )
     , Project (Language.translated "Temporizador-PIC18F4550" "Timer-PIC18F4550")
         "https://github.com/Chesare22/Temporizador-PIC18F4550"
         2018
-        dummyDescription
+        (Language.translated
+            """
+            Proyecto escolar donde logré liderar a un grupo de veinte personas para desarrollar un temporizador en lenguaje ensamblador.
+            Propuse y codifiqué una máquina de estados para el funcionamiento general del proyecto. También coordiné a varios compañeros
+            que colaboraron con el cableado, la comunicación con la pantalla, la implementación de algunas funciones, etc.
+            """
+            """
+
+            """
+        )
     ]
 
 
