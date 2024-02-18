@@ -255,6 +255,28 @@ projects =
     ]
 
 
+type alias SmallProject =
+    { name : Language -> String
+    , url : String
+    }
+
+
+smallProjects : List SmallProject
+smallProjects =
+    [ SmallProject (always "Mask") "https://github.com/Chesare22/mask"
+    , SmallProject (Language.translated "Buscaminas" "Minesweeper") "https://github.com/Chesare22/Buscaminas-DIY"
+    , SmallProject (always "Shuffle Textlines.js") "https://github.com/Chesare22/shuffle-textlines.js"
+    , SmallProject (always "@sumerian/eslint-config") "https://www.npmjs.com/package/@sumerian/eslint-config"
+    , SmallProject (Language.translated "Aplicación de Fireship en Elm" "Fireship App in Elm") "https://github.com/Chesare22/Fireship-app-in-elm"
+    , SmallProject (always "Blob Escape") "https://itch.io/jam/gmtk-2021/rate/1086701"
+    , SmallProject (always "3 features de JavaScript que aprendí fuera de la escuela")
+        "https://medium.com/soldai/3-features-de-javascript-que-aprend%C3%AD-fuera-de-la-escuela-978e009c9201"
+    , SmallProject (always "Petite Resort") "https://www.petiteresort.mx/"
+    , SmallProject (Language.translated "Programa de votos usando MVC" "Votes system using MVC")
+        "https://github.com/Chesare22/Semestre-5/tree/arquitectura/Votes/src/main/java"
+    ]
+
+
 type alias Book =
     { title : String
     , author : String
