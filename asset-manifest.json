@@ -1,7 +1,7 @@
 {
   "main.css": "/static/css/main.9dbc35f2.chunk.css",
-  "main.js": "/static/js/main.7e2f244b.chunk.js",
-  "main.js.map": "/static/js/main.7e2f244b.chunk.js.map",
+  "main.js": "/static/js/main.d179ec59.chunk.js",
+  "main.js.map": "/static/js/main.d179ec59.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.1b922744.js",
   "runtime~main.js.map": "/static/js/runtime~main.1b922744.js.map",
   "vendors~main.js": "/static/js/vendors~main.b17b319b.chunk.js",
@@ -11,7 +11,7 @@
   "index.html": "/index.html",
   "logo.svg": "/logo.svg",
   "manifest.json": "/manifest.json",
-  "precache-manifest.a003df32af55f50fb3b6e5e42e2ffc1c.js": "/precache-manifest.a003df32af55f50fb3b6e5e42e2ffc1c.js",
+  "precache-manifest.c20d46e6bf7101e888a90c7eebb73d79.js": "/precache-manifest.c20d46e6bf7101e888a90c7eebb73d79.js",
   "static/media/Renogare-Regular.e2167a7a.otf": "/static/media/Renogare-Regular.e2167a7a.otf",
   "static/media/Trajan Pro Regular.7b34a885.ttf": "/static/media/Trajan Pro Regular.7b34a885.ttf"
 }
