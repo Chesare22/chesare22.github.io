@@ -389,7 +389,26 @@ view model =
             (List.concat
                 [ projectsInSecondPage
                     |> List.map (displayProject model.language)
-                , [ booksSubtitle model.theme model.language
+                , [ styled h2
+                        [ UI.Style.subtitle model.theme ]
+                        []
+                        [ text
+                            (Language.translated
+                                "Otros Proyectos"
+                                "Other Projects"
+                                model.language
+                            )
+                        ]
+                  , styled ul
+                        [ property "padding-inline-start" "1.25rem"
+                        , property "display" "grid"
+                        , property "grid-gap" "0.32rem"
+                        , marginTop (px 0)
+                        , marginBottom (Css.em 2.5)
+                        ]
+                        []
+                        (Constants.smallProjects |> List.map (displaySmallProject model.language))
+                  , booksSubtitle model.theme model.language
                   , div
                         [ Attributes.css
                             [ property "display" "grid"
@@ -675,6 +694,27 @@ displayProject lang project =
                 ]
             ]
             [ text (project.description lang) ]
+        ]
+
+
+displaySmallProject : Language -> Constants.SmallProject -> Html msg
+displaySmallProject language project =
+    li []
+        [ span
+            []
+            [ text (project.name language) ]
+        , styled span
+            [ fontSize (Css.em 0.9) ]
+            []
+            [ text " ("
+            , styled a
+                [ color inherit, property "word-break" "break-all" ]
+                [ Attributes.target "_blank"
+                , Attributes.href project.url
+                ]
+                [ text project.url ]
+            , text ")"
+            ]
         ]
 
 

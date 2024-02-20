@@ -6,12 +6,14 @@ module Constants exposing
     , Job
     , Project
     , SimpleDate
+    , SmallProject
     , books
     , contactList
     , email
     , jobs
     , name
     , projects
+    , smallProjects
     )
 
 import FeatherIcons
