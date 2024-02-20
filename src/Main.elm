@@ -485,8 +485,8 @@ projectsSubtitle theme language =
         []
         [ text
             (Language.translated
-                "Proyectos"
-                "Projects"
+                "Proyectos Principales"
+                "Main Projects"
                 language
             )
         ]
