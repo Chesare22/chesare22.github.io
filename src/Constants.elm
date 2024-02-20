@@ -192,7 +192,9 @@ projects =
             Participé en reuniones con clientes, la toma de decisiones técnicas y muchos de mis aportes facilitaban la mantenibilidad de la aplicación.
             """
             """
-
+            App to facilitate the business-level management of constructions.
+            I was a developer for the web version and the backend, with a stack of React and Django.
+            I took part in meetings with clients, technical decision-making and a lot of my contributions helped with the maintainability of the app.
             """
         )
     , Project (Language.translated "Este currículum" "This resume")
@@ -204,7 +206,8 @@ projects =
             El uso de un lenguaje de programación funcional me ayudó a entender a fondo dicho paradigma, marcando un antes y después en mi forma de programar.
             """
             """
-                
+            Web page that I developed using Elm. It has dark and light mode, language selection, responsive design and can be printed.
+            Using a functional programming language helped me to deeply understand said paradigm, marking a turning point in my programming style.
             """
         )
     , Project (always "Dark Impala")
@@ -216,7 +219,8 @@ projects =
             Cuenta con Lazy Loading para los lectores y un intuitivo panel de edición para el equipo de escritores.
             """
             """
-                
+            Successful music blog with an active community.
+            It has lazy loading for the readers and an intuitive edition panel for the writing team.
             """
         )
     , Project (always "Comportia")
@@ -224,12 +228,14 @@ projects =
         2019
         (Language.translated
             """
-            Aplicación que permitía la creación y el despliegue de chatbots.
+            Aplicación web que permitía la creación y el despliegue de chatbots.
             Fue mi primer proyecto en un equipo de profesionales. A pesar de mi poca experiencia en ese entonces,
             aporté en la creación y mantenimiento de una variedad de componentes en Vue.
             """
             """
-                
+            Web application that allowed to create and publish chatbots.
+            It was my first project in a professional team. Despite having little experience at that time,
+            I contributed in the creation and maintaining a variety of Vue components.
             """
         )
     , Project (Language.translated "Temporizador-PIC18F4550" "Timer-PIC18F4550")
@@ -242,7 +248,9 @@ projects =
             que colaboraron con el cableado, la comunicación con la pantalla, la implementación de algunas funciones, etc.
             """
             """
-
+            School project in which I lead a team of twenty people to develop a timer using assembly language.
+            I coded a state machine for the general operation of the  project and coordinated several classmates who
+            helped with the wiring, the communication with the screen, the implementation of some functions, etc.
             """
         )
     ]
