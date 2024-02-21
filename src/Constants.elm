@@ -212,19 +212,6 @@ projects =
             Using a functional programming language helped me to deeply understand said paradigm, marking a turning point in my programming style.
             """
         )
-    , Project (always "Dark Impala")
-        "https://darkimpala.com/"
-        2020
-        (Language.translated
-            """
-            Exitoso blog de música con una activa comunidad.
-            Cuenta con Lazy Loading para los lectores y un intuitivo panel de edición para el equipo de escritores.
-            """
-            """
-            Successful music blog with an active community.
-            It has lazy loading for the readers and an intuitive edition panel for the writing team.
-            """
-        )
     , Project (always "Comportia")
         "https://medium.com/soldai/comportia-una-idea-hecha-realidad-6bd77e542882"
         2019
@@ -271,6 +258,7 @@ smallProjects =
     , SmallProject (always "Shuffle Textlines.js") "https://github.com/Chesare22/shuffle-textlines.js"
     , SmallProject (always "@sumerian/eslint-config") "https://www.npmjs.com/package/@sumerian/eslint-config"
     , SmallProject (Language.translated "Aplicación de Fireship en Elm" "Fireship App in Elm") "https://github.com/Chesare22/Fireship-app-in-elm"
+    , SmallProject (always "Dark Impala") "https://darkimpala.com/"
     , SmallProject (always "Blob Escape") "https://itch.io/jam/gmtk-2021/rate/1086701"
     , SmallProject (always "3 features de JavaScript que aprendí fuera de la escuela")
         "https://medium.com/soldai/3-features-de-javascript-que-aprend%C3%AD-fuera-de-la-escuela-978e009c9201"
