@@ -599,53 +599,19 @@ bookHighlight highlight =
 displayJob : Language -> Constants.Job -> Html msg
 displayJob lang job =
     div
-        [ Attributes.css
-            [ marginBottom (rem 1.5)
-            , property "display" "grid"
-            , property "grid-template-columns" "1fr auto"
-            , property "row-gap" "0.5rem"
-            , property "grid-template-areas"
-                """
-                "title date"
-                "description description"
-                """
-            , UI.Media.onSmallScreen
-                [ property "grid-template-columns" "1fr"
-                , property "grid-template-areas"
-                    """
-                    "title"
-                    "date"
-                    "description"
-                    """
-                ]
-            ]
-        ]
+        [ Attributes.css [ UI.Style.experienceContainer ] ]
         [ div
             [ Attributes.css [ property "grid-area" "title" ] ]
             [ h3
-                [ Attributes.css
-                    [ display inline
-                    , fontSize (Css.em 1.17)
-                    , fontWeight (int 700)
-                    ]
-                ]
+                [ Attributes.css [ UI.Style.experienceTitle ] ]
                 [ text (job.title lang) ]
             , span [] [ text (", " ++ job.position lang) ]
             ]
         , span
-            [ Attributes.css
-                [ property "grid-area" "date"
-                , fontStyle italic
-                ]
-            ]
+            [ Attributes.css [ UI.Style.experienceDate ] ]
             [ text (Formatters.formatDateRange lang job.start job.end) ]
         , p
-            [ Attributes.css
-                [ UI.Style.paragraph
-                , property "grid-area" "description"
-                , fontSize (Css.em 0.9)
-                ]
-            ]
+            [ Attributes.css [ UI.Style.experienceDescription ] ]
             [ text (job.description lang) ]
         ]
 
@@ -653,36 +619,11 @@ displayJob lang job =
 displayProject : Language -> Constants.Project -> Html msg
 displayProject lang project =
     div
-        [ Attributes.css
-            [ marginBottom (rem 1.5)
-            , property "display" "grid"
-            , property "grid-template-columns" "1fr auto"
-            , property "row-gap" "0.5rem"
-            , property "grid-template-areas"
-                """
-                "title date"
-                "description description"
-                """
-            , UI.Media.onSmallScreen
-                [ property "grid-template-columns" "1fr"
-                , property "grid-template-areas"
-                    """
-                    "title"
-                    "date"
-                    "description"
-                    """
-                ]
-            ]
-        ]
+        [ Attributes.css [ UI.Style.experienceContainer ] ]
         [ div
             [ Attributes.css [ property "grid-area" "title" ] ]
             [ h3
-                [ Attributes.css
-                    [ display inline
-                    , fontSize (Css.em 1.17)
-                    , fontWeight (int 700)
-                    ]
-                ]
+                [ Attributes.css [ UI.Style.experienceTitle ] ]
                 [ text (project.title lang) ]
             , text " ("
             , a
@@ -694,19 +635,10 @@ displayProject lang project =
             , text ")"
             ]
         , span
-            [ Attributes.css
-                [ property "grid-area" "date"
-                , fontStyle italic
-                ]
-            ]
+            [ Attributes.css [ UI.Style.experienceDate ] ]
             [ text (String.fromInt project.year) ]
         , p
-            [ Attributes.css
-                [ UI.Style.paragraph
-                , property "grid-area" "description"
-                , fontSize (Css.em 0.9)
-                ]
-            ]
+            [ Attributes.css [ UI.Style.experienceDescription ] ]
             [ text (project.description lang) ]
         ]
 

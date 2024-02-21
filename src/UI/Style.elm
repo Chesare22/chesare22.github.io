@@ -2,6 +2,10 @@ module UI.Style exposing
     ( centeredContent
     , coloredBlock
     , divider
+    , experienceContainer
+    , experienceDate
+    , experienceDescription
+    , experienceTitle
     , ghost
     , paper
     , paragraph
@@ -151,4 +155,54 @@ divider theme =
                 UI.Palette.grey.c500
                 theme
             )
+        ]
+
+
+experienceContainer : Style
+experienceContainer =
+    batch
+        [ marginBottom (rem 1.5)
+        , property "display" "grid"
+        , property "grid-template-columns" "1fr auto"
+        , property "row-gap" "0.5rem"
+        , property "grid-template-areas"
+            """
+                           "title date"
+                           "description description"
+                           """
+        , UI.Media.onSmallScreen
+            [ property "grid-template-columns" "1fr"
+            , property "grid-template-areas"
+                """
+                               "title"
+                               "date"
+                               "description"
+                               """
+            ]
+        ]
+
+
+experienceTitle : Style
+experienceTitle =
+    batch
+        [ display inline
+        , fontSize (Css.em 1.17)
+        , fontWeight (int 700)
+        ]
+
+
+experienceDate : Style
+experienceDate =
+    batch
+        [ property "grid-area" "date"
+        , fontStyle italic
+        ]
+
+
+experienceDescription : Style
+experienceDescription =
+    batch
+        [ paragraph
+        , property "grid-area" "description"
+        , fontSize (Css.em 0.9)
         ]
