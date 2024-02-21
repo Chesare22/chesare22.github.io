@@ -13,6 +13,7 @@ const app = Elm.Main.init({
   flags: {
     fonts: { renogare, trajanPro },
     preferredTheme: userPrefersDark ? "dark" : "light",
+    preferredLanguage: navigator.language || navigator.userLanguage, // https://stackoverflow.com/a/4079798/13194448
     qrUrl: process.env.ELM_APP_QR_URL,
   },
 });

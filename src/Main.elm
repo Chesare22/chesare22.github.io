@@ -59,6 +59,7 @@ type alias Fonts =
 
 type alias Flags =
     { preferredTheme : String
+    , preferredLanguage : String
     , qrUrl : String
     , fonts : Fonts
     }
@@ -73,14 +74,19 @@ type alias Model =
 
 
 init : Flags -> ( Model, Cmd Msg )
-init { fonts, preferredTheme, qrUrl } =
+init { fonts, preferredTheme, preferredLanguage, qrUrl } =
     ( { theme =
             if preferredTheme == "dark" then
                 Dark
 
             else
                 Light
-      , language = Language.English
+      , language =
+            if preferredLanguage |> String.startsWith "es" then
+                Language.Spanish
+
+            else
+                Language.English
       , qrUrl = qrUrl
       , fonts = fonts
       }
