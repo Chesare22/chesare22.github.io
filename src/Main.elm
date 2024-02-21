@@ -753,6 +753,8 @@ displayContact contact =
                 [ Attributes.css
                     [ position relative
                     , top (rem 0.12)
+                    , UI.Media.onPrint
+                        [ paddingLeft (rem 0.4) ]
                     , UI.Media.aboveSmallScreen
                         [ paddingLeft (rem 0.4) ]
                     , UI.Media.onSmallScreen
