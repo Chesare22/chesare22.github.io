@@ -406,59 +406,6 @@ view model =
                 ]
             )
 
-        -- Page 3
-        , div
-            [ Attributes.css
-                [ UI.Style.paper model.theme
-                , property "display" "grid"
-                , property "align-content" "start"
-                , UI.Media.belowBigScreen
-                    [ after
-                        [ UI.Style.divider model.theme
-                        ]
-                    , paddingTop (px 0)
-                    ]
-                ]
-            ]
-            [ booksSubtitle model.theme model.language
-            , div
-                [ Attributes.css
-                    [ property "display" "grid"
-                    , property "grid-template-columns" "1fr 1fr"
-                    , property "column-gap" "1rem"
-                    , property "row-gap" "0.85rem"
-                    , property "align-content" "start"
-                    , UI.Media.onSmallestScreen
-                        [ property "grid-template-columns" "1fr"
-                        ]
-                    ]
-                ]
-                (Constants.books
-                    |> List.map (displayBook model.language model.theme)
-                )
-            , div
-                [ Attributes.css
-                    [ property "justify-self" "center"
-                    , margin2 (rem 4) (rem 0)
-                    , maxWidth (rem 20)
-                    , fontSize (Css.em 1)
-                    , textAlign center
-                    ]
-                ]
-                [ span
-                    [ Attributes.css
-                        [ fontWeight (int 700)
-                        ]
-                    ]
-                    [ text "Fun fact: " ]
-                , text
-                    (translated "mis lenguajes de programación favoritos son Elm y Elixir"
-                        "my favorite programming languages are Elm and Elixir"
-                        model.language
-                    )
-                ]
-            ]
-
         -- Footnote
         , div
             [ Attributes.css
