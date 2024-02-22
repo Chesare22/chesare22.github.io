@@ -371,6 +371,8 @@ view model =
                     [ [ jobsSubtitle model.theme model.language ]
                     , Constants.jobs
                         |> List.map (displayJob model.language)
+                    , [ studiesSubtitle model.theme model.language ]
+                    , Constants.studies |> List.map (displayStudy model.language)
                     , [ projectsSubtitle model.theme model.language ]
                     , projectsInFirstPage
                         |> List.map (displayProject model.language)
@@ -619,6 +621,28 @@ displayJob lang job =
         , p
             [ Attributes.css [ UI.Style.experienceDescription ] ]
             [ text (job.description lang) ]
+        ]
+
+
+displayStudy : Language -> Constants.Study -> Html msg
+displayStudy lang study =
+    div
+        [ Attributes.css
+            [ property "display" "grid"
+            , property "grid-template-columns" "1fr"
+            , marginBottom (rem 0.5)
+            , property "row-gap" "0.2rem"
+            ]
+        ]
+        [ h3
+            [ Attributes.css [ UI.Style.experienceTitle, margin (px 0) ] ]
+            [ text (study.title lang) ]
+        , span
+            [ Attributes.css [ fontStyle italic ] ]
+            [ text (Formatters.formatDateRange lang study.start (Just study.end)) ]
+        , p
+            [ Attributes.css [ UI.Style.paragraph ] ]
+            [ text study.institution ]
         ]
 
 
