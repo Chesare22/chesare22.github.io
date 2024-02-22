@@ -10,12 +10,12 @@ module Constants exposing
     , Study
     , books
     , contactList
+    , education
     , email
     , jobs
     , name
     , projects
     , smallProjects
-    , studies
     )
 
 import FeatherIcons
@@ -255,8 +255,8 @@ type alias Study =
     }
 
 
-studies : List Study
-studies =
+education : List Study
+education =
     [ Study (Language.translated "Licenciatura en Ingeniería de Software" "Bachelor of Software Engineering")
         "UADY"
         (SimpleDate Time.Aug 2017)

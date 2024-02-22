@@ -371,8 +371,8 @@ view model =
                     [ [ jobsSubtitle model.theme model.language ]
                     , Constants.jobs
                         |> List.map (displayJob model.language)
-                    , [ studiesSubtitle model.theme model.language ]
-                    , Constants.studies |> List.map (displayStudy model.language)
+                    , [ educationSubtitle model.theme model.language ]
+                    , Constants.education |> List.map (displayStudy model.language)
                     , [ projectsSubtitle model.theme model.language ]
                     , projectsInFirstPage
                         |> List.map (displayProject model.language)
@@ -533,15 +533,15 @@ projectsSubtitle theme language =
         ]
 
 
-studiesSubtitle : Theme -> Language -> Html msg
-studiesSubtitle theme language =
+educationSubtitle : Theme -> Language -> Html msg
+educationSubtitle theme language =
     styled h2
         [ UI.Style.subtitle theme ]
         []
         [ text
             (Language.translated
-                "Estudios"
-                "Studies"
+                "Educación"
+                "Education"
                 language
             )
         ]
