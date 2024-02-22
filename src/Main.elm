@@ -374,8 +374,6 @@ view model =
                     [ [ jobsSubtitle model.theme model.language ]
                     , Constants.jobs
                         |> List.map (displayJob model.language)
-                    , [ educationSubtitle model.theme model.language ]
-                    , Constants.education |> List.map (displayStudy model.language)
                     , [ projectsSubtitle model.theme model.language ]
                     , projectsInFirstPage
                         |> List.map (displayProject model.language)
@@ -418,6 +416,8 @@ view model =
                         []
                         (Constants.smallProjects |> List.map (displaySmallProject model.language))
                   ]
+                , [ educationSubtitle model.theme model.language ]
+                , Constants.education |> List.map (displayStudy model.language)
                 ]
             )
 
