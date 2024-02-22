@@ -417,7 +417,11 @@ view model =
                         (Constants.smallProjects |> List.map (displaySmallProject model.language))
                   ]
                 , [ educationSubtitle model.theme model.language ]
-                , Constants.education |> List.map (displayStudy model.language)
+                , [ styled div
+                        [ UI.Style.twoColumnContainer ]
+                        []
+                        (Constants.education |> List.map (displayStudy model.language))
+                  ]
                 ]
             )
 
