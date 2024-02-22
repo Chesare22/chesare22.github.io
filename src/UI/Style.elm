@@ -12,6 +12,7 @@ module UI.Style exposing
     , round
     , subtitle
     , title
+    , twoColumnContainer
     )
 
 import Css exposing (..)
@@ -137,6 +138,20 @@ paper theme =
         , UI.Media.belowBigScreen
             [ boxSizing borderBox
             , maxWidth (rem UI.Size.paperWidthInt)
+            ]
+        ]
+
+
+twoColumnContainer : Style
+twoColumnContainer =
+    batch
+        [ property "display" "grid"
+        , property "grid-template-columns" "1fr 1fr"
+        , property "column-gap" "1rem"
+        , property "row-gap" "0.85rem"
+        , property "align-content" "start"
+        , UI.Media.onSmallScreen
+            [ property "grid-template-columns" "1fr"
             ]
         ]
 
