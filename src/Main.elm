@@ -390,6 +390,8 @@ view model =
                 , UI.Media.belowBigScreen
                     [ paddingBottom (px 0)
                     , paddingTop (px 0)
+                    , after
+                        [ UI.Style.divider model.theme ]
                     ]
                 ]
             ]
