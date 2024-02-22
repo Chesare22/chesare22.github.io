@@ -132,6 +132,16 @@ toggleTheme =
 -- VIEW
 
 
+projectsInFirstPage : List Constants.Project
+projectsInFirstPage =
+    List.take 2 Constants.projects
+
+
+projectsInSecondPage : List Constants.Project
+projectsInSecondPage =
+    List.drop 2 Constants.projects
+
+
 view : Model -> Html Msg
 view model =
     div
@@ -366,6 +376,9 @@ view model =
                         |> List.map (displayJob model.language)
                     , [ educationSubtitle model.theme model.language ]
                     , Constants.education |> List.map (displayStudy model.language)
+                    , [ projectsSubtitle model.theme model.language ]
+                    , projectsInFirstPage
+                        |> List.map (displayProject model.language)
                     ]
                 )
             ]
@@ -383,8 +396,7 @@ view model =
                 ]
             ]
             (List.concat
-                [ [ projectsSubtitle model.theme model.language ]
-                , Constants.projects
+                [ projectsInSecondPage
                     |> List.map (displayProject model.language)
                 , [ styled h2
                         [ UI.Style.subtitle model.theme ]
