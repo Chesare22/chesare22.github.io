@@ -7,6 +7,7 @@ module Constants exposing
     , Project
     , SimpleDate
     , SmallProject
+    , Study
     , books
     , contactList
     , email
@@ -14,6 +15,7 @@ module Constants exposing
     , name
     , projects
     , smallProjects
+    , studies
     )
 
 import FeatherIcons
@@ -242,6 +244,27 @@ projects =
             helped with the wiring, the communication with the screen, the implementation of some functions, etc.
             """
         )
+    ]
+
+
+type alias Study =
+    { title : Language -> String
+    , institution : String
+    , start : SimpleDate
+    , end : SimpleDate
+    }
+
+
+studies : List Study
+studies =
+    [ Study (Language.translated "Licenciatura en Ingeniería de Software" "Bachelor of Software Engineering")
+        "UADY"
+        (SimpleDate Time.Aug 2017)
+        (SimpleDate Time.Dec 2023)
+    , Study (Language.translated "Cursos de arquitectura reactiva" "Reactive architecture courses")
+        "Lightbend Academy"
+        (SimpleDate Time.May 2021)
+        (SimpleDate Time.Jul 2021)
     ]
 
 
