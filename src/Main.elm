@@ -374,9 +374,52 @@ view model =
                     [ [ jobsSubtitle model.theme model.language ]
                     , Constants.jobs
                         |> List.map (displayJob model.language)
-                    , [ projectsSubtitle model.theme model.language ]
-                    , projectsInFirstPage
-                        |> List.map (displayProject model.language)
+                    , [ styled div
+                            [ UI.Style.twoColumnContainer ]
+                            []
+                            [ styled div
+                                [ property "display" "grid"
+                                , property "align-content" "start"
+                                ]
+                                []
+                                (List.concat
+                                    [ [ educationSubtitle model.theme model.language ]
+                                    , Constants.education |> List.map (displayStudy model.language)
+                                    ]
+                                )
+                            , styled div
+                                [ property "display" "grid"
+                                , property "align-content" "start"
+                                ]
+                                []
+                                [ skillsSubtitle model.theme model.language
+                                , styled div
+                                    [ UI.Style.coloredBlock model.theme
+                                    , maxWidth (rem 26)
+                                    , property "display" "grid"
+                                    , property "grid-template-columns" "auto 1fr"
+                                    , property "column-gap" "1rem"
+                                    , property "row-gap" "1rem"
+                                    ]
+                                    []
+                                    [ styled span
+                                        [ fontWeight (int 700) ]
+                                        []
+                                        [ text (translated "Experto" "Proficient" model.language) ]
+                                    , span
+                                        []
+                                        [ text (Language.toSentence model.language Constants.proficientSkills) ]
+                                    , styled span
+                                        [ fontWeight (int 700) ]
+                                        []
+                                        [ text (translated "Familiarizado" "Familiar" model.language) ]
+                                    , span
+                                        []
+                                        [ text (Language.toSentence model.language Constants.familiarSkills) ]
+                                    ]
+                                ]
+                            ]
+                      ]
                     ]
                 )
             ]
@@ -396,7 +439,8 @@ view model =
                 ]
             ]
             (List.concat
-                [ projectsInSecondPage
+                [ [ projectsSubtitle model.theme model.language ]
+                , Constants.projects
                     |> List.map (displayProject model.language)
                 , [ styled h2
                         [ UI.Style.subtitle model.theme ]
@@ -417,51 +461,6 @@ view model =
                         ]
                         []
                         (Constants.smallProjects |> List.map (displaySmallProject model.language))
-                  , styled div
-                        [ UI.Style.twoColumnContainer ]
-                        []
-                        [ styled div
-                            [ property "display" "grid"
-                            , property "align-content" "start"
-                            ]
-                            []
-                            (List.concat
-                                [ [ educationSubtitle model.theme model.language ]
-                                , Constants.education |> List.map (displayStudy model.language)
-                                ]
-                            )
-                        , styled div
-                            [ property "display" "grid"
-                            , property "align-content" "start"
-                            ]
-                            []
-                            [ skillsSubtitle model.theme model.language
-                            , styled div
-                                [ UI.Style.coloredBlock model.theme
-                                , maxWidth (rem 26)
-                                , property "display" "grid"
-                                , property "grid-template-columns" "auto 1fr"
-                                , property "column-gap" "1rem"
-                                , property "row-gap" "1rem"
-                                ]
-                                []
-                                [ styled span
-                                    [ fontWeight (int 700) ]
-                                    []
-                                    [ text (translated "Experto" "Proficient" model.language) ]
-                                , span
-                                    []
-                                    [ text (Language.toSentence model.language Constants.proficientSkills) ]
-                                , styled span
-                                    [ fontWeight (int 700) ]
-                                    []
-                                    [ text (translated "Familiarizado" "Familiar" model.language) ]
-                                , span
-                                    []
-                                    [ text (Language.toSentence model.language Constants.familiarSkills) ]
-                                ]
-                            ]
-                        ]
                   ]
                 ]
             )
