@@ -12,8 +12,10 @@ module Constants exposing
     , contactList
     , education
     , email
+    , familiarSkills
     , jobs
     , name
+    , proficientSkills
     , projects
     , smallProjects
     )
@@ -265,6 +267,30 @@ education =
         "Lightbend Academy"
         (SimpleDate Time.May 2021)
         (SimpleDate Time.Jul 2021)
+    ]
+
+
+proficientSkills : List (Language -> String)
+proficientSkills =
+    [ Language.translated "Programación Funcional" "Functional Programming"
+    , always "JavaScript"
+    , always "React"
+    , always "CSS"
+    , always "git"
+    , always "SQL"
+    ]
+
+
+familiarSkills : List (Language -> String)
+familiarSkills =
+    [ always "Elm"
+    , always "Elixir"
+    , always "Python"
+    , always "C#"
+    , Language.translated "Microservicios" "Microservices"
+    , always "Event Sourcing"
+    , always "CQRS"
+    , always "MongoDB"
     ]
 
 
