@@ -438,6 +438,7 @@ view model =
                             [ skillsSubtitle model.theme model.language
                             , styled div
                                 [ UI.Style.coloredBlock model.theme
+                                , maxWidth (rem 26)
                                 , property "display" "grid"
                                 , property "grid-template-columns" "auto 1fr"
                                 , property "column-gap" "1rem"
