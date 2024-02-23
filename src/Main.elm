@@ -424,6 +424,35 @@ view model =
                         []
                         (Constants.education |> List.map (displayStudy model.language))
                   ]
+                , [ skillsSubtitle model.theme model.language ]
+                , [ styled div
+                        [ UI.Style.twoColumnContainer ]
+                        []
+                        [ styled div
+                            [ UI.Style.coloredBlock model.theme
+                            , property "display" "grid"
+                            , property "grid-template-columns" "auto 1fr"
+                            , property "column-gap" "1rem"
+                            , property "row-gap" "1rem"
+                            ]
+                            []
+                            [ styled span
+                                [ fontWeight (int 700) ]
+                                []
+                                [ text (translated "Experto" "Proficient" model.language) ]
+                            , span
+                                []
+                                [ text (Language.toSentence model.language Constants.proficientSkills) ]
+                            , styled span
+                                [ fontWeight (int 700) ]
+                                []
+                                [ text (translated "Familiarizado" "Familiar" model.language) ]
+                            , span
+                                []
+                                [ text (Language.toSentence model.language Constants.familiarSkills) ]
+                            ]
+                        ]
+                  ]
                 ]
             )
 
@@ -650,9 +679,17 @@ displaySmallProject language project =
         ]
 
 
-skillSubtitle =
-    styled span
-        [ fontWeight (int 700)
+skillsSubtitle : Theme -> Language -> Html msg
+skillsSubtitle theme language =
+    styled h2
+        [ UI.Style.subtitle theme ]
+        []
+        [ text
+            (Language.translated
+                "Habilidades"
+                "Skills"
+                language
+            )
         ]
 
 
