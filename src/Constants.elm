@@ -221,14 +221,14 @@ projects =
         2019
         (Language.translated
             """
-            Aplicación web que permitía la creación y el despliegue de chatbots.
-            Fue mi primer proyecto en un equipo de profesionales. A pesar de mi poca experiencia en ese entonces,
-            aporté en la creación y mantenimiento de una variedad de componentes en Vue.
+            Aplicación web que permitía la creación y el despliegue de chatbots impulsados por inteligencia artificial.
+            Fue mi primer proyecto en un equipo de profesionales. Aporté en el diseño, la creación y mantenimiento de una variedad de
+            componentes en Vue cuyo propósito era guiar al usuario de forma efectiva para que pueda fácilmente administrar sus chatbots.
             """
             """
-            Web application that allowed to create and publish chatbots.
-            It was my first project in a professional team. Despite having little experience at that time,
-            I contributed in the creation and maintaining a variety of Vue components.
+            Web application that allowed to create and publish chatbots powered by artificial intelligence.
+            It was my first project in a professional team. I contributed in the design, creation and maintaining a variety of
+            Vue components to effectively guide the user to easily administrate their chatbots.
             """
         )
     , Project (Language.translated "Temporizador-PIC18F4550" "Timer-PIC18F4550")
