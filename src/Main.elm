@@ -417,39 +417,48 @@ view model =
                         ]
                         []
                         (Constants.smallProjects |> List.map (displaySmallProject model.language))
-                  ]
-                , [ educationSubtitle model.theme model.language ]
-                , [ styled div
-                        [ UI.Style.twoColumnContainer ]
-                        []
-                        (Constants.education |> List.map (displayStudy model.language))
-                  ]
-                , [ skillsSubtitle model.theme model.language ]
-                , [ styled div
+                  , styled div
                         [ UI.Style.twoColumnContainer ]
                         []
                         [ styled div
-                            [ UI.Style.coloredBlock model.theme
-                            , property "display" "grid"
-                            , property "grid-template-columns" "auto 1fr"
-                            , property "column-gap" "1rem"
-                            , property "row-gap" "1rem"
+                            [ property "display" "grid"
+                            , property "align-content" "start"
                             ]
                             []
-                            [ styled span
-                                [ fontWeight (int 700) ]
+                            (List.concat
+                                [ [ educationSubtitle model.theme model.language ]
+                                , Constants.education |> List.map (displayStudy model.language)
+                                ]
+                            )
+                        , styled div
+                            [ property "display" "grid"
+                            , property "align-content" "start"
+                            ]
+                            []
+                            [ skillsSubtitle model.theme model.language
+                            , styled div
+                                [ UI.Style.coloredBlock model.theme
+                                , property "display" "grid"
+                                , property "grid-template-columns" "auto 1fr"
+                                , property "column-gap" "1rem"
+                                , property "row-gap" "1rem"
+                                ]
                                 []
-                                [ text (translated "Experto" "Proficient" model.language) ]
-                            , span
-                                []
-                                [ text (Language.toSentence model.language Constants.proficientSkills) ]
-                            , styled span
-                                [ fontWeight (int 700) ]
-                                []
-                                [ text (translated "Familiarizado" "Familiar" model.language) ]
-                            , span
-                                []
-                                [ text (Language.toSentence model.language Constants.familiarSkills) ]
+                                [ styled span
+                                    [ fontWeight (int 700) ]
+                                    []
+                                    [ text (translated "Experto" "Proficient" model.language) ]
+                                , span
+                                    []
+                                    [ text (Language.toSentence model.language Constants.proficientSkills) ]
+                                , styled span
+                                    [ fontWeight (int 700) ]
+                                    []
+                                    [ text (translated "Familiarizado" "Familiar" model.language) ]
+                                , span
+                                    []
+                                    [ text (Language.toSentence model.language Constants.familiarSkills) ]
+                                ]
                             ]
                         ]
                   ]
