@@ -95,7 +95,7 @@ jobs =
         (Language.translated "Desarrollador Web Full-Stack" "Full-Stack Web Developer")
         (Language.translated
             """
-            Empresa enfocada en la creación de herramientas para facilitar tareas administrativas complejas.
+            Empresa enfocada en la facilitación de tareas administrativas en la industria médica y de construcción.
             Mis principales actividades incluyeron programar una aplicación web hecha en React y Django,
             donde pude implementar varios patrones de diseño funcionales que facilitaron la modificación del código fuente.
             También lideré el desarrollo de una aplicación WPF, donde creé una librería para manejar fácilmente datos almacenados en CTEs recursivos.
