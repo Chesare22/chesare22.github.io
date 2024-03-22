@@ -259,7 +259,7 @@ type alias Study =
 
 education : List Study
 education =
-    [ Study (Language.translated "Licenciatura en Ingeniería de Software" "Bachelor of Software Engineering")
+    [ Study (Language.translated "Licenciatura en Ingeniería de Software (No concluida)" "Bachelor of Software Engineering (Partial completion)")
         "UADY"
         (SimpleDate Time.Aug 2017)
         (SimpleDate Time.Dec 2023)
