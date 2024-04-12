@@ -18,6 +18,7 @@ module Constants exposing
     , proficientSkills
     , projects
     , smallProjects
+    , tabTitle
     )
 
 import FeatherIcons
@@ -26,6 +27,11 @@ import Material.Icons as Filled
 import Material.Icons.Types exposing (Coloring(..), Icon)
 import Svg.Styled
 import Time
+
+
+tabTitle : Language -> String
+tabTitle =
+    translated "Currículum de César González" "César González's resume"
 
 
 name : String
