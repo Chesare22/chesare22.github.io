@@ -47,6 +47,9 @@ subscriptions _ =
 port printPage : () -> Cmd msg
 
 
+port changeTabTitle : String -> Cmd msg
+
+
 
 -- MODEL
 
@@ -75,22 +78,25 @@ type alias Model =
 
 init : Flags -> ( Model, Cmd Msg )
 init { fonts, preferredTheme, preferredLanguage, qrUrl } =
+    let
+        language =
+            if preferredLanguage |> String.startsWith "es" then
+                Language.Spanish
+
+            else
+                Language.English
+    in
     ( { theme =
             if preferredTheme == "dark" then
                 Dark
 
             else
                 Light
-      , language =
-            if preferredLanguage |> String.startsWith "es" then
-                Language.Spanish
-
-            else
-                Language.English
+      , language = language
       , qrUrl = qrUrl
       , fonts = fonts
       }
-    , Cmd.none
+    , changeTabTitle (Constants.tabTitle language)
     )
 
 
@@ -114,7 +120,7 @@ update msg model =
 
         ChangeLanguage language ->
             ( { model | language = language }
-            , Cmd.none
+            , changeTabTitle (Constants.tabTitle language)
             )
 
         Print ->

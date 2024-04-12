@@ -22,6 +22,10 @@ app.ports.printPage.subscribe(() => {
   window.print();
 });
 
+app.ports.changeTabTitle.subscribe((tabTitle) => {
+  document.title = tabTitle;
+});
+
 window.addEventListener("load", () => {
   const optionsBar = document.getElementById("options-bar");
 
