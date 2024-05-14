@@ -278,12 +278,12 @@ education =
 
 proficientSkills : List (Language -> String)
 proficientSkills =
-    [ Language.translated "Programación Funcional" "Functional Programming"
-    , always "JavaScript"
+    [ always "JavaScript"
     , always "ReactJS"
-    , always "CSS"
-    , always "git"
     , always "Elm"
+    , Language.translated "Programación Funcional" "Functional Programming"
+    , always "git"
+    , always "CSS"
     ]
 
 
@@ -291,13 +291,13 @@ familiarSkills : List (Language -> String)
 familiarSkills =
     [ always "Elixir"
     , always "Python"
-    , always "C#"
+    , always "TypeScript"
+    , always ".NET"
     , always "SQL"
-    , always "React Native"
+    , always "MongoDB"
     , Language.translated "Microservicios" "Microservices"
     , always "Event Sourcing"
     , always "CQRS"
-    , always "MongoDB"
     ]
 
 
