@@ -1,9 +1,10 @@
 port module Main exposing (..)
 
 import Browser
+import Constants exposing (Highlight(..))
 import Css exposing (..)
 import Css.Global as Global
-import CustomData exposing (Highlight(..))
+import Formatters
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes
@@ -46,38 +47,56 @@ subscriptions _ =
 port printPage : () -> Cmd msg
 
 
+port changeTabTitle : String -> Cmd msg
+
+
 
 -- MODEL
 
 
+type alias Fonts =
+    { renogare : String
+    , trajanPro : String
+    }
+
+
 type alias Flags =
-    { profilePicture : String
-    , preferredTheme : String
+    { preferredTheme : String
+    , preferredLanguage : String
     , qrUrl : String
+    , fonts : Fonts
     }
 
 
 type alias Model =
     { theme : Theme
     , language : Language.Language
-    , profilePicture : String
     , qrUrl : String
+    , fonts : Fonts
     }
 
 
 init : Flags -> ( Model, Cmd Msg )
-init { profilePicture, preferredTheme, qrUrl } =
+init { fonts, preferredTheme, preferredLanguage, qrUrl } =
+    let
+        language =
+            if preferredLanguage |> String.startsWith "es" then
+                Language.Spanish
+
+            else
+                Language.English
+    in
     ( { theme =
             if preferredTheme == "dark" then
                 Dark
 
             else
                 Light
-      , language = Language.English
-      , profilePicture = profilePicture
+      , language = language
       , qrUrl = qrUrl
+      , fonts = fonts
       }
-    , Cmd.none
+    , changeTabTitle (Constants.tabTitle language)
     )
 
 
@@ -101,7 +120,7 @@ update msg model =
 
         ChangeLanguage language ->
             ( { model | language = language }
-            , Cmd.none
+            , changeTabTitle (Constants.tabTitle language)
             )
 
         Print ->
@@ -117,6 +136,16 @@ toggleTheme =
 
 
 -- VIEW
+
+
+projectsInFirstPage : List Constants.Project
+projectsInFirstPage =
+    List.take 2 Constants.projects
+
+
+projectsInSecondPage : List Constants.Project
+projectsInSecondPage =
+    List.drop 2 Constants.projects
 
 
 view : Model -> Html Msg
@@ -172,6 +201,24 @@ view model =
                 , borderWidth (rem 0.32)
                 , borderStyle solid
                 , borderColor4 transparent transparent UI.Palette.grey.c900 transparent
+                ]
+            , Global.selector "@font-face"
+                [ fontFamilies [ "Renogare" ]
+                , property "src"
+                    ("local(\"Renogare\"),"
+                        ++ "url(\""
+                        ++ model.fonts.renogare
+                        ++ "\") format(\"opentype\")"
+                    )
+                ]
+            , Global.selector "@font-face"
+                [ fontFamilies [ "Trajan Pro" ]
+                , property "src"
+                    ("local(\"Trajan Pro\"),"
+                        ++ "url(\""
+                        ++ model.fonts.trajanPro
+                        ++ "\") format(\"truetype\")"
+                    )
                 ]
             ]
 
@@ -260,136 +307,127 @@ view model =
             [ Attributes.css
                 [ UI.Style.paper model.theme
                 , property "display" "grid"
-                , property "grid-template-columns" "3fr 5fr"
-                , property "column-gap" "2rem"
+                , property "grid-template-columns" "1fr auto"
+                , property "grid-template-areas"
+                    """
+                    "name contact-info"
+                    "content content"
+                    """
+                , property "row-gap" "2rem"
                 , property "align-content" "start"
                 , UI.Media.onSmallScreen
                     [ property "grid-template-columns" "1fr"
+                    , property "grid-template-areas"
+                        """
+                        "name"
+                        "contact-info"
+                        "content"
+                        """
+                    , property "row-gap" "1rem"
                     ]
                 , UI.Media.belowBigScreen
                     [ paddingBottom (px 0)
                     ]
                 ]
             ]
-            -- Column 1
-            [ div
+            [ styled div
+                [ property "grid-area" "name" ]
                 []
-                [ roundImg UI.Size.profilePicture
-                    [ Attributes.src model.profilePicture
-                    , Attributes.alt
-                        (Language.translated
-                            "Foto de César con lentes"
-                            "Photo of César with glasses"
-                            model.language
-                        )
+                [ styled h1
+                    [ UI.Style.title model.theme
+                    , marginBottom (Css.rem 0)
                     ]
-                , styled h1
-                    [ UI.Style.title model.theme ]
                     []
-                    [ text CustomData.name ]
-                , p
-                    [ Attributes.css
-                        [ UI.Style.paragraph
-                        , textAlign justify
+                    [ text Constants.name ]
+                , styled p
+                    [ paddingLeft (Css.rem 0.25)
+                    , maxWidth (rem 20)
+                    , marginBottom (px 0)
+                    , UI.Media.onSmallScreen
+                        [ textAlign center
+                        , maxWidth (rem 200)
                         ]
-                    ]
-                    [ text
-                        (Language.translated
-                            "Soy un estudiante de ingeniería de software con 2 años de experiencia trabajando como desarrollador frontend. Estoy comprometido con la calidad del software en todas sus etapas, desde la planeación hasta la entrega del producto. A menudo intento hacer mi código lo más simple posible y disfruto aprender cosas nuevas. Actualmente la programación funcional me llama la atención."
-                            "I'm a software engineering student with two years of experience working as a frontend developer. I am committed to software quality in all their stages, from the planning to the delivery and maintenance. I often try to make my code the simplest possible and I enjoy learning new stuff. Currently I'm really interested in functional programming."
-                            model.language
-                        )
-                    ]
-                , styled h2
-                    [ UI.Style.subtitle model.theme
-                    , marginBottom (rem 1)
                     ]
                     []
                     [ text
-                        (Language.translated
-                            "Me puedes encontrar en"
-                            "You can find me on"
-                            model.language
-                        )
-                    ]
-                , styled div
-                    [ UI.Style.coloredBlock model.theme
-                    , marginBottom (rem 1)
-                    ]
-                    []
-                    [ ul
-                        [ Attributes.css
-                            [ listStyle none
-                            , paddingLeft (px 0)
-                            , margin (px 0)
-                            ]
-                        ]
-                        (List.map displayContact <| CustomData.contactList 16)
-                    ]
-                , qrCode model.qrUrl
-                , a
-                    [ Attributes.href model.qrUrl
-                    , Attributes.css
-                        [ display block
-                        , margin auto
-                        , textAlign center
-                        , color UI.Palette.grey.c500
-                        , textDecoration none
-                        , fontStyle italic
-                        , fontSize (rem 0.8)
-                        , UI.Media.notOnPrint
-                            [ display none
-                            ]
-                        ]
-                    ]
-                    [ text
-                        (Language.translated
-                            ("Este documento es una página web impresa " ++ model.qrUrl)
-                            ("This document is a printed web page " ++ model.qrUrl)
+                        (translated
+                            "Desarrollador web Full-Stack fascinado por compartir ideas"
+                            "Full-Stack web developer fascinated by how ideas are shared"
                             model.language
                         )
                     ]
                 ]
-
-            -- Column 2
-            , div [] <|
-                List.concat
-                    [ [ styled h2
-                            [ UI.Style.subtitle model.theme
-                            , UI.Media.aboveSmallScreen [ marginTop (px 0) ]
-                            , UI.Media.onPrint [ marginTop (px 0) ]
+            , styled div
+                [ property "grid-area" "contact-info" ]
+                []
+                [ ul
+                    [ Attributes.css
+                        [ listStyle none
+                        , paddingLeft (px 0)
+                        , textAlign right
+                        , margin (px 0)
+                        , UI.Media.onSmallScreen
+                            [ textAlign left
                             ]
+                        ]
+                    ]
+                    (List.map displayContact (Constants.contactList 16))
+                ]
+            , styled div
+                [ property "grid-area" "content" ]
+                []
+                (List.concat
+                    [ [ jobsSubtitle model.theme model.language ]
+                    , Constants.jobs
+                        |> List.map (displayJob model.language)
+                    , [ styled div
+                            [ UI.Style.twoColumnContainer ]
                             []
-                            [ text
-                                (Language.translated
-                                    "Habilidades técnicas"
-                                    "Hard skills"
-                                    model.language
+                            [ styled div
+                                [ property "display" "grid"
+                                , property "align-content" "start"
+                                ]
+                                []
+                                (List.concat
+                                    [ [ educationSubtitle model.theme model.language ]
+                                    , Constants.education |> List.map (displayStudy model.language)
+                                    ]
                                 )
-                            ]
-                      , styled div
-                            [ UI.Style.coloredBlock model.theme
-                            , property "display" "grid"
-                            , property "grid-template-columns" "auto 1fr"
-                            , property "column-gap" "1rem"
-                            , property "row-gap" "1rem"
-                            ]
-                            []
-                            [ skillSubtitle [] [ text (translated "Competente" "Proficient" model.language) ]
-                            , span [] [ text (Language.toSentence model.language CustomData.proficientSkills) ]
-                            , skillSubtitle [] [ text (always "Familiar" model.language) ]
-                            , span [] [ text (Language.toSentence model.language CustomData.familiarSkills) ]
-                            , skillSubtitle [] [ text (translated "Aprendiendo" "Learning" model.language) ]
-                            , span [] [ text (Language.toSentence model.language CustomData.learningSkills) ]
+                            , styled div
+                                [ property "display" "grid"
+                                , property "align-content" "start"
+                                ]
+                                []
+                                [ skillsSubtitle model.theme model.language
+                                , styled div
+                                    [ UI.Style.coloredBlock model.theme
+                                    , maxWidth (rem 26)
+                                    , property "display" "grid"
+                                    , property "grid-template-columns" "auto 1fr"
+                                    , property "column-gap" "1rem"
+                                    , property "row-gap" "1rem"
+                                    ]
+                                    []
+                                    [ styled span
+                                        [ fontWeight (int 700) ]
+                                        []
+                                        [ text (translated "Experto" "Proficient" model.language) ]
+                                    , span
+                                        []
+                                        [ text (Language.toSentence model.language Constants.proficientSkills) ]
+                                    , styled span
+                                        [ fontWeight (int 700) ]
+                                        []
+                                        [ text (translated "Familiarizado" "Familiar" model.language) ]
+                                    , span
+                                        []
+                                        [ text (Language.toSentence model.language Constants.familiarSkills) ]
+                                    ]
+                                ]
                             ]
                       ]
-                    , [ jobsSubtitle model.theme model.language ]
-                    , CustomData.jobs
-                        |> List.map (displayExperience model.language)
-                    , [ studiesSubtitle model.theme model.language ]
-                    , CustomData.studies
-                        |> List.map (displayExperience model.language)
                     ]
+                )
             ]
 
         -- Page 2
@@ -399,51 +437,39 @@ view model =
                 , property "display" "grid"
                 , property "align-content" "start"
                 , UI.Media.belowBigScreen
-                    [ after
-                        [ UI.Style.divider model.theme
-                        ]
+                    [ paddingBottom (px 0)
                     , paddingTop (px 0)
+                    , after
+                        [ UI.Style.divider model.theme ]
                     ]
                 ]
             ]
-            [ booksSubtitle model.theme model.language
-            , div
-                [ Attributes.css
-                    [ property "display" "grid"
-                    , property "grid-template-columns" "1fr 1fr"
-                    , property "column-gap" "1rem"
-                    , property "row-gap" "0.85rem"
-                    , property "align-content" "start"
-                    , UI.Media.onSmallestScreen
-                        [ property "grid-template-columns" "1fr"
+            (List.concat
+                [ [ projectsSubtitle model.theme model.language ]
+                , Constants.projects
+                    |> List.map (displayProject model.language)
+                , [ styled h2
+                        [ UI.Style.subtitle model.theme ]
+                        []
+                        [ text
+                            (Language.translated
+                                "Otros Proyectos"
+                                "Other Projects"
+                                model.language
+                            )
                         ]
-                    ]
-                ]
-                (CustomData.books
-                    |> List.map (displayBook model.language model.theme)
-                )
-            , div
-                [ Attributes.css
-                    [ property "justify-self" "center"
-                    , margin2 (rem 4) (rem 0)
-                    , maxWidth (rem 20)
-                    , fontSize (Css.em 1)
-                    , textAlign center
-                    ]
-                ]
-                [ span
-                    [ Attributes.css
-                        [ fontWeight (int 700)
+                  , styled ul
+                        [ property "padding-inline-start" "1.25rem"
+                        , property "display" "grid"
+                        , property "grid-gap" "0.32rem"
+                        , marginTop (px 0)
+                        , marginBottom (Css.em 2.5)
                         ]
-                    ]
-                    [ text "Fun fact: " ]
-                , text
-                    (translated "mis lenguajes de programación favoritos son Elm y Elixir"
-                        "my favorite programming languages are Elm and Elixir"
-                        model.language
-                    )
+                        []
+                        (Constants.smallProjects |> List.map (displaySmallProject model.language))
+                  ]
                 ]
-            ]
+            )
 
         -- Footnote
         , div
@@ -466,8 +492,6 @@ view model =
                 , Attributes.target "_blank"
                 , Attributes.css
                     [ color currentColor
-                    , textDecoration none
-                    , hover [ textDecoration underline ]
                     ]
                 ]
                 [ text
@@ -495,15 +519,29 @@ jobsSubtitle theme language =
         ]
 
 
-studiesSubtitle : Theme -> Language -> Html msg
-studiesSubtitle theme language =
+projectsSubtitle : Theme -> Language -> Html msg
+projectsSubtitle theme language =
     styled h2
         [ UI.Style.subtitle theme ]
         []
         [ text
             (Language.translated
-                "Estudios"
-                "Studies"
+                "Proyectos Principales"
+                "Main Projects"
+                language
+            )
+        ]
+
+
+educationSubtitle : Theme -> Language -> Html msg
+educationSubtitle theme language =
+    styled h2
+        [ UI.Style.subtitle theme ]
+        []
+        [ text
+            (Language.translated
+                "Educación"
+                "Education"
                 language
             )
         ]
@@ -525,7 +563,7 @@ booksSubtitle theme language =
         ]
 
 
-displayBook : Language -> Theme -> CustomData.Book -> Html msg
+displayBook : Language -> Theme -> Constants.Book -> Html msg
 displayBook lang theme book =
     div
         [ Attributes.css
@@ -552,11 +590,11 @@ displayBook lang theme book =
                 , fontSize (Css.em 0.8)
                 ]
             ]
-            [ text (CustomData.formatBookCompletion lang book.completion) ]
+            [ text (Formatters.formatBookCompletion lang book.completion) ]
         ]
 
 
-bookHighlight : CustomData.Highlight -> Theme -> Style
+bookHighlight : Constants.Highlight -> Theme -> Style
 bookHighlight highlight =
     case highlight of
         Regular ->
@@ -566,40 +604,107 @@ bookHighlight highlight =
             UI.Style.coloredBlock
 
 
-displayExperience : Language -> CustomData.Experience -> Html msg
-displayExperience lang experience =
+displayJob : Language -> Constants.Job -> Html msg
+displayJob lang job =
+    div
+        [ Attributes.css [ UI.Style.experienceContainer ] ]
+        [ div
+            [ Attributes.css [ property "grid-area" "title" ] ]
+            [ h3
+                [ Attributes.css [ UI.Style.experienceTitle ] ]
+                [ text (job.title lang) ]
+            , span [] [ text (", " ++ job.position lang) ]
+            ]
+        , span
+            [ Attributes.css [ UI.Style.experienceDate ] ]
+            [ text (Formatters.formatDateRange lang job.start job.end) ]
+        , p
+            [ Attributes.css [ UI.Style.experienceDescription ] ]
+            [ text (job.description lang) ]
+        ]
+
+
+displayStudy : Language -> Constants.Study -> Html msg
+displayStudy lang study =
     div
         [ Attributes.css
-            [ marginBottom (rem 1.5)
+            [ property "display" "grid"
+            , property "grid-template-columns" "1fr"
+            , marginBottom (rem 0.5)
+            , property "row-gap" "0.2rem"
             ]
         ]
         [ h3
-            [ Attributes.css
-                [ display inline
-                , fontSize (Css.em 1.17)
-                , fontWeight (int 700)
-                ]
-            ]
-            [ text (experience.title lang) ]
-        , span [] [ text (", " ++ experience.position lang) ]
+            [ Attributes.css [ UI.Style.experienceTitle, margin (px 0) ] ]
+            [ text (study.title lang) ]
         , span
-            [ Attributes.css
-                [ display block
-                , margin2 (rem 0.4) (px 0)
-                , letterSpacing (Css.em 0.075)
-                , fontSize (Css.em 0.8)
-                ]
-            ]
-            [ text (CustomData.formatDateRange lang experience.start experience.end) ]
+            [ Attributes.css [ fontStyle italic ] ]
+            [ text (Formatters.formatDateRange lang study.start (Just study.end)) ]
         , p
             [ Attributes.css [ UI.Style.paragraph ] ]
-            [ text (experience.description lang) ]
+            [ text study.institution ]
         ]
 
 
-skillSubtitle =
-    styled span
-        [ fontWeight (int 700)
+displayProject : Language -> Constants.Project -> Html msg
+displayProject lang project =
+    div
+        [ Attributes.css [ UI.Style.experienceContainer ] ]
+        [ div
+            [ Attributes.css [ property "grid-area" "title" ] ]
+            [ h3
+                [ Attributes.css [ UI.Style.experienceTitle ] ]
+                [ text (project.title lang) ]
+            , text " ("
+            , a
+                [ Attributes.href project.url
+                , Attributes.target "_blank"
+                , Attributes.css [ color inherit, property "word-break" "break-all" ]
+                ]
+                [ text project.url ]
+            , text ")"
+            ]
+        , span
+            [ Attributes.css [ UI.Style.experienceDate ] ]
+            [ text (String.fromInt project.year) ]
+        , p
+            [ Attributes.css [ UI.Style.experienceDescription ] ]
+            [ text (project.description lang) ]
+        ]
+
+
+displaySmallProject : Language -> Constants.SmallProject -> Html msg
+displaySmallProject language project =
+    li []
+        [ span
+            []
+            [ text (project.name language) ]
+        , styled span
+            [ fontSize (Css.em 0.9) ]
+            []
+            [ text " ("
+            , styled a
+                [ color inherit, property "word-break" "break-all" ]
+                [ Attributes.target "_blank"
+                , Attributes.href project.url
+                ]
+                [ text project.url ]
+            , text ")"
+            ]
+        ]
+
+
+skillsSubtitle : Theme -> Language -> Html msg
+skillsSubtitle theme language =
+    styled h2
+        [ UI.Style.subtitle theme ]
+        []
+        [ text
+            (Language.translated
+                "Habilidades"
+                "Skills"
+                language
+            )
         ]
 
 
@@ -651,30 +756,6 @@ qrCode url =
 
 
 
--- ATOMS
-
-
-roundImg : LengthOrAuto compatible -> List (Attribute msg) -> Html msg
-roundImg size attributes =
-    div
-        [ Attributes.css
-            [ width size
-            , height size
-            , UI.Style.round
-            , overflow hidden
-            , margin auto
-            ]
-        ]
-        [ styled img
-            [ width (pct 100)
-            , height (pct 100)
-            ]
-            attributes
-            []
-        ]
-
-
-
 -- THEMED ELEMENTS
 
 
@@ -689,7 +770,7 @@ switchThemeIcon size =
 -- VIEW OF CUSTOM DATA
 
 
-displayContact : CustomData.ContactInfo Msg -> Html Msg
+displayContact : Constants.ContactInfo Msg -> Html Msg
 displayContact contact =
     li []
         [ a
@@ -697,18 +778,27 @@ displayContact contact =
             , Attributes.target "_blank"
             , Attributes.css
                 [ color inherit
-                , textDecoration none
                 , lineHeight (rem 1.365)
+                , UI.Media.onSmallScreen
+                    [ displayFlex
+                    , flexDirection rowReverse
+                    , justifyContent start
+                    ]
                 ]
             ]
-            [ span
+            [ span [] [ text contact.text ]
+            , span
                 [ Attributes.css
-                    [ paddingRight (rem 0.4)
-                    , position relative
+                    [ position relative
                     , top (rem 0.12)
+                    , UI.Media.onPrint
+                        [ paddingLeft (rem 0.4) ]
+                    , UI.Media.aboveSmallScreen
+                        [ paddingLeft (rem 0.4) ]
+                    , UI.Media.onSmallScreen
+                        [ paddingRight (rem 0.4) ]
                     ]
                 ]
                 [ contact.icon ]
-            , span [] [ text contact.text ]
             ]
         ]

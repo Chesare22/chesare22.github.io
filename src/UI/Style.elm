@@ -2,12 +2,17 @@ module UI.Style exposing
     ( centeredContent
     , coloredBlock
     , divider
+    , experienceContainer
+    , experienceDate
+    , experienceDescription
+    , experienceTitle
     , ghost
     , paper
     , paragraph
     , round
     , subtitle
     , title
+    , twoColumnContainer
     )
 
 import Css exposing (..)
@@ -34,7 +39,6 @@ paragraph =
     batch
         [ lineHeight (Css.em 1.5)
         , marginBottom (Css.em 1)
-        , marginTop (px 0)
         , UI.Media.onPrint
             [ lineHeight (Css.em 1.35)
             ]
@@ -63,7 +67,9 @@ title : UI.Palette.Theme -> Style
 title theme =
     batch
         [ color (UI.Palette.title theme)
-        , fontSize (Css.em 2)
+        , fontSize (Css.em 2.4)
+        , fontFamilies [ "Trajan Pro" ]
+        , letterSpacing (em 0.02)
         , UI.Media.onSmallScreen
             [ textAlign center
             ]
@@ -75,9 +81,10 @@ subtitle theme =
     batch
         [ color (UI.Palette.title theme)
         , fontSize (rem 1.4)
+        , letterSpacing (em 0.02)
         , fontWeight (int 700)
+        , fontFamilies [ "Trajan Pro" ]
         , marginBottom (Css.em 0.5)
-        , marginTop (Css.em 0.85)
         ]
 
 
@@ -135,6 +142,20 @@ paper theme =
         ]
 
 
+twoColumnContainer : Style
+twoColumnContainer =
+    batch
+        [ property "display" "grid"
+        , property "grid-template-columns" "1fr 1fr"
+        , property "column-gap" "1rem"
+        , property "row-gap" "0.85rem"
+        , property "align-content" "start"
+        , UI.Media.onSmallScreen
+            [ property "grid-template-columns" "1fr"
+            ]
+        ]
+
+
 divider : UI.Palette.Theme -> Style
 divider theme =
     batch
@@ -149,4 +170,54 @@ divider theme =
                 UI.Palette.grey.c500
                 theme
             )
+        ]
+
+
+experienceContainer : Style
+experienceContainer =
+    batch
+        [ marginBottom (rem 1.5)
+        , property "display" "grid"
+        , property "grid-template-columns" "1fr auto"
+        , property "row-gap" "0.5rem"
+        , property "grid-template-areas"
+            """
+                           "title date"
+                           "description description"
+                           """
+        , UI.Media.onSmallScreen
+            [ property "grid-template-columns" "1fr"
+            , property "grid-template-areas"
+                """
+                               "title"
+                               "date"
+                               "description"
+                               """
+            ]
+        ]
+
+
+experienceTitle : Style
+experienceTitle =
+    batch
+        [ display inline
+        , fontSize (Css.em 1.17)
+        , fontWeight (int 700)
+        ]
+
+
+experienceDate : Style
+experienceDate =
+    batch
+        [ property "grid-area" "date"
+        , fontStyle italic
+        ]
+
+
+experienceDescription : Style
+experienceDescription =
+    batch
+        [ paragraph
+        , property "grid-area" "description"
+        , fontSize (Css.em 0.9)
         ]
