@@ -458,15 +458,6 @@ view model =
                                 model.language
                             )
                         ]
-                  , styled ul
-                        [ property "padding-inline-start" "1.25rem"
-                        , property "display" "grid"
-                        , property "grid-gap" "0.32rem"
-                        , marginTop (px 0)
-                        , marginBottom (Css.em 2.5)
-                        ]
-                        []
-                        (Constants.smallProjects |> List.map (displaySmallProject model.language))
                   ]
                 ]
             )
