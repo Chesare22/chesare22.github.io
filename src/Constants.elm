@@ -1,8 +1,6 @@
 module Constants exposing
     ( Book
-    , BookCompletion(..)
     , ContactInfo
-    , Highlight(..)
     , Job
     , Project
     , SimpleDate
@@ -328,19 +326,7 @@ type alias Book =
     { title : String
     , author : String
     , description : Language -> String
-    , completion : BookCompletion
-    , highlight : Highlight
     }
-
-
-type BookCompletion
-    = Finished
-    | Midway Int
-
-
-type Highlight
-    = Regular
-    | Highlighted
 
 
 books : List Book
@@ -351,70 +337,52 @@ books =
             ""
             ""
         )
-        Finished
-        Highlighted
     , Book "You Don't Know JS (book series)"
         "Kyle Simpson"
         (Language.translated
             ""
             ""
         )
-        (Midway 85)
-        Regular
     , Book "Domain Modeling Made Functional"
         "Scott Wlaschin"
         (Language.translated
             ""
             ""
         )
-        (Midway 50)
-        Highlighted
     , Book "CSS Secrets"
         "Lea Verou"
         (Language.translated
             ""
             ""
         )
-        (Midway 25)
-        Regular
     , Book "Programming Elixir"
         "Dave Thomas"
         (Language.translated
             ""
             ""
         )
-        (Midway 70)
-        Highlighted
     , Book "Functional-Light JavaScript"
         "Kyle Simpson"
         (Language.translated
             ""
             ""
         )
-        Finished
-        Regular
     , Book "Effective TypeScript"
         "Dan Vanderkam"
         (Language.translated
             ""
             ""
         )
-        (Midway 20)
-        Regular
     , Book "MongoDB: The Definitive Guide"
         "Kristina Chodorow"
         (Language.translated
             ""
             ""
         )
-        (Midway 20)
-        Regular
     , Book "Python Distilled"
         "David M. Beazley"
         (Language.translated
             ""
             ""
         )
-        (Midway 15)
-        Regular
     ]
