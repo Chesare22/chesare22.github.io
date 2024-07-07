@@ -459,6 +459,8 @@ view model =
                             )
                         ]
                   ]
+                , Constants.books
+                    |> List.map (displayBook model.language)
                 ]
             )
 
@@ -554,34 +556,22 @@ booksSubtitle theme language =
         ]
 
 
-displayBook : Language -> Theme -> Constants.Book -> Html msg
-displayBook lang theme book =
+displayBook : Language -> Constants.Book -> Html msg
+displayBook lang book =
     div
-        [ Attributes.css
-            [ bookHighlight book.highlight theme
+        [ Attributes.css [ UI.Style.experienceContainer ] ]
+        [ div
+            [ Attributes.css [ property "grid-area" "title" ] ]
+            [ h3
+                [ Attributes.css [ UI.Style.experienceTitle ] ]
+                [ text book.title ]
             ]
-        ]
-        [ h3
-            [ Attributes.css
-                [ display inline
-                , fontSize (Css.em 1.17)
-                , fontWeight (int 700)
-                ]
-            ]
-            [ text book.title ]
         , span
-            [ Attributes.css [ display block ]
-            ]
+            [ Attributes.css [ UI.Style.experienceDate ] ]
             [ text book.author ]
-        , span
-            [ Attributes.css
-                [ display block
-                , margin2 (rem 0.2) (px 0)
-                , letterSpacing (Css.em 0.075)
-                , fontSize (Css.em 0.8)
-                ]
-            ]
-            [ text (Formatters.formatBookCompletion lang book.completion) ]
+        , p
+            [ Attributes.css [ UI.Style.experienceDescription ] ]
+            [ text (book.description lang) ]
         ]
 
 
