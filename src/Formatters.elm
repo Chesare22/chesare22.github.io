@@ -1,6 +1,6 @@
-module Formatters exposing (formatBookCompletion, formatDateRange)
+module Formatters exposing (formatDateRange)
 
-import Constants exposing (BookCompletion(..), SimpleDate)
+import Constants exposing (SimpleDate)
 import Language exposing (Language(..))
 import String.Extra
 import Time
@@ -111,23 +111,3 @@ monthsEs month =
 
         Time.Dec ->
             "diciembre"
-
-
-formatBookCompletion : Language -> BookCompletion -> String
-formatBookCompletion lang completion =
-    (case ( completion, lang ) of
-        ( Finished, Spanish ) ->
-            "Completado"
-
-        ( Finished, English ) ->
-            "Finished"
-
-        ( Midway percentage, Spanish ) ->
-            String.fromInt percentage
-                ++ "% de terminación"
-
-        ( Midway percentage, English ) ->
-            String.fromInt percentage
-                ++ "% completion"
-    )
-        |> String.toUpper

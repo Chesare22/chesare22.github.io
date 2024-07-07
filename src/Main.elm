@@ -1,7 +1,7 @@
 port module Main exposing (..)
 
 import Browser
-import Constants exposing (Highlight(..))
+import Constants
 import Css exposing (..)
 import Css.Global as Global
 import Formatters
@@ -573,16 +573,6 @@ displayBook lang book =
             [ Attributes.css [ UI.Style.experienceDescription ] ]
             [ text (book.description lang) ]
         ]
-
-
-bookHighlight : Constants.Highlight -> Theme -> Style
-bookHighlight highlight =
-    case highlight of
-        Regular ->
-            always (batch [])
-
-        Highlighted ->
-            UI.Style.coloredBlock
 
 
 displayJob : Language -> Constants.Job -> Html msg
