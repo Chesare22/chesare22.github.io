@@ -453,8 +453,8 @@ view model =
                         []
                         [ text
                             (Language.translated
-                                "Otros Proyectos"
-                                "Other Projects"
+                                "Libros favoritos"
+                                "Favorite books"
                                 model.language
                             )
                         ]
