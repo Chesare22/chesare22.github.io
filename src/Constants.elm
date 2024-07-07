@@ -331,56 +331,14 @@ type alias Book =
 
 books : List Book
 books =
-    [ Book "JavaScript: The Good Parts"
-        "Douglas Crockford"
+    [ Book "Domain Modeling Made Functional"
+        "Scott Wlaschin"
         (Language.translated
             ""
             ""
         )
     , Book "You Don't Know JS (book series)"
         "Kyle Simpson"
-        (Language.translated
-            ""
-            ""
-        )
-    , Book "Domain Modeling Made Functional"
-        "Scott Wlaschin"
-        (Language.translated
-            ""
-            ""
-        )
-    , Book "CSS Secrets"
-        "Lea Verou"
-        (Language.translated
-            ""
-            ""
-        )
-    , Book "Programming Elixir"
-        "Dave Thomas"
-        (Language.translated
-            ""
-            ""
-        )
-    , Book "Functional-Light JavaScript"
-        "Kyle Simpson"
-        (Language.translated
-            ""
-            ""
-        )
-    , Book "Effective TypeScript"
-        "Dan Vanderkam"
-        (Language.translated
-            ""
-            ""
-        )
-    , Book "MongoDB: The Definitive Guide"
-        "Kristina Chodorow"
-        (Language.translated
-            ""
-            ""
-        )
-    , Book "Python Distilled"
-        "David M. Beazley"
         (Language.translated
             ""
             ""
