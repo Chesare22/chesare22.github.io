@@ -479,7 +479,7 @@ view model =
                     ]
                 ]
             ]
-            [ span [] [ text "© 2021 César González" ]
+            [ span [] [ text "© 2024 César González" ]
             , a
                 [ Attributes.href "https://github.com/Chesare22/chesare22.github.io"
                 , Attributes.target "_blank"
