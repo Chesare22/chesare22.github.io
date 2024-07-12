@@ -565,10 +565,8 @@ displayBook lang book =
             [ h3
                 [ Attributes.css [ UI.Style.experienceTitle ] ]
                 [ text book.title ]
+            , span [] [ text (", " ++ book.author) ]
             ]
-        , span
-            [ Attributes.css [ UI.Style.experienceDate ] ]
-            [ text book.author ]
         , p
             [ Attributes.css [ UI.Style.experienceDescription ] ]
             [ text (book.description lang) ]
