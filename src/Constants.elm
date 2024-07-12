@@ -334,13 +334,13 @@ books =
     [ Book "Domain Modeling Made Functional"
         "Scott Wlaschin"
         (Language.translated
-            ""
-            ""
+            "Esencial para cualquier ingeniero de software interesado en la programación funcional. Enseña cómo sacar el máximo provecho al sistema de tipos algebraicos como herramienta de \"documentación ejecutable\", describiendo de forma fiel y actualizada las características, relaciones y restricciones de cada entidad."
+            "Essential for any software engineer interested in functional programming. It teaches how to get the most out of the algebraic type system as \"executable documentation\", describing in an accurate and up-to-date manner the characteristics, relationships and restrictions of each entity."
         )
     , Book "You Don't Know JS (book series)"
         "Kyle Simpson"
         (Language.translated
-            ""
-            ""
+            "Marcó un antes y un después en mi carrera como programador, pues fue la primera vez que entendí a fondo un lenguaje. Me permitió programar con confianza, lo cual tuvo un impacto positivo en mi velocidad al programar y en la calidad de mi código. La principal lección que me dejó fue la importancia de entender bien una tecnología antes de usarla."
+            "It marked a turning point in my career as a programmer because it was the first time I deeply understood a language. It allowed me to program with confidence, which had a positive impact on my speed and the quality of my code. The main lesson I learned from this book series is the importance of understanding any technology well before using it."
         )
     ]
