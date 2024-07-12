@@ -1,7 +1,7 @@
 port module Main exposing (..)
 
 import Browser
-import Constants exposing (Highlight(..))
+import Constants
 import Css exposing (..)
 import Css.Global as Global
 import Formatters
@@ -453,21 +453,14 @@ view model =
                         []
                         [ text
                             (Language.translated
-                                "Otros Proyectos"
-                                "Other Projects"
+                                "Libros favoritos"
+                                "Favorite books"
                                 model.language
                             )
                         ]
-                  , styled ul
-                        [ property "padding-inline-start" "1.25rem"
-                        , property "display" "grid"
-                        , property "grid-gap" "0.32rem"
-                        , marginTop (px 0)
-                        , marginBottom (Css.em 2.5)
-                        ]
-                        []
-                        (Constants.smallProjects |> List.map (displaySmallProject model.language))
                   ]
+                , Constants.books
+                    |> List.map (displayBook model.language)
                 ]
             )
 
@@ -486,7 +479,7 @@ view model =
                     ]
                 ]
             ]
-            [ span [] [ text "© 2021 César González" ]
+            [ span [] [ text "© 2024 César González" ]
             , a
                 [ Attributes.href "https://github.com/Chesare22/chesare22.github.io"
                 , Attributes.target "_blank"
@@ -563,45 +556,21 @@ booksSubtitle theme language =
         ]
 
 
-displayBook : Language -> Theme -> Constants.Book -> Html msg
-displayBook lang theme book =
+displayBook : Language -> Constants.Book -> Html msg
+displayBook lang book =
     div
-        [ Attributes.css
-            [ bookHighlight book.highlight theme
+        [ Attributes.css [ UI.Style.experienceContainer ] ]
+        [ div
+            [ Attributes.css [ property "grid-area" "title" ] ]
+            [ h3
+                [ Attributes.css [ UI.Style.experienceTitle ] ]
+                [ text book.title ]
+            , span [] [ text (", " ++ book.author) ]
             ]
+        , p
+            [ Attributes.css [ UI.Style.experienceDescription ] ]
+            [ text (book.description lang) ]
         ]
-        [ h3
-            [ Attributes.css
-                [ display inline
-                , fontSize (Css.em 1.17)
-                , fontWeight (int 700)
-                ]
-            ]
-            [ text book.title ]
-        , span
-            [ Attributes.css [ display block ]
-            ]
-            [ text book.author ]
-        , span
-            [ Attributes.css
-                [ display block
-                , margin2 (rem 0.2) (px 0)
-                , letterSpacing (Css.em 0.075)
-                , fontSize (Css.em 0.8)
-                ]
-            ]
-            [ text (Formatters.formatBookCompletion lang book.completion) ]
-        ]
-
-
-bookHighlight : Constants.Highlight -> Theme -> Style
-bookHighlight highlight =
-    case highlight of
-        Regular ->
-            always (batch [])
-
-        Highlighted ->
-            UI.Style.coloredBlock
 
 
 displayJob : Language -> Constants.Job -> Html msg

@@ -1,8 +1,6 @@
 module Constants exposing
     ( Book
-    , BookCompletion(..)
     , ContactInfo
-    , Highlight(..)
     , Job
     , Project
     , SimpleDate
@@ -327,57 +325,22 @@ smallProjects =
 type alias Book =
     { title : String
     , author : String
-    , completion : BookCompletion
-    , highlight : Highlight
+    , description : Language -> String
     }
-
-
-type BookCompletion
-    = Finished
-    | Midway Int
-
-
-type Highlight
-    = Regular
-    | Highlighted
 
 
 books : List Book
 books =
-    [ Book "JavaScript: The Good Parts"
-        "Douglas Crockford"
-        Finished
-        Highlighted
+    [ Book "Domain Modeling Made Functional"
+        "Scott Wlaschin"
+        (Language.translated
+            "Esencial para cualquier ingeniero de software interesado en la programación funcional. Enseña cómo sacar el máximo provecho al sistema de tipos algebraicos como herramienta de \"documentación ejecutable\", describiendo de forma fiel y actualizada las características, relaciones y restricciones de cada entidad."
+            "Essential for any software engineer interested in functional programming. It teaches how to get the most out of the algebraic type system as \"executable documentation\", describing in an accurate and up-to-date manner the characteristics, relationships and restrictions of each entity."
+        )
     , Book "You Don't Know JS (book series)"
         "Kyle Simpson"
-        (Midway 85)
-        Regular
-    , Book "Domain Modeling Made Functional"
-        "Scott Wlaschin"
-        (Midway 50)
-        Highlighted
-    , Book "CSS Secrets"
-        "Lea Verou"
-        (Midway 25)
-        Regular
-    , Book "Programming Elixir"
-        "Dave Thomas"
-        (Midway 70)
-        Highlighted
-    , Book "Functional-Light JavaScript"
-        "Kyle Simpson"
-        Finished
-        Regular
-    , Book "Effective TypeScript"
-        "Dan Vanderkam"
-        (Midway 20)
-        Regular
-    , Book "MongoDB: The Definitive Guide"
-        "Kristina Chodorow"
-        (Midway 20)
-        Regular
-    , Book "Python Distilled"
-        "David M. Beazley"
-        (Midway 15)
-        Regular
+        (Language.translated
+            "Marcó un antes y un después en mi carrera como programador, pues fue la primera vez que entendí a fondo un lenguaje. Me permitió programar con confianza, lo cual tuvo un impacto positivo en mi velocidad al programar y en la calidad de mi código. La principal lección que me dejó fue la importancia de entender bien una tecnología antes de usarla."
+            "It marked a turning point in my career as a programmer because it was the first time I deeply understood a language. It allowed me to program with confidence, which had a positive impact on my speed and the quality of my code. The main lesson I learned from this book series is the importance of understanding any technology well before using it."
+        )
     ]
