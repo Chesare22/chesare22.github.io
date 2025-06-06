@@ -22,7 +22,7 @@ module Constants exposing
 import FeatherIcons
 import Language exposing (..)
 import Material.Icons as Filled
-import Material.Icons.Types exposing (Coloring(..), Icon)
+import Material.Icons.Types exposing (Coloring(..))
 import Svg.Styled
 import Time
 
