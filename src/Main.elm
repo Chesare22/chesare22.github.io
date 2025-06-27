@@ -57,6 +57,7 @@ port changeTabTitle : String -> Cmd msg
 type alias Fonts =
     { renogare : String
     , trajanPro : String
+    , dinLight : String
     }
 
 
@@ -218,6 +219,15 @@ view model =
                         ++ "url(\""
                         ++ model.fonts.trajanPro
                         ++ "\") format(\"truetype\")"
+                    )
+                ]
+            , Global.selector "@font-face"
+                [ fontFamilies [ "DIN Light" ]
+                , property "src"
+                    ("local(\"DIN Light\"),"
+                        ++ "url(\""
+                        ++ model.fonts.dinLight
+                        ++ "\") format(\"woff\")"
                     )
                 ]
             ]

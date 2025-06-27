@@ -95,7 +95,7 @@ jobs : List Job
 jobs =
     [ Job (always "MID Software")
         (SimpleDate Time.Mar 2022)
-        (Just <| SimpleDate Time.Aug 2023)
+        Nothing
         (Language.translated "Desarrollador Web Full-Stack" "Full-Stack Web Developer")
         (Language.translated
             """

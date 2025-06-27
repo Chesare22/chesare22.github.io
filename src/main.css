@@ -10,14 +10,18 @@
 }
 
 body {
-  font-family: "Renogare", "Source Sans Pro", "Trebuchet MS", "Lucida Grande",
+  font-family: "DIN Light", "Renogare", "Source Sans Pro", "Trebuchet MS", "Lucida Grande",
     "Bitstream Vera Sans", "Helvetica Neue", sans-serif;
   font-size: 0.88rem;
   margin: 0;
   color: #293c4b;
 }
 
-h1, h2, h3, h4, p {
+h1,
+h2,
+h3,
+h4,
+p {
   margin-top: 0;
 }
 
