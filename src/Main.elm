@@ -260,23 +260,28 @@ view model =
                 [ input
                     [ Attributes.type_ "radio"
                     , Attributes.id "en"
+                    , Attributes.css [ cursor pointer ]
                     , Attributes.checked (model.language == English)
                     , onCheck (always (ChangeLanguage English))
                     ]
                     []
-                , label [ Attributes.for "en" ]
+                , label
+                    [ Attributes.for "en"
+                    , Attributes.css [ cursor pointer ]
+                    ]
                     [ text "English"
                     ]
                 , input
                     [ Attributes.type_ "radio"
                     , Attributes.id "es"
-                    , Attributes.css [ marginLeft (rem 0.8) ]
+                    , Attributes.css [ marginLeft (rem 0.8), cursor pointer ]
                     , Attributes.checked (model.language == Spanish)
                     , onCheck (always (ChangeLanguage Spanish))
                     ]
                     []
                 , label
                     [ Attributes.for "es"
+                    , Attributes.css [ cursor pointer ]
                     ]
                     [ text "Español"
                     ]
