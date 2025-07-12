@@ -38,6 +38,7 @@ paragraph : Style
 paragraph =
     batch
         [ lineHeight (Css.em 1.5)
+        , fontWeight (int 300)
         , marginBottom (Css.em 1)
         , UI.Media.onPrint
             [ lineHeight (Css.em 1.35)

@@ -58,6 +58,8 @@ type alias Fonts =
     { renogare : String
     , trajanPro : String
     , dinLight : String
+    , dinRegular : String
+    , dinBold : String
     }
 
 
@@ -149,6 +151,47 @@ projectsInSecondPage =
     List.drop 2 Constants.projects
 
 
+type FontExtension
+    = Woff
+    | Otf
+    | Ttf
+
+
+type alias LocalFontfaceParams =
+    { name : String
+    , url : String
+    , extension : FontExtension
+    }
+
+
+localFontface : List Style -> LocalFontfaceParams -> Global.Snippet
+localFontface styles { name, url, extension } =
+    Global.selector "@font-face"
+        ([ fontFamilies [ name ]
+         , property "src"
+            ("local(\""
+                ++ name
+                ++ "\"),"
+                ++ "url(\""
+                ++ url
+                ++ "\") format(\""
+                ++ (case extension of
+                        Woff ->
+                            "woff"
+
+                        Otf ->
+                            "opentype"
+
+                        Ttf ->
+                            "truetype"
+                   )
+                ++ "\")"
+            )
+         ]
+            ++ styles
+        )
+
+
 view : Model -> Html Msg
 view model =
     div
@@ -203,33 +246,31 @@ view model =
                 , borderStyle solid
                 , borderColor4 transparent transparent UI.Palette.grey.c900 transparent
                 ]
-            , Global.selector "@font-face"
-                [ fontFamilies [ "Renogare" ]
-                , property "src"
-                    ("local(\"Renogare\"),"
-                        ++ "url(\""
-                        ++ model.fonts.renogare
-                        ++ "\") format(\"opentype\")"
-                    )
-                ]
-            , Global.selector "@font-face"
-                [ fontFamilies [ "Trajan Pro" ]
-                , property "src"
-                    ("local(\"Trajan Pro\"),"
-                        ++ "url(\""
-                        ++ model.fonts.trajanPro
-                        ++ "\") format(\"truetype\")"
-                    )
-                ]
-            , Global.selector "@font-face"
-                [ fontFamilies [ "DIN Light" ]
-                , property "src"
-                    ("local(\"DIN Light\"),"
-                        ++ "url(\""
-                        ++ model.fonts.dinLight
-                        ++ "\") format(\"woff\")"
-                    )
-                ]
+            , localFontface []
+                { name = "Renogare"
+                , url = model.fonts.renogare
+                , extension = Otf
+                }
+            , localFontface []
+                { name = "Trajan Pro"
+                , url = model.fonts.trajanPro
+                , extension = Ttf
+                }
+            , localFontface [ fontWeight (int 300) ]
+                { name = "DIN"
+                , url = model.fonts.dinLight
+                , extension = Woff
+                }
+            , localFontface [ fontWeight (int 400) ]
+                { name = "DIN"
+                , url = model.fonts.dinRegular
+                , extension = Woff
+                }
+            , localFontface [ fontWeight (int 700) ]
+                { name = "DIN"
+                , url = model.fonts.dinBold
+                , extension = Woff
+                }
             ]
 
         -- Options bar
