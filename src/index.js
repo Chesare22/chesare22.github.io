@@ -3,6 +3,7 @@ import trajanPro from "../static/Trajan Pro Regular.ttf";
 import dinLight from "../static/DIN Light.woff"
 import dinRegular from "../static/DIN Regular.woff"
 import dinBold from "../static/DIN Bold.woff"
+import regloBold from "../static/Reglo-Bold.otf"
 import "./main.css";
 import { Elm } from "./Main.elm";
 import * as serviceWorker from "./serviceWorker";
@@ -14,7 +15,7 @@ const userPrefersDark =
 const app = Elm.Main.init({
   node: document.getElementById("root"),
   flags: {
-    fonts: { renogare, trajanPro, dinLight, dinRegular, dinBold },
+    fonts: { renogare, trajanPro, dinLight, dinRegular, dinBold, regloBold },
     preferredTheme: userPrefersDark ? "dark" : "light",
     preferredLanguage: navigator.language || navigator.userLanguage, // https://stackoverflow.com/a/4079798/13194448
     qrUrl: process.env.ELM_APP_QR_URL,

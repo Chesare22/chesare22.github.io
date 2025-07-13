@@ -60,6 +60,7 @@ type alias Fonts =
     , dinLight : String
     , dinRegular : String
     , dinBold : String
+    , regloBold : String
     }
 
 
@@ -270,6 +271,11 @@ view model =
                 { name = "DIN"
                 , url = model.fonts.dinBold
                 , extension = Woff
+                }
+            , localFontface [ fontWeight (int 700) ]
+                { name = "Reglo"
+                , url = model.fonts.regloBold
+                , extension = Otf
                 }
             ]
 
@@ -586,7 +592,7 @@ educationSubtitle theme language =
         []
         [ text
             (Language.translated
-                "Educación"
+                "Educacion"
                 "Education"
                 language
             )

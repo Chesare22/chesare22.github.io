@@ -34,7 +34,7 @@ tabTitle =
 
 name : String
 name =
-    "César González"
+    "César Gonzalez"
 
 
 email : String
