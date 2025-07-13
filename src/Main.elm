@@ -400,7 +400,7 @@ view model =
                     [ text Constants.name ]
                 , styled p
                     [ paddingLeft (Css.rem 0.25)
-                    , maxWidth (rem 20)
+                    , maxWidth (rem 25)
                     , marginBottom (px 0)
                     , UI.Media.onSmallScreen
                         [ textAlign center
@@ -410,8 +410,8 @@ view model =
                     []
                     [ text
                         (translated
-                            "Desarrollador web Full-Stack fascinado por compartir ideas"
-                            "Full-Stack web developer fascinated by how ideas are shared"
+                            "Ingeniero de software con una afinidad para el código limpio"
+                            "Software Engineer with an afinity for clean code"
                             model.language
                         )
                     ]
