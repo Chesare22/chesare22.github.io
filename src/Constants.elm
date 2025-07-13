@@ -23,6 +23,7 @@ import FeatherIcons
 import Language exposing (..)
 import Material.Icons as Filled
 import Material.Icons.Types exposing (Coloring(..))
+import Phone
 import Svg.Styled
 import Time
 
@@ -40,6 +41,14 @@ name =
 email : String
 email =
     "ces.gonzalezortega@gmail.com"
+
+
+phone : Phone.InternationalPhone
+phone =
+    { countryCode = 52
+    , cityCode = 1
+    , localPhoneNumber = 9995692551
+    }
 
 
 type alias ContactInfo msg =
@@ -64,11 +73,11 @@ contactList iconSize =
                     |> FeatherIcons.toHtml []
                 )
       }
-    , { href = "https://www.linkedin.com/in/cgonzalez22/"
-      , text = "/cgonzalez22"
+    , { href = phone |> Phone.toWhatsAppUrl
+      , text = phone |> Phone.toString
       , icon =
             Svg.Styled.fromUnstyled
-                (FeatherIcons.linkedin
+                (FeatherIcons.smartphone
                     |> FeatherIcons.withSize (toFloat iconSize)
                     |> FeatherIcons.toHtml []
                 )

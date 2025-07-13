@@ -25,9 +25,8 @@ toString =
 
 formatString : String -> String
 formatString str =
-    "("
-        ++ slice 0 3 str
-        ++ ") "
+    slice 0 3 str
+        ++ " "
         ++ slice 3 6 str
         ++ " "
         ++ slice 6 10 str
