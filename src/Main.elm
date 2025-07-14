@@ -640,8 +640,8 @@ displayJob lang job =
             [ Attributes.css [ property "grid-area" "title" ] ]
             [ h3
                 [ Attributes.css [ UI.Style.experienceTitle ] ]
-                [ text (job.title lang) ]
-            , span [] [ text (", " ++ job.position lang) ]
+                [ text (job.position lang) ]
+            , span [] [ text (", " ++ job.title lang) ]
             ]
         , span
             [ Attributes.css [ UI.Style.experienceDate ] ]
