@@ -140,20 +140,6 @@ jobs =
             Here I learned the most about software engineering, project management and how to have agreements with clients.
             """
         )
-    , Job (always "Coatí Labs")
-        (SimpleDate Time.Jan 2021)
-        (Just <| SimpleDate Time.Apr 2021)
-        (Language.translated "Desarrollador Web Frontend" "Frontend Web Developer")
-        (Language.translated
-            """
-            En Coatí se desarrollan aplicaciones web a la medida, como sistemas de CRM y comercios electrónicos.
-            Estuve involucrado en varios proyectos donde mis contribuciones incluían programar en React y participar en tomas de decisiones arquitectónicas.
-            """
-            """
-            Coatí Labs develops custom web applications, like CRM systems and e-commerces.
-            I was involved in several projects where my main contributions included programming in React and take part in architectural decision making.
-            """
-        )
     , Job (always "SoldAI")
         (SimpleDate Time.Jul 2019)
         (Just <| SimpleDate Time.Sep 2020)
@@ -214,49 +200,6 @@ projects =
             App to facilitate the business-level management of constructions.
             I was a developer for the web version and the backend, with a stack of React and Django.
             I took part in meetings with clients, technical decision-making and a lot of my contributions helped with the maintainability of the app.
-            """
-        )
-    , Project (Language.translated "Este currículum" "This resume")
-        "https://chesare22.github.io/"
-        2021
-        (Language.translated
-            """
-            Página web que desarrollé usando Elm. Tiene modos oscuro y luminoso, selección de idioma, diseño responsivo y puede imprimirse.
-            El uso de un lenguaje de programación funcional me ayudó a entender a fondo dicho paradigma, marcando un antes y después en mi forma de programar.
-            """
-            """
-            Web page that I developed using Elm. It has dark and light mode, language selection, responsive design and can be printed.
-            Using a functional programming language helped me to deeply understand said paradigm, marking a turning point in my programming style.
-            """
-        )
-    , Project (always "Comportia")
-        "https://medium.com/soldai/comportia-una-idea-hecha-realidad-6bd77e542882"
-        2019
-        (Language.translated
-            """
-            Aplicación web que permitía la creación y el despliegue de chatbots impulsados por inteligencia artificial.
-            Fue mi primer proyecto en un equipo de profesionales. Aporté en el diseño, la creación y mantenimiento de una variedad de
-            componentes en Vue cuyo propósito era guiar al usuario de forma efectiva para que pueda fácilmente administrar sus chatbots.
-            """
-            """
-            Web application that allowed to create and publish chatbots powered by artificial intelligence.
-            It was my first project in a professional team. I contributed in the design, creation and maintaining a variety of
-            Vue components to effectively guide the user to easily administrate their chatbots.
-            """
-        )
-    , Project (Language.translated "Temporizador-PIC18F4550" "Timer-PIC18F4550")
-        "https://github.com/Chesare22/Temporizador-PIC18F4550"
-        2018
-        (Language.translated
-            """
-            Proyecto escolar donde logré liderar a un grupo de veinte personas para desarrollar un temporizador en lenguaje ensamblador.
-            Propuse y codifiqué una máquina de estados para el funcionamiento general del proyecto. También coordiné a varios compañeros
-            que colaboraron con el cableado, la comunicación con la pantalla, la implementación de algunas funciones, etc.
-            """
-            """
-            School project in which I lead a team of twenty people to develop a timer using assembly language.
-            I coded a state machine for the general operation of the  project and coordinated several classmates who
-            helped with the wiring, the communication with the screen, the implementation of some functions, etc.
             """
         )
     ]

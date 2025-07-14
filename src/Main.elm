@@ -439,6 +439,9 @@ view model =
                     [ [ jobsSubtitle model.theme model.language ]
                     , Constants.jobs
                         |> List.map (displayJob model.language)
+                    , [ projectsSubtitle model.theme model.language ]
+                    , Constants.projects
+                        |> List.map (displayProject model.language)
                     , [ styled div
                             [ UI.Style.twoColumnContainer ]
                             []
@@ -504,10 +507,7 @@ view model =
                 ]
             ]
             (List.concat
-                [ [ projectsSubtitle model.theme model.language ]
-                , Constants.projects
-                    |> List.map (displayProject model.language)
-                , [ styled h2
+                [ [ styled h2
                         [ UI.Style.subtitle model.theme ]
                         []
                         [ text
