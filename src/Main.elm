@@ -375,7 +375,7 @@ view model =
                     "name contact-info"
                     "content content"
                     """
-                , property "row-gap" "2rem"
+                , property "row-gap" "1.25rem"
                 , property "align-content" "start"
                 , UI.Media.onSmallScreen
                     [ property "grid-template-columns" "1fr"

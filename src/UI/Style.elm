@@ -180,10 +180,10 @@ divider theme =
 experienceContainer : Style
 experienceContainer =
     batch
-        [ marginBottom (rem 1.5)
+        [ marginBottom (rem 1)
         , property "display" "grid"
         , property "grid-template-columns" "1fr auto"
-        , property "row-gap" "0.5rem"
+        , property "row-gap" "0.25rem"
         , property "grid-template-areas"
             """
                            "title date"

@@ -104,20 +104,20 @@ jobs : List Job
 jobs =
     [ Job (always "MID Software")
         (SimpleDate Time.Mar 2022)
-        Nothing
+        (Just (SimpleDate Time.Apr 2025))
         (Language.translated "Desarrollador Web Full-Stack" "Full-Stack Web Developer")
         (Language.translated
             """
             Empresa enfocada en la facilitación de tareas administrativas en la industria médica y de construcción.
             Mis principales actividades incluyeron programar una aplicación web hecha en React y Django,
             donde pude implementar varios patrones de diseño funcionales que facilitaron la modificación del código fuente.
-            También lideré el desarrollo de una aplicación WPF, donde creé una librería para manejar fácilmente datos almacenados en CTEs recursivos.
+            También lideré el desarrollo de una aplicación WPF, donde creé una librería para consultar fácilmente datos almacenados en CTEs recursivos.
             """
             """
             Enterprise focused on the development of tools to help complex administrative work.
             My main duties included programming a web application made with React and Django,
             where I could implement various functional design patterns that facilitated the modification of our source code.
-            I also led the development of a WPF application, where I created a library to easily manage data stored in recursive CTEs.
+            I also led the development of a WPF application, where I created a library to easily query data stored in recursive CTEs.
             """
         )
     , Job (always "Sumerian")
@@ -148,8 +148,8 @@ jobs =
             """
             Empresa dedicada al desarrollo de inteligencia artificial para la creación de chatbots.
             Mi principal labor fue la programación en Vue de una aplicación web que permitía personalizar y desplegar chatbots en distintas plataformas.
-            A pesar de que ya había programado en entornos académicos, aquí aprendí a profundidad sobre el desarrollo web,
-            la personalización de mi entorno de trabajo, el uso de git, pruebas y otras habilidades básicas como programador.
+            A pesar de que ya había programado en entornos académicos, trabajar aquí aumentó significativamente mis habilidades técnicas
+            y me ayudó a definir mi estilo de programación.
             """
             """
             Company dedicated to the development of artificial intelligence to create chatbots.
@@ -177,9 +177,8 @@ projects =
         (Language.translated
             """
             Aplicación WPF para migrar proyectos hechos en una aplicación de terceros a MiObra.
-            Es casi completamente de mi autoría, demorándome alrededor de tres meses para completar.
-            Entre las herramientas que creé para este proyecto se incluyen encriptación híbrida
-            y una librería declarativa para consultar datos almacenados en CTEs recursivas.
+            Siendo casi completamente de mi autoría, para este proyecto creé herramientas que facilitaron la
+            encriptación híbrida y una librería declarativa para consultar datos almacenados en CTEs recursivas.
             """
             """
             WPF application to migrate projects made with a third party app to MiObra.
@@ -200,6 +199,21 @@ projects =
             App to facilitate the business-level management of constructions.
             I was a developer for the web version and the backend, with a stack of React and Django.
             I took part in meetings with clients, technical decision-making and a lot of my contributions helped with the maintainability of the app.
+            """
+        )
+    , Project (always "Dark Impala")
+        "https://darkimpala.com/"
+        2020
+        (Language.translated
+            """
+            Blog de música desarrollado con Wordpress y Vue.js.
+            En este proyecto me familiaricé con aspectos del desarrollo de software que van más allá de la programación, como el diseño UI/UX,
+            optimización de SEO, trato directo con clientes, configuración de hosting, dominio y certificados SSL, etc.
+            """
+            """
+            Music blog developed with Wordpress and Vue.js.
+            In this project I practiced skills related to software development apart from just coding, like UI/UX design,
+            SEO optimization, direct contact with clients, hosting, domain and SSL configuration, etc.
             """
         )
     ]
@@ -242,6 +256,7 @@ familiarSkills =
     [ always "Elixir"
     , always "Python"
     , always "TypeScript"
+    , always "Wordpress"
     , always ".NET"
     , always "SQL"
     , always "MongoDB"
@@ -294,5 +309,19 @@ books =
         (Language.translated
             "Marcó un antes y un después en mi carrera como programador, pues fue la primera vez que entendí a fondo un lenguaje. Me permitió programar con confianza, lo cual tuvo un impacto positivo en mi velocidad al programar y en la calidad de mi código. La principal lección que me dejó fue la importancia de entender bien una tecnología antes de usarla."
             "It marked a turning point in my career as a programmer because it was the first time I deeply understood a language. It allowed me to program with confidence, which had a positive impact on my speed and the quality of my code. The main lesson I learned from this book series is the importance of understanding any technology well before using it."
+        )
+    , Book "CSS Secrets"
+        "Lea Verou"
+        (Language.translated
+            """
+            CSS es un lenguaje que requiere de mucha práctica y memorización, donde son comunes las propiedades diseñadas para interactuar con otras.
+            CSS Secrets es un handbook que recopila diversos patrones, al mismo tiempo que explica a fondo las propiedades involucradas.
+            Es una excelente referencia que he usado en múltiples ocasiones para progresar en mi trabajo.
+            """
+            """
+            CSS is a language that requires a lot of practice and memorization, where it's common to find properties designed to interact with each other.
+            CSS Secrets is a handbook that collects a wide array of patterns and deeply explains the properties involved in them.
+            It's an excellent reference that has gotten me unstock more than once.
+            """
         )
     ]
