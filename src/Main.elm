@@ -496,7 +496,7 @@ view model =
         , div
             [ Attributes.css
                 [ UI.Style.paper model.theme
-                , property "display" "grid"
+                , property "display" "none"
                 , property "align-content" "start"
                 , UI.Media.belowBigScreen
                     [ paddingBottom (px 0)
