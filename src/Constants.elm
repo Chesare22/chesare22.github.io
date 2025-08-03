@@ -324,4 +324,44 @@ books =
             It's an excellent reference that has gotten me unstock more than once.
             """
         )
+    , Book "JavaScript: The Good Parts"
+        "Douglas Crockford"
+        (Language.translated
+            """
+            
+            """
+            """
+            
+            """
+        )
+    , Book "Programming Elixir"
+        "Dave Thomas"
+        (Language.translated
+            """
+            
+            """
+            """
+            
+            """
+        )
+    , Book "Functional-Light JavaScript"
+        "Kyle Simpson"
+        (Language.translated
+            """
+            
+            """
+            """
+            
+            """
+        )
+    , Book "Python Distilled"
+        "David M. Beazley"
+        (Language.translated
+            """
+            
+            """
+            """
+            
+            """
+        )
     ]
