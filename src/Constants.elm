@@ -105,7 +105,7 @@ jobs =
     [ Job (always "MID Software")
         (SimpleDate Time.Mar 2022)
         (Just (SimpleDate Time.Apr 2025))
-        (Language.translated "Desarrollador Web Full-Stack" "Full-Stack Web Developer")
+        (Language.translated "Ingeniero de Software Full-Stack" "Full-Stack Software Engineer")
         (Language.translated
             """
             Empresa enfocada en la facilitación de tareas administrativas en la industria médica y de construcción.
