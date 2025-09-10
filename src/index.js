@@ -1,8 +1,8 @@
 import renogare from "../static/Renogare-Regular.otf";
 import trajanPro from "../static/Trajan Pro Regular.ttf";
-import dinLight from "../static/DIN Light.woff"
-import dinRegular from "../static/DIN Regular.woff"
-import dinBold from "../static/DIN Bold.woff"
+import dinLight from "../static/DIN 2014/Light.otf"
+import dinRegular from "../static/DIN 2014/Regular.otf"
+import dinBold from "../static/DIN 2014/Bold.otf"
 import regloBold from "../static/Reglo-Bold.otf"
 import "./main.css";
 import { Elm } from "./Main.elm";

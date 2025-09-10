@@ -260,17 +260,17 @@ view model =
             , localFontface [ fontWeight (int 300) ]
                 { name = "DIN"
                 , url = model.fonts.dinLight
-                , extension = Woff
+                , extension = Otf
                 }
             , localFontface [ fontWeight (int 400) ]
                 { name = "DIN"
                 , url = model.fonts.dinRegular
-                , extension = Woff
+                , extension = Otf
                 }
             , localFontface [ fontWeight (int 700) ]
                 { name = "DIN"
                 , url = model.fonts.dinBold
-                , extension = Woff
+                , extension = Otf
                 }
             , localFontface [ fontWeight (int 700) ]
                 { name = "Reglo"

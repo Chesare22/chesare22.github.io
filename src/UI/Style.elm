@@ -205,6 +205,7 @@ experienceTitle : Style
 experienceTitle =
     batch
         [ display inline
+        , lineHeight (pct 90)
         , fontSize (Css.em 1.17)
         , fontWeight (int 700)
         ]
