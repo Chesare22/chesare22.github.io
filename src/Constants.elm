@@ -122,7 +122,7 @@ jobs =
         )
     , Job (always "Sumerian")
         (SimpleDate Time.Jun 2020)
-        (Just <| SimpleDate Time.Jul 2021)
+        (Just <| SimpleDate Time.Jul 2022)
         (Language.translated "Ingeniero de Software" "Software Engineer")
         (Language.translated
             """
@@ -243,9 +243,10 @@ education =
 proficientSkills : List (Language -> String)
 proficientSkills =
     [ always "JavaScript"
+    , always "TypeScript"
     , always "ReactJS"
+    , always "Python"
     , always "Elm"
-    , Language.translated "Programación Funcional" "Functional Programming"
     , always "git"
     , always "CSS"
     ]
@@ -254,9 +255,8 @@ proficientSkills =
 familiarSkills : List (Language -> String)
 familiarSkills =
     [ always "Elixir"
-    , always "Python"
+    , always "Java"
     , always "Next.js"
-    , always "TypeScript"
     , always "SQL"
     , always ".NET"
     , always "MongoDB"
