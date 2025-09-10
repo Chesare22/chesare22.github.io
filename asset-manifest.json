@@ -1,7 +1,7 @@
 {
   "main.css": "/static/css/main.76905882.chunk.css",
-  "main.js": "/static/js/main.aaa4a303.chunk.js",
-  "main.js.map": "/static/js/main.aaa4a303.chunk.js.map",
+  "main.js": "/static/js/main.47f336dc.chunk.js",
+  "main.js.map": "/static/js/main.47f336dc.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.1b922744.js",
   "runtime~main.js.map": "/static/js/runtime~main.1b922744.js.map",
   "vendors~main.js": "/static/js/vendors~main.b17b319b.chunk.js",
@@ -11,10 +11,10 @@
   "index.html": "/index.html",
   "logo.svg": "/logo.svg",
   "manifest.json": "/manifest.json",
-  "precache-manifest.8f096cdc45d0588078b7f8c3258d7fb2.js": "/precache-manifest.8f096cdc45d0588078b7f8c3258d7fb2.js",
-  "static/media/DIN Bold.8423e1e0.woff": "/static/media/DIN Bold.8423e1e0.woff",
-  "static/media/DIN Light.c9aa0f48.woff": "/static/media/DIN Light.c9aa0f48.woff",
-  "static/media/DIN Regular.c8a03732.woff": "/static/media/DIN Regular.c8a03732.woff",
+  "precache-manifest.9925e6950ddaed73818e37f26fbd7da0.js": "/precache-manifest.9925e6950ddaed73818e37f26fbd7da0.js",
+  "static/media/Bold.fe5302de.otf": "/static/media/Bold.fe5302de.otf",
+  "static/media/Light.77a0ad48.otf": "/static/media/Light.77a0ad48.otf",
+  "static/media/Regular.43072446.otf": "/static/media/Regular.43072446.otf",
   "static/media/Renogare-Regular.e2167a7a.otf": "/static/media/Renogare-Regular.e2167a7a.otf",
   "static/media/Trajan Pro Regular.7b34a885.ttf": "/static/media/Trajan Pro Regular.7b34a885.ttf"
 }
